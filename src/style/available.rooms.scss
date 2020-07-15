@@ -1,3 +1,153 @@
+.nice-look-img {
+  display: inline-block;
+  position: relative;
+  background: url(../static/nice.look.svg) no-repeat center;
+  height: 40px;
+  width: 154px !important;
+  align-self: center;
+  .caption {
+    position: absolute;
+    left: 31.17%;
+    right: 5.19%;
+    top: 10%;
+    bottom: 10%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 32px;
+    /* identical to box height, or 229% */
+    display: flex;
+    align-items: center;
+    /* Black */
+    color: #2F486A;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 8px 0px;
+  }
+}
+.kitchen-img {
+  display: inline-block;
+  position: relative;
+  background: url(../static/kitchen.svg) no-repeat center;
+  height: 40px;
+  width: 96px !important;
+  align-self: center;
+  .caption {
+    position: absolute;
+    left: 46.17%;
+    right: 5.19%;
+    top: 10%;
+    bottom: 10%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 32px;
+    /* identical to box height, or 229% */
+    display: flex;
+    align-items: center;
+    /* Black */
+    color: #2F486A;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 8px 0px;
+  }
+}
+.refrigerator-img {
+  display: inline-block;
+  position: relative;
+  background: url(../static/refrigerator.svg) no-repeat center;
+  height: 40px;
+  width: 147px !important;
+  align-self: center;
+  .caption {
+    position: absolute;
+    left: 32.65%;
+    right: 5.44%;
+    top: 10%;
+    bottom: 10%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 32px;
+    /* identical to box height, or 229% */
+    display: flex;
+    align-items: center;
+    /* Black */
+    color: #2F486A;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 8px 0px;
+  }
+}
+.wifi-img {
+  display: inline-block;
+  position: relative;
+  background: url(../static/wifi.svg) no-repeat center;
+  height: 40px;
+  width: 91px !important;
+  align-self: center;
+  .caption {
+    position: absolute;
+    left: 52.75%;
+    right: 8.79%;
+    top: 10%;
+    bottom: 10%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 32px;
+    /* identical to box height, or 229% */
+    display: flex;
+    align-items: center;
+    /* Black */
+    color: #2F486A;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 8px 0px;
+  }
+}
+.no-smoking-room {
+  display: inline-block;
+  position: relative;
+  background: url(../static/no-smoking-room.svg) no-repeat center;
+  height: 40px;
+  width: 211px !important;
+  align-self: center;
+  .caption {
+    position: absolute;
+    left: 22.75%;
+    right: 3.79%;
+    top: 10%;
+    bottom: 10%;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 32px;
+    /* identical to box height, or 229% */
+    display: flex;
+    align-items: center;
+    /* Black */
+    color: #2F486A;
+    /* Inside Auto Layout */
+    flex: none;
+    order: 1;
+    align-self: center;
+    margin: 8px 0px;
+  }
+}
 .available-rooms {
   position: relative;
   width: 960px;
@@ -36,25 +186,422 @@
     top: 30px;
     background: #DCDFE2;
   }
-  .available-rooms-filter{
+  .available-rooms-filter {
     position: relative;
     top: 80px;
-    .available-rooms-filter-title{
+    .available-rooms-filter-title {
       position: absolute;
       width: 88px;
       height: 20px;
-
       font-family: Inter;
       font-style: normal;
       font-weight: 500;
       font-size: 14px;
       line-height: 20px;
-
       /* identical to box height, or 143% */
       display: flex;
       align-items: center;
       /* Second Black */
       color: rgba(47, 72, 106, 0.75);
+    }
+    .available-rooms-filter-elements {
+      display: flex;
+      flex-direction: row;
+      padding: 0px;
+      position: absolute;
+      width: 668px;
+      height: 36px;
+      left: 115px;
+      top: -5px;
+      justify-content: space-between;
+      .input1 {
+        @extend .clickable;
+        display: flex;
+        flex-direction: row;
+        padding: 8px 12px;
+        position: static;
+        left: 0px;
+        top: 0px;
+        /* Blue */
+        background: #267FF9;
+        border-radius: 4px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 0;
+        align-self: center;
+        .text {
+          position: static;
+          width: 26px;
+          height: 20px;
+          left: 12px;
+          top: 8px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+          display: flex;
+          align-items: center;
+          /* White */
+          color: #FFFFFF;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 0;
+          align-self: center;
+        }
+      }
+      .input2 {
+        @extend .clickable;
+        display: flex;
+        flex-direction: row;
+        padding: 8px 12px;
+        position: static;
+        width: 183px;
+        height: 36px;
+        left: 66px;
+        top: 0px;
+        border: 1px solid #DCDFE2;
+        box-sizing: border-box;
+        border-radius: 4px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 1;
+        align-self: center;
+        margin: 16px 0px;
+        .text {
+          position: static;
+          width: 159px;
+          height: 20px;
+          left: 12px;
+          top: 8px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 0;
+          align-self: center;
+          margin: 21px 0px;
+        }
+      }
+      .input3 {
+        @extend .clickable;
+        display: flex;
+        flex-direction: row;
+        padding: 8px 12px;
+        position: static;
+        width: 191px;
+        height: 36px;
+        left: 265px;
+        top: 0px;
+        border: 1px solid #DCDFE2;
+        box-sizing: border-box;
+        border-radius: 4px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 2;
+        align-self: center;
+        margin: 16px 0px;
+        .text {
+          position: static;
+          width: 130px;
+          height: 20px;
+          left: 12px;
+          top: 8px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 0;
+          align-self: center;
+          margin: 21px 0px;
+        }
+        .select-arrow-down {
+          position: relative;
+          width: 16px;
+          height: 16px;
+          right: -20px;
+          top: calc(50% - 16px / 2);
+          /* Inside Auto Layout */
+          flex: none;
+          order: 1;
+          align-self: center;
+          margin: 21px 0px;
+        }
+      }
+      .input4 {
+        @extend .clickable;
+        display: flex;
+        flex-direction: row;
+        padding: 8px 12px;
+        position: static;
+        width: 196px;
+        height: 36px;
+        left: 472px;
+        top: 0px;
+        border: 1px solid #DCDFE2;
+        box-sizing: border-box;
+        border-radius: 4px;
+        /* Inside Auto Layout */
+        flex: none;
+        order: 3;
+        align-self: center;
+        margin: 16px 0px;
+        .text {
+          position: static;
+          width: 135px;
+          height: 20px;
+          left: 12px;
+          top: 8px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 0;
+          align-self: center;
+          margin: 21px 0px;
+        }
+        .select-arrow-down {
+          position: relative;
+          width: 16px;
+          height: 16px;
+          right: -20px;
+          top: calc(50% - 16px / 2);
+          /* Inside Auto Layout */
+          flex: none;
+          order: 1;
+          align-self: center;
+          margin: 21px 0px;
+        }
+      }
+    }
+  }
+  .available-rooms-results-block {
+    .available-rooms-result {
+      position: relative;
+      width: 960px;
+      height: 660px;
+      top: 145px;
+      margin-bottom: 32px;
+      .available-rooms-result-decor {
+        position: absolute;
+        width: 960px;
+        height: 660px;
+        /* White */
+        background: #FFFFFF;
+        /* 30 dp */
+        box-shadow: 0px -2px 1px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
+        border-radius: 8px;
+      }
+      .room-title {
+        position: absolute;
+        width: 570px;
+        height: 32px;
+        left: 24px;
+        top: 24px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 26px;
+        line-height: 32px;
+        /* identical to box height, or 123% */
+        display: flex;
+        align-items: center;
+        /* Black */
+        color: #2F486A;
+      }
+      .frame-154 {
+        display: flex;
+        flex-direction: row;
+        padding: 0px;
+        position: absolute;
+        width: 208px;
+        height: 40px;
+        left: 24px;
+        top: 72px;
+        .frame-132 {
+          display: flex;
+          flex-direction: column;
+          padding: 8px;
+          position: static;
+          width: 64px;
+          height: 40px;
+          left: 0px;
+          top: 0px;
+          background: #FAFBFC;
+          border: 1px solid #DCDFE2;
+          box-sizing: border-box;
+          border-radius: 4px;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 0;
+          align-self: center;
+          margin: 8px 0px;
+          .frame-127 {
+            display: flex;
+            flex-direction: row;
+            padding: 0px;
+            position: static;
+            width: 48px;
+            height: 24px;
+            left: 8px;
+            top: 8px;
+            /* Inside Auto Layout */
+            flex: none;
+            order: 0;
+            align-self: center;
+          }
+        }
+        .frame-133 {
+          flex-direction: column;
+          padding: 8px;
+          position: static;
+          width: 136px;
+          height: 40px;
+          left: 72px;
+          top: 0px;
+          background: #FAFBFC;
+          border: 1px solid #DCDFE2;
+          box-sizing: border-box;
+          border-radius: 4px;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 1;
+          align-self: center;
+          margin: 8px 0px;
+          .frame-127 {
+            display: flex;
+            flex-direction: row;
+            padding: 0px;
+            position: static;
+            width: 120px;
+            height: 24px;
+            left: 8px;
+            top: 8px;
+            /* Inside Auto Layout */
+            flex: none;
+            order: 0;
+            align-self: center;
+          }
+        }
+      }
+      .room-description {
+        position: absolute;
+        width: 616px;
+        height: 72px;
+        left: 24px;
+        top: 128px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 24px;
+        /* or 150% */
+        display: flex;
+        align-items: center;
+        /* Black */
+        color: #2F486A;
+        opacity: 0.85;
+      }
+      .line1 {
+        position: absolute;
+        width: 960px;
+        height: 1px;
+        left: 0px;
+        top: 224px;
+        bottom: 1562px;
+        background: #DCDFE2;
+        mix-blend-mode: normal;
+      }
+      .frame-155 {
+        display: flex;
+        flex-direction: row;
+        padding: 0px;
+        position: absolute;
+        width: 730px;
+        height: 40px;
+        left: 24px;
+        top: 248px;
+        justify-content: space-between;
+        .frame-155-overflow {
+          @extend .clickable;
+          width: 640px;
+          height: 40px;
+          .slick-track {
+            .slick-slide {
+              margin-right: 8px;
+              width: auto !important
+            }
+          }
+        }
+        .gradient {
+          position: absolute;
+          width: 107px;
+          height: 40px;
+          left: 533px;
+          background: linear-gradient(270deg, #FFFFFF 63.17%, rgba(255, 255, 255, 0) 83.51%);
+        }
+        .frame-78 {
+          @extend .clickable;
+          display: flex;
+          flex-direction: column;
+          padding: 4px 14px;
+          position: absolute;
+          width: 272px;
+          height: 40px;
+          left: 640px;
+          background: #FFFFFF;
+          border: 1px solid #DCDFE2;
+          box-sizing: border-box;
+          border-radius: 4px;
+          .caption {
+            position: static;
+            width: 148px;
+            height: 32px;
+            left: 62px;
+            top: 4px;
+            font-family: Inter;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 32px;
+            /* identical to box height, or 229% */
+            display: flex;
+            align-items: center;
+            /* Blue */
+            color: #267FF9;
+            /* Inside Auto Layout */
+            flex: none;
+            order: 0;
+            align-self: center;
+            margin: 0px 10px;
+          }
+        }
+      }
     }
   }
 }

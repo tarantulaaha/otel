@@ -99,12 +99,26 @@ function showAvailableRooms() {
                 $('.available-rooms').animate({
                     opacity: 1
                 }, animationDuration);
+                $('.frame-155-overflow').slick({
+                    infinite: true,
+                    slidesToShow: 4,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    dots: false,
+                });
             });
         }else{
             $('div.main-layer').append(_obj);
             $('.available-rooms').animate({
                 opacity: 1
             }, animationDuration);
+            $('.frame-155-overflow').slick({
+                infinite: true,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                arrows: false,
+                dots: false,
+            });
         }
 
     }).fail(function (err) {

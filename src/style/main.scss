@@ -2,6 +2,9 @@
 @import "popup-select-guest";
 @import "available.rooms.none";
 @import "available.rooms";
+:focus{
+  outline: none;
+}
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -14,6 +17,24 @@
 
   background: rgba(47, 72, 106, 0.25);
   border-radius: 19px;
+}
+.man-icon{
+  background: url(../static/man.svg) no-repeat center;
+  height: 24px;
+  width: 24px;
+  align-self: center;
+}
+.plus-icon{
+  background: url(../static/plus.svg) no-repeat center;
+  height: 24px;
+  width: 24px;
+  align-self: center;
+}
+.child-icon{
+  background: url(../static/child.svg) no-repeat center bottom;
+  height: 24px;
+  width: 24px;
+  align-self: center;
 }
 input[type=checkbox]{
   &:before{
@@ -176,6 +197,11 @@ input[type=checkbox]{
         height: 90px;
         margin-right: 12px;
       }
+    }
+    .slick-slide {
+      width: 139px!important;
+      margin-right: 16px;
+      cursor: pointer;
     }
     .image-fade {
       display: block;
