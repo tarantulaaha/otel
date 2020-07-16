@@ -1,3 +1,13 @@
+.help-icon {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: url(../static/help.svg) no-repeat center;
+  margin-left: 6px;
+  &:hover {
+    background: url(../static/help-hover.svg) no-repeat center;
+  }
+}
 .nice-look-img {
   display: inline-block;
   position: relative;
@@ -460,7 +470,7 @@
           flex: none;
           order: 0;
           align-self: center;
-          margin: 8px 0px;
+          margin: 8px 8px 8px 0px;
           .frame-127 {
             display: flex;
             flex-direction: row;
@@ -527,6 +537,72 @@
         color: #2F486A;
         opacity: 0.85;
       }
+      .room-photos {
+        position: absolute;
+        width: 320px;
+        height: 224px;
+        left: 640px;
+        border-radius: 0px 8px 0px 0px;
+        .slick-prev {
+          &:before {
+            content: '';
+          }
+          &.slick-arrow {
+            background: url(../static/slider-arrow.svg) no-repeat center;
+            height: 40px;
+            width: 40px;
+          }
+          left: 0px;
+          z-index: 1;
+        }
+        .slick-next {
+          right: 0px;
+          &:before {
+            content: '';
+          }
+          &.slick-arrow {
+            background: url(../static/slider-arrow-next.svg) no-repeat center;
+            height: 40px;
+            width: 40px;
+          }
+        }
+      }
+      span.counter {
+        display: flex;
+        flex-direction: row;
+        padding: 2px 8px;
+        height: 24px;
+        width: 48px;
+        position: absolute;
+        left: 884px;
+        top: 184px;
+        background: rgba(47, 72, 106, 0.35);
+        background-blend-mode: multiply;
+        border-radius: 4px;
+        .value {
+          position: static;
+          left: 16.67%;
+          right: 16.67%;
+          top: 8.33%;
+          bottom: 8.33%;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 20px;
+          /* identical to box height, or 167% */
+          display: flex;
+          align-items: center;
+          /* White */
+          color: #FFFFFF;
+          opacity: 0.85;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 0;
+          align-self: center;
+          margin: 0px auto;
+        }
+      }
       .line1 {
         position: absolute;
         width: 960px;
@@ -536,6 +612,202 @@
         bottom: 1562px;
         background: #DCDFE2;
         mix-blend-mode: normal;
+      }
+      .room-variant {
+        &.red {
+          background: rgba(253, 195, 54, 0.1);
+        }
+        position: relative;
+        width: 960px;
+        height: 174px;
+        top: 312px;
+        .line2 {
+          position: absolute;
+          width: 960px;
+          height: 1px;
+          left: 0px;
+          top: 0px;
+          background: #DCDFE2;
+          mix-blend-mode: normal;
+        }
+        .room-title {
+          position: absolute;
+          left: 2.5%;
+          right: 84.9%;
+          top: 9.2%;
+          bottom: 72.41%;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 32px;
+          /* identical to box height, or 160% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+        }
+        .room-attribute-caption {
+          position: absolute;
+          width: 265px;
+          left: 39px;
+          top: 0%;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+          /* Inside Auto Layout */
+          flex: none;
+          order: 0;
+          align-self: center;
+          margin: 4px 0px;
+        }
+        .room-attribute-plate {
+          position: absolute;
+          top: 64px;
+          left: 24px;
+          .plate1-caption {
+            @extend .room-attribute-caption;
+          }
+        }
+        .room-attribute-hotel {
+          position: absolute;
+          top: 113px;
+          left: 24px;
+          .hotel1-caption {
+            @extend .room-attribute-caption;
+          }
+        }
+        .room-attribute-arrows {
+          position: absolute;
+          top: 64px;
+          left: 346px;
+          .arrows-caption {
+            @extend .room-attribute-caption;
+          }
+        }
+        .room-attribute-business {
+          position: absolute;
+          top: 113px;
+          left: 346px;
+          .business-caption {
+            @extend .room-attribute-caption;
+          }
+        }
+        .line-vert {
+          position: absolute;
+          left: 66.67%;
+          right: 33.23%;
+          top: 0%;
+          bottom: 0%;
+          background: #DCDFE2;
+          mix-blend-mode: normal;
+        }
+        .room-right-decor {
+          position: absolute;
+          height: 174px;
+          width: 320px;
+          left: 640px;
+          background: rgba(253, 195, 54, 0.1);
+          border-radius: 0px;
+        }
+        .room-price-block {
+          display: flex;
+          flex-direction: row;
+          padding: 0px;
+          position: absolute;
+          left: 76.15%;
+          right: 9.48%;
+          top: 11.49%;
+          bottom: 70.11%;
+          .room-price {
+            position: static;
+            width: 140px;
+            height: 32px;
+            left: 0px;
+            top: 0px;
+            font-family: Inter;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 32px;
+            /* identical to box height, or 160% */
+            display: flex;
+            align-items: center;
+            text-align: center;
+            /* Blue */
+            color: #267FF9;
+            /* Inside Auto Layout */
+            flex: none;
+            order: 0;
+            align-self: center;
+            margin: 6px 0px;
+          }
+        }
+        .room-free-count {
+          position: absolute;
+          left: 71.08%;
+          right: 4.42%;
+          top: 36.78%;
+          bottom: 51.72%;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+          text-align: center;
+          /* Second Black */
+          color: rgba(47, 72, 106, 0.75);
+        }
+        .select-tariff-group {
+          position: absolute;
+          width: 272px;
+          height: 44px;
+          left: 664px;
+          top: 106px;
+          .btn-large {
+            @extend .clickable;
+            position: absolute;
+            height: 44px;
+            width: 272px;
+            background: #267FF9;
+            box-shadow: 0px 6px 12px rgba(38, 127, 249, 0.2), 0px 4px 6px rgba(38, 127, 249, 0.2);
+            border-radius: 4px;
+            .right-arrow {
+              background: url(../static/right-arrow.svg) no-repeat center;
+              position: absolute;
+              width: 24px;
+              height: 24px;
+              left: 246px;
+              top: 10px;
+            }
+            .caption {
+              position: absolute;
+              width: 108px;
+              height: 32px;
+              left: calc(50% - 108px / 2 - 18px);
+              top: calc(50% - 32px / 2);
+              font-family: Inter;
+              font-style: normal;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 32px;
+              /* identical to box height, or 229% */
+              display: flex;
+              align-items: center;
+              text-align: center;
+              /* White */
+              color: #FFFFFF;
+            }
+          }
+        }
       }
       .frame-155 {
         display: flex;
@@ -552,6 +824,8 @@
           width: 640px;
           height: 40px;
           .slick-track {
+            position: relative;
+            /*left: 63px;*/
             .slick-slide {
               margin-right: 8px;
               width: auto !important
@@ -562,7 +836,7 @@
           position: absolute;
           width: 107px;
           height: 40px;
-          left: 533px;
+          left: 575px;
           background: linear-gradient(270deg, #FFFFFF 63.17%, rgba(255, 255, 255, 0) 83.51%);
         }
         .frame-78 {
