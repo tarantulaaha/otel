@@ -1,4 +1,8 @@
-
+.title-row {
+  @extend .main-info;
+  position: relative;
+  top: 170px;
+}
 .nice-look-img {
   display: inline-block;
   position: relative;
@@ -154,40 +158,6 @@
   position: relative;
   width: 960px;
   height: 56px;
-  .available-rooms-title-box {
-    display: flex;
-    flex-direction: row;
-    position: absolute;
-    width: 299px;
-    height: 56px;
-    background: #FAFBFC;
-    left: calc(50% - 299px / 2);
-    z-index: 2;
-    .available-rooms-title {
-      position: static;
-      width: 251px;
-      height: 32px;
-      margin: 0 auto;
-      font-family: Inter;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 26px;
-      line-height: 32px;
-      display: flex;
-      align-items: center;
-      color: rgba(47, 72, 106, 0.24);
-      flex: none;
-      order: 0;
-      align-self: center;
-    }
-  }
-  .available-rooms-line {
-    position: absolute;
-    width: 960px;
-    height: 1px;
-    top: 30px;
-    background: #DCDFE2;
-  }
   .available-rooms-filter {
     position: relative;
     top: 80px;
@@ -832,7 +802,7 @@
           left: 575px;
           background: linear-gradient(270deg, #FFFFFF 63.17%, rgba(255, 255, 255, 0) 83.51%);
         }
-        .frame-78 {
+        .room-info-btn {
           @extend .clickable;
           display: flex;
           flex-direction: column;
@@ -884,14 +854,25 @@
       bottom: 99.76%;
       background: #DCDFE2;
     }
-    frame-122 {
+    .frame-122 {
       position: absolute;
       left: 0%;
       right: 0%;
       top: 7.8%;
       bottom: 0%;
       border-radius: 8px;
-      text {
+      .decorate {
+        position: absolute;
+        width: 960px;
+        height: 390px;
+        left: 0px;
+        top: 0px;
+        /* White */
+        background: #FFFFFF;
+        box-shadow: 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
+        border-radius: 8px;
+      }
+      .text {
         position: absolute;
         width: 190px;
         height: 96px;
@@ -907,6 +888,238 @@
         align-items: center;
         /* Black */
         color: #2F486A;
+      }
+      .image-frame {
+        position: absolute;
+        width: 227px;
+        height: 211px;
+        left: 0px;
+        top: 179px;
+        border-radius: 8px;
+      }
+      .line-vert {
+        position: absolute;
+        width: 390px;
+        height: 1px;
+        left: 33px;
+        top: 195px;
+        background: #DCDFE2;
+        transform: rotate(90deg);
+      }
+      .question {
+        position: relative;
+        width: 684.8px;
+        height: 24px;
+        left: 233px;
+        .text {
+          position: absolute;
+          width: 547px;
+          height: 20px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 20px;
+          /* identical to box height, or 125% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+        }
+        .arrow-down {
+          background: url(../static/arrow-down.svg) no-repeat center;
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          left: 683px;
+          top: 20px;
+        }
+      }
+      .line-hor {
+        position: relative;
+        width: 685px;
+        height: 1px;
+        left: 253px;
+        top: 20px;
+        background: #DCDFE2;
+        margin: 20px 0px;
+      }
+    }
+  }
+  .reply {
+    @extend .main-block;
+    position: relative;
+    top: 255px;
+    height: 265px;
+    .person {
+      position: absolute;
+      width: 238px;
+      height: 40px;
+      .avatar {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+      }
+      .group-164 {
+        position: absolute;
+        width: 186px;
+        height: 38px;
+        left: 55px;
+        .name {
+          position: absolute;
+          width: 186px;
+          height: 18px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 18px;
+          /* identical to box height, or 138% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+        }
+        .room-type {
+          position: absolute;
+          top: 20px;
+          width: 119px;
+          height: 16px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          /* identical to box height, or 133% */
+          display: flex;
+          align-items: center;
+          /* Second Black */
+          color: rgba(47, 72, 106, 0.75);
+          opacity: 0.85;
+        }
+      }
+    }
+    .vote {
+      position: absolute;
+      width: 286px;
+      height: 40px;
+      top: 66px;
+      .vote-value {
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        position: absolute;
+        /* Blue */
+        background: #267FF9;
+        border-radius: 8px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        color: #FFFFFF;
+        .middle {
+          margin: auto;
+        }
+      }
+      .vote-text {
+        position: absolute;
+        width: 233px;
+        height: 37px;
+        left: 55px;
+        .vote-level {
+          position: absolute;
+          top: 4px;
+          width: 92px;
+          height: 20px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 20px;
+          /* identical to box height, or 143% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+        }
+        .vote-items {
+          position: absolute;
+          width: 233px;
+          height: 16px;
+          top: 23px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          /* identical to box height, or 133% */
+          display: flex;
+          align-items: center;
+          color: #267FF9;
+          opacity: 0.85;
+        }
+      }
+    }
+    .plus-minus-block {
+      position: absolute;
+      width: 644px;
+      height: 265px;
+      left: 314px;
+      .content-block {
+        position: absolute;
+        left: 12px;
+        width: 632px;
+        height: 265px;
+        /* White */
+        background: #FFFFFF;
+        box-shadow: 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
+        border-radius: 8px;
+        .plus-text {
+          display: block;
+          width: 605px;
+          position: relative;
+          left: 28px;
+          top: 19px;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 24px;
+          color: #2F486A;
+        }
+        .line {
+          position: relative;
+          width: 576px;
+          height: 1px;
+          top: 45px;
+          left: 28px;
+          background: #DCDFE2;
+          mix-blend-mode: normal;
+        }
+        .minus-text {
+          position: relative;
+          width: 605px;
+          left: 28px;
+          top: 67px;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 24px;
+          color: #2F486A;
+        }
+      }
+      .plus-green-icon {
+        position: absolute;
+        top: 24px;
+        width: 24px;
+        height: 24px;
+        background: url(../static/plus-green.svg) no-repeat center;
+      }
+      .minus-red-icon {
+        position: absolute;
+        bottom: 24px;
+        width: 24px;
+        height: 24px;
+        background: url(../static/minus-red.svg) no-repeat center;
       }
     }
   }

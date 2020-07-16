@@ -298,6 +298,20 @@ function searchAvailableRooms() {
     });
 }
 $(document).ready(function () {
+
+    $('body').on('click','.room-info-btn',function(){
+        $('body').find('.popup-room-info').remove();
+        $.get('static/popup-room-info.html', function (data) {
+            let popup_room_info = $(data);
+            popup_room_info.find('.close-btn').on('click',function(){
+                popup_room_info.remove();
+            });
+            popup_room_info.css({
+                top:window.scrollY-526
+            });
+            $('body').append(popup_room_info);
+        });
+    });
     $('body').on('mouseover', '[data-tooltip]', function () {
         let value = $(this).attr('data-tooltip');
         let _tooltip = $('<div class="tooltip"></div>');

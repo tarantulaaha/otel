@@ -2,6 +2,7 @@
 @import "popup-select-guest";
 @import "available.rooms.none";
 @import "available.rooms";
+@import "popup.room.info";
 body {
   font-family: Inter;
   background: #FAFBFC;
@@ -28,7 +29,6 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-
 .tooltip {
   display: none;
   padding: 0px;
@@ -81,6 +81,37 @@ body {
     /* Inside Auto Layout */
     align-self: center;
     margin: 0px 0px;
+  }
+}
+
+.title-box {
+  position: absolute;
+  width: 960px;
+  height: 56px;
+  text-align: center;
+  z-index: -1;
+  .line {
+    position: absolute;
+    width: 960px;
+    height: 1px;
+    top: 30px;
+    left: 0px;
+    background: #DCDFE2;
+    z-index: 0;
+  }
+  .title {
+    position: relative;
+    width: 299px;
+    height: 32px;
+    top: 12px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 32px;
+    color: rgba(47, 72, 106, 0.24);
+    align-self: center;
+    background: #FAFBFC;
+    padding: 12px 24px;
   }
 }
 .help-icon {
