@@ -1,13 +1,4 @@
-.help-icon {
-  content: '';
-  width: 16px;
-  height: 16px;
-  background: url(../static/help.svg) no-repeat center;
-  margin-left: 6px;
-  &:hover {
-    background: url(../static/help-hover.svg) no-repeat center;
-  }
-}
+
 .nice-look-img {
   display: inline-block;
   position: relative;
@@ -159,6 +150,7 @@
   }
 }
 .available-rooms {
+  @extend .main-block;
   position: relative;
   width: 960px;
   height: 56px;
@@ -411,11 +403,12 @@
     }
   }
   .available-rooms-results-block {
+    position: relative;
+    top: 145px;
     .available-rooms-result {
       position: relative;
       width: 960px;
       height: 660px;
-      top: 145px;
       margin-bottom: 32px;
       .available-rooms-result-decor {
         position: absolute;
@@ -875,6 +868,45 @@
             margin: 0px 10px;
           }
         }
+      }
+    }
+  }
+  .faq {
+    position: relative;
+    width: 960px;
+    height: 423px;
+    top: 145px;
+    .line1 {
+      position: absolute;
+      left: 0%;
+      right: 0%;
+      top: 0%;
+      bottom: 99.76%;
+      background: #DCDFE2;
+    }
+    frame-122 {
+      position: absolute;
+      left: 0%;
+      right: 0%;
+      top: 7.8%;
+      bottom: 0%;
+      border-radius: 8px;
+      text {
+        position: absolute;
+        width: 190px;
+        height: 96px;
+        left: 20px;
+        top: 20px;
+        font-family: Inter;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 32px;
+        /* or 160% */
+        display: flex;
+        align-items: center;
+        /* Black */
+        color: #2F486A;
       }
     }
   }
