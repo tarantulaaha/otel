@@ -197,6 +197,14 @@ function showAvailableRooms() {
                 opacity: 0
             }, animationDuration, function () {
                 $('body').find('.available-rooms').remove();
+                _obj.find('.replies-list').slick({
+                    infinite: true,
+                    slidesToShow: 1,
+                    swipeToSlide: true,
+                    arrows: true,
+                    dots: false,
+                    variableWidth: true
+                });
                 _obj.find('.room-photos').slick({
                     infinite: true,
                     slidesToShow: 1,
@@ -232,6 +240,14 @@ function showAvailableRooms() {
                 });
             });
         } else {
+            _obj.find('.replies-list').slick({
+                infinite: true,
+                slidesToShow: 1,
+                swipeToSlide: true,
+                arrows: true,
+                dots: false,
+                variableWidth: true
+            });
             _obj.find('.room-photos').slick({
                 infinite: true,
                 slidesToShow: 1,
@@ -266,6 +282,7 @@ function showAvailableRooms() {
                 variableWidth: true
             });
         }
+
     }).fail(function (err) {
         console.log(err)
     });
@@ -297,17 +314,60 @@ function searchAvailableRooms() {
         console.log(err)
     });
 }
-$(document).ready(function () {
+let cumulativeOffset = function(element) {
+    let top = 0, left = 0;
+    do {
+        top += element.offsetTop  || 0;
+        left += element.offsetLeft || 0;
+        element = element.offsetParent;
+    } while(element);
 
-    $('body').on('click','.room-info-btn',function(){
+    return {
+        top: top,
+        left: left
+    };
+};
+$(document).ready(function () {
+    $('body').on('click','.left-replies-block-slider .slick-prev,.left-replies-block-slider .slick-next',function(){
+        let active_vote={
+            value:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-value]').eq(0).attr('data-vote-value'),
+            level:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-text-level]').eq(0).attr('data-vote-text-level'),
+            name:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-name]').eq(0).attr('data-vote-name'),
+            avatar:$('.left-replies-block-slider .slick-slide.slick-active [data-avatar]').eq(0).attr('data-avatar'),
+            room:$('.left-replies-block-slider .slick-slide.slick-active [data-room-type]').eq(0).attr('data-room-type'),
+        }
+
+        $('.left-replies-block-slider .vote-value .middle').html(active_vote.value);
+        $('.left-replies-block-slider .vote-level').html(active_vote.level);
+        $('.left-replies-block-slider .person .name').html(active_vote.name);
+        $('.left-replies-block-slider .person .avatar').attr('src',active_vote.avatar);
+        $('.left-replies-block-slider .person .room-type').html(active_vote.room);
+    });
+    $(window).on('scroll', function () {
+        let left_replies_block_slider = $('.left-replies-block-slider');
+        if(left_replies_block_slider.length>0) {
+            let _diff=cumulativeOffset(left_replies_block_slider[0]).top-left_replies_block_slider[0].offsetTop;
+            let _block_height=left_replies_block_slider.height();
+            if (cumulativeOffset(left_replies_block_slider[0]).top-_block_height < window.scrollY ||window.scrollY>_diff) {
+                left_replies_block_slider.stop().animate({
+                    top: window.scrollY-(_diff-_block_height)
+                },500);
+            } else {
+                left_replies_block_slider.css({
+                    top: '355px'
+                });
+            }
+        }
+    });
+    $('body').on('click', '.room-info-btn', function () {
         $('body').find('.popup-room-info').remove();
         $.get('static/popup-room-info.html', function (data) {
             let popup_room_info = $(data);
-            popup_room_info.find('.close-btn').on('click',function(){
+            popup_room_info.find('.close-btn').on('click', function () {
                 popup_room_info.remove();
             });
             popup_room_info.css({
-                top:window.scrollY-526
+                top: window.scrollY - 526
             });
             $('body').append(popup_room_info);
         });

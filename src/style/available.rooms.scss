@@ -951,10 +951,12 @@
     position: relative;
     top: 255px;
     height: 265px;
+    margin-bottom: 32px;
     .person {
       position: absolute;
       width: 238px;
       height: 40px;
+      top: 24px;
       .avatar {
         position: absolute;
         width: 40px;
@@ -1003,7 +1005,7 @@
       position: absolute;
       width: 286px;
       height: 40px;
-      top: 66px;
+      top: 80px;
       .vote-value {
         display: flex;
         flex-direction: column;
@@ -1120,6 +1122,170 @@
         width: 24px;
         height: 24px;
         background: url(../static/minus-red.svg) no-repeat center;
+      }
+    }
+  }
+  .left-replies-block-slider {
+    position: absolute;
+    width: 272px;
+    height: 317px;
+    left: -295px;
+    top: 355px;
+    .vote {
+      position: relative;
+      width: 100%;
+      height: 40px;
+      .vote-value {
+        padding: 8px;
+        position: absolute;
+        /* Blue */
+        background: #267FF9;
+        border-radius: 8px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 24px;
+        color: #FFFFFF;
+        right: 10px;
+        .middle {
+          display: block;
+          width: 24px;
+          margin: auto;
+          text-align: center;
+        }
+      }
+      .vote-text {
+        position: absolute;
+        width: 180px;
+        height: 37px;
+        left: 30px;
+        .vote-level {
+          position: absolute;
+          top: 0px;
+          width: 180px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 20px;
+          /* identical to box height, or 125% */
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          /* Blue */
+          color: #267FF9;
+        }
+        .vote-items {
+          position: absolute;
+          width: 180px;
+          top: 23px;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          /* identical to box height, or 133% */
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          text-align: right;
+          /* Second Black */
+          color: rgba(47, 72, 106, 0.75);
+          opacity: 0.85;
+        }
+      }
+    }
+    .slick-slider{
+      .slick-prev{
+        left:0px;
+        z-index: 100;
+        &:before{
+          display: block;
+          content: '';
+          height: 16px;
+          width: 16px;
+          background: url(../static/replies-prev-btn.svg) no-repeat center;
+        }
+      }
+      .slick-next {
+        right: 0px;
+        z-index: 100;
+        &:before {
+          display: block;
+          content: '';
+          height: 16px;
+          width: 16px;
+          background: url(../static/replies-next-btn.svg) no-repeat center;
+        }
+      }
+    }
+    .replies-list {
+      .replies-text {
+        position: relative;
+        width: 225px!important;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+        color: #2F486A;
+        padding: 0px 13.5px;
+        left: 10px;
+      }
+    }
+    .left-replies-block-hor-line {
+      position: relative;
+      height: 1px;
+      width: 100%;
+      left: 0px;
+      top: 0px;
+      background: #DCDFE2;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+    .person {
+      position: relative;
+      width: 238px;
+      height: 40px;
+      .avatar {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+      }
+      .group-164 {
+        position: absolute;
+        width: 186px;
+        height: 38px;
+        left: 55px;
+        .name {
+          position: absolute;
+          width: 186px;
+          height: 18px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 18px;
+          /* identical to box height, or 138% */
+          display: flex;
+          align-items: center;
+          /* Black */
+          color: #2F486A;
+        }
+        .room-type {
+          position: absolute;
+          top: 20px;
+          width: 160px;
+          height: 16px;
+          font-family: Inter;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 16px;
+          /* identical to box height, or 133% */
+          display: flex;
+          align-items: center;
+          /* Second Black */
+          color: rgba(47, 72, 106, 0.75);
+          opacity: 0.85;
+        }
       }
     }
   }
