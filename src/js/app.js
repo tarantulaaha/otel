@@ -17,8 +17,8 @@ let availableRoomsObj = null;
 const animationDuration = 100;
 (function ($) {
     function isDOMAttrModifiedSupported() {
-        var p = document.createElement('p');
-        var flag = false;
+        let p = document.createElement('p');
+        let flag = false;
         if (p.addEventListener) p.addEventListener('DOMAttrModified', function () {
             flag = true
         }, false);
@@ -31,10 +31,10 @@ const animationDuration = 100;
     }
     function checkAttributes(chkAttr, e) {
         if (chkAttr) {
-            var attributes = this.data('attr-old-value');
+            let attributes = this.data('attr-old-value');
             if (e.attributeName.indexOf('style') >= 0) {
                 if (!attributes['style']) attributes['style'] = {}; //initialize
-                var keys = e.attributeName.split('.');
+                let keys = e.attributeName.split('.');
                 e.attributeName = keys[0];
                 e.oldValue = attributes['style'][keys[1]]; //old value
                 e.newValue = keys[1] + ':' + this.prop("style")[$.camelCase(keys[1])]; //new value
@@ -48,9 +48,9 @@ const animationDuration = 100;
         }
     }
     //initialize Mutation Observer
-    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-    $.fn.attrchange = function (o) {
-        var cfg = {
+    let MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+    $.fn.attr_change = function (o) {
+        let cfg = {
             trackValues: false,
             callback: $.noop
         };
@@ -62,8 +62,8 @@ const animationDuration = 100;
         }
         if (cfg.trackValues) { //get attributes old value
             $(this).each(function (i, el) {
-                var attributes = {};
-                for (var attr, i = 0, attrs = el.attributes, l = attrs.length; i < l; i++) {
+                let attributes = {};
+                for (let attr, i = 0, attrs = el.attributes, l = attrs.length; i < l; i++) {
                     attr = attrs.item(i);
                     attributes[attr.nodeName] = attr.value;
                 }
@@ -75,14 +75,14 @@ const animationDuration = 100;
                Mutation Observer is still new and not supported by all browsers.
                http://lists.w3.org/Archives/Public/public-webapps/2011JulSep/1622.html
             */
-            var mOptions = {
+            let mOptions = {
                 subtree: false,
                 attributes: true,
                 attributeOldValue: cfg.trackValues
             };
-            var observer = new MutationObserver(function (mutations) {
+            let observer = new MutationObserver(function (mutations) {
                 mutations.forEach(function (e) {
-                    var _this = e.target;
+                    let _this = e.target;
                     //get new value if trackValues is true
                     if (cfg.trackValues) {
                         /**
@@ -192,18 +192,20 @@ function showAvailableRooms() {
                 showAvailableRooms();
             });
         });
-        if ($('body').find('.available-rooms').length > 0) {
-            $('body').find('.available-rooms').animate({
+        let available_rooms=$('body .available-rooms');
+        if (available_rooms.length > 0) {
+            available_rooms.animate({
                 opacity: 0
             }, animationDuration, function () {
-                $('body').find('.available-rooms').remove();
+                available_rooms.remove();
                 _obj.find('.replies-list').slick({
                     infinite: true,
                     slidesToShow: 1,
                     swipeToSlide: true,
                     arrows: true,
                     dots: false,
-                    variableWidth: true
+                    variableWidth: true,
+                    useTransform: false
                 });
                 _obj.find('.room-photos').slick({
                     infinite: true,
@@ -211,7 +213,8 @@ function showAvailableRooms() {
                     swipeToSlide: true,
                     arrows: true,
                     dots: false,
-                    variableWidth: false
+                    variableWidth: false,
+                    useTransform: false
                 });
                 let cur_slide = 0;
                 let all_slides = 0
@@ -219,7 +222,7 @@ function showAvailableRooms() {
                     cur_slide = parseInt($(this).parent().find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
                     $(this).parent().parent().find('.counter > .value').html(cur_slide + '/' + all_slides);
                 });
-                _obj.find('.room-photos .slick-track').attrchange({
+                _obj.find('.room-photos .slick-track').attr_change({
                     callback: function (event) {
                         cur_slide = parseInt($(this).parent().find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
                         all_slides = $(this).parents('.available-rooms-result').eq(0).find('.room-photos .slick-slide').not('.slick-cloned').length;
@@ -236,7 +239,8 @@ function showAvailableRooms() {
                     swipeToSlide: true,
                     arrows: false,
                     dots: false,
-                    variableWidth: true
+                    variableWidth: true,
+                    useTransform: false
                 });
             });
         } else {
@@ -246,7 +250,8 @@ function showAvailableRooms() {
                 swipeToSlide: true,
                 arrows: true,
                 dots: false,
-                variableWidth: true
+                variableWidth: true,
+                useTransform: false
             });
             _obj.find('.room-photos').slick({
                 infinite: true,
@@ -254,7 +259,8 @@ function showAvailableRooms() {
                 swipeToSlide: true,
                 arrows: true,
                 dots: false,
-                variableWidth: false
+                variableWidth: false,
+                useTransform: false
             });
             let cur_slide = 0;
             let all_slides = 0;
@@ -263,7 +269,7 @@ function showAvailableRooms() {
                 all_slides = $(this).parents('.available-rooms-result').eq(0).find('.room-photos .slick-slide').not('.slick-cloned').length;
                 $(this).parent().parent().find('.counter > .value').html(cur_slide + '/' + all_slides);
             });
-            _obj.find('.room-photos .slick-track').attrchange({
+            _obj.find('.room-photos .slick-track').attr_change({
                 callback: function (event) {
                     cur_slide = parseInt($(this).parent().find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
                     all_slides = $(this).parents('.available-rooms-result').find('.slick-slide').not('.slick-cloned').length
@@ -279,7 +285,8 @@ function showAvailableRooms() {
                 swipeToSlide: true,
                 arrows: false,
                 dots: false,
-                variableWidth: true
+                variableWidth: true,
+                useTransform: false
             });
         }
 
@@ -328,8 +335,8 @@ let cumulativeOffset = function(element) {
     };
 };
 $(document).ready(function () {
-    var bodyStyles = window.getComputedStyle(document.body);
-    var __zoom = bodyStyles.getPropertyValue('--zoom');
+    let bodyStyles = window.getComputedStyle(document.body);
+    let __zoom = bodyStyles.getPropertyValue('--zoom');
     $('*[width]').each(function(){
        // $(this).attr('width',$(this).attr('width')*__zoom);
     });
