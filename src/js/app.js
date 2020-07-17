@@ -328,6 +328,7 @@ let cumulativeOffset = function(element) {
     };
 };
 $(document).ready(function () {
+
     $('body').on('click','.left-replies-block-slider .slick-prev,.left-replies-block-slider .slick-next',function(){
         let active_vote={
             value:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-value]').eq(0).attr('data-vote-value'),
