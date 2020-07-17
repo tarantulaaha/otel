@@ -13,7 +13,8 @@ body {
   margin: 0;
   padding: 0;
   transform-origin: 50% 0;
-  zoom: 80%
+  zoom: 80%;
+  -moz-transform: scale(0.8);
 }
 :focus {
   outline: none;
