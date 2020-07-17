@@ -9,7 +9,7 @@ module.exports = merge(common, {
     watchContentBase: true,
     hot: true,
     open: true,
-    port: process.env.PORT || 9000,
+    port: process.env.PORT || 9001,
     host: process.env.HOST || 'localhost',
   },
   module: {

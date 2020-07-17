@@ -4,12 +4,16 @@
 @import "available.rooms";
 @import "popup.room.info";
 body {
-  font-family: Inter;
+  --zoom: 0.8;
   background: #FAFBFC;
-  padding: 0px;
-  margin: 0px;
+  font-family: Inter, serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
   transform-origin: 50% 0;
-  transform: scale(0.7984);
+  zoom: 80%
 }
 :focus {
   outline: none;
@@ -18,139 +22,153 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-thumb {
-  position: absolute;
-  width: 8px;
-  height: 142px;
-  left: 344px;
-  top: 155px;
   background: rgba(47, 72, 106, 0.25);
   border-radius: 19px;
+  height: 142px;
+  left: 344px;
+  position: absolute;
+  top: 155px;
+  width: 8px;
+}
+.text {
+  align-items: center;
+  align-self: center;
+  color: #2F486A;
+  display: flex;
+  flex: none;
+  font-weight: 500;
+  height: 20px;
+  left: 12px;
+  line-height: 20px;
+  margin: 21px 0;
+  order: 0;
+  top: 8px;
 }
 .main-block {
-  position: relative;
-  width: 960px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  width: 960px;
 }
 .tooltip {
-  display: none;
-  padding: 0px;
-  position: relative;
-  height: 40px;
   --width: 250px;
-  width: calc(var(--width));
+  display: none;
+  height: 40px;
   left: calc(7px + (var(--width) / -2));
+  padding: 0;
+  position: relative;
   top: -60px;
+  width: calc(var(--width));
   z-index: 100;
   .frame-116 {
-    display: block;
-    padding: 8px 12px;
-    position: static;
-    /*width: 300px;*/
-    height: 36px;
-    left: 0px;
-    top: 0px;
+    align-self: center;
     background: rgba(47, 72, 106, 0.85);
     border-radius: 4px;
+    display: block;
     flex: none;
+    height: 36px;
+    left: 0;
+    margin: 0;
     order: 0;
-    align-self: center;
-    margin: 0px 0px;
+    padding: 8px 12px;
+    position: static;
+    top: 0;
     .tooltip-value {
-      position: relative;
-      /*width: auto;*/
-      height: 20px;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 20px;
-      display: block;
       align-items: center;
+      align-self: center;
+      color: #FFFFFF;
+      display: block;
+      font-weight: 500;
+      height: 20px;
+      line-height: 20px;
+      margin: 10px 0;
+      position: relative;
       text-align: center;
       text-wrap: none;
       white-space: nowrap;
-      color: #FFFFFF;
-      align-self: center;
-      margin: 10px 0px;
     }
   }
   .tooltip-rectangle {
-    position: absolute;
-    width: 8px;
+    align-self: center;
+    background: url(../static/tooltip-rectangle.svg) no-repeat center;
+    background-size: contain;
     height: 4px;
     left: 122px;
+    margin: 0;
+    position: absolute;
     top: 52px;
-    background: url(../static/tooltip-rectangle.svg) no-repeat center;
-    /* Inside Auto Layout */
-    align-self: center;
-    margin: 0px 0px;
+    width: 8px;
   }
 }
-
 .title-box {
-  position: absolute;
-  width: 960px;
   height: 56px;
+  position: absolute;
   text-align: center;
+  width: 960px;
   z-index: -1;
   .line {
-    position: absolute;
-    width: 960px;
-    height: 1px;
-    top: 30px;
-    left: 0px;
     background: #DCDFE2;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 30px;
+    width: 960px;
     z-index: 0;
   }
   .title {
-    position: relative;
-    width: 299px;
-    height: 32px;
-    top: 12px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 26px;
-    line-height: 32px;
-    color: rgba(47, 72, 106, 0.24);
     align-self: center;
     background: #FAFBFC;
+    color: rgba(47, 72, 106, 0.24);
+    font-size: 26px;
+    font-weight: 600;
+    height: 32px;
+    line-height: 32px;
     padding: 12px 24px;
+    position: relative;
+    top: 12px;
+    width: 299px;
   }
 }
 .help-icon {
-  content: '';
-  width: 16px;
-  height: 16px;
   background: url(../static/help.svg) no-repeat center;
+  background-size: contain;
+  content: '';
+  height: 16px;
   margin-left: 6px;
+  width: 16px;
   &:hover {
     background: url(../static/help-hover.svg) no-repeat center;
+    background-size: contain;
     .tooltip {
       display: block;
     }
   }
 }
 .man-icon {
+  align-self: center;
   background: url(../static/man.svg) no-repeat center;
+  background-size: contain;
   height: 24px;
   width: 24px;
-  align-self: center;
 }
 .plus-icon {
+  align-self: center;
   background: url(../static/plus.svg) no-repeat center;
+  background-size: contain;
   height: 24px;
   width: 24px;
-  align-self: center;
 }
 .child-icon {
+  align-self: center;
   background: url(../static/child.svg) no-repeat center bottom;
+  background-size: contain;
   height: 24px;
   width: 24px;
-  align-self: center;
 }
 input[type=checkbox] {
   &:before {
     background: url(../static/checkbox.svg) no-repeat top left;
+    background-size: contain;
   }
   &:checked {
   }
@@ -160,87 +178,82 @@ input[type=checkbox] {
 }
 .rectangle-top {
   @extend .main-block;
-  height: 56px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  color: rgba(47, 72, 106, 0.75);
   background: #EBEFF2;
-  border-radius: 0px 0px 8px 8px;
+  border-radius: 0 0 8px 8px;
+  color: rgba(47, 72, 106, 0.75);
+  font-weight: 500;
+  height: 56px;
+  margin-bottom: 32px;
   .arrow-down {
-    width: 16px;
     height: 16px;
     vertical-align: middle;
+    width: 16px;
   }
   %top {
     top: 16px;
   }
   .frame-7 {
     display: inline-block;
-    width: 230px;
-    position: relative;
     left: 15px;
+    position: relative;
+    width: 230px;
     @extend %top;
     .frame-1, .frame-2 {
+      align-self: center;
       display: inline-block;
       padding: 2px 8px;
-      align-self: center;
     }
   }
   .terms-frame {
     display: inline-block;
-    position: relative;
     height: 24px;
     left: 560px;
+    position: relative;
     @extend %top;
     .privacy-and-term {
       display: inline-block;
       width: 125px;
     }
     .info-icon {
+      color: rgba(47, 72, 106, 0.25);
       display: inline-block;
-      position: relative;
-      vertical-align: middle;
-      font-family: Material Icons;
-      font-style: normal;
-      font-weight: normal;
+      font-family: Material Icons, serif;
       font-size: 24px;
       line-height: 24px;
-      /* identical to box height */
-      color: rgba(47, 72, 106, 0.25);
+      position: relative;
+      vertical-align: middle;
     }
   }
-  margin-bottom: 32px;
 }
 .rectangle-2 {
   @extend .main-block;
-  width: 960px;
-  height: 315px;
   background: #FFFFFF;
-  box-shadow: 0px -2px 1px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
   border-radius: 8px;
+  box-shadow: 0px -2px 1px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
+  height: 315px;
   margin-bottom: 32px;
   position: relative;
+  width: 960px;
   .main-info {
+    left: 24px;
     position: relative;
     top: 24px;
-    left: 24px;
     .title {
-      font-weight: bold;
-      font-size: 26px;
-      line-height: 32px;
       color: #2F486A;
+      font-size: 26px;
+      font-weight: bold;
+      line-height: 32px;
     }
     .contacts {
       display: inline-block;
       position: relative;
       top: 21px;
-      .adress-row {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
+      .address-row {
         color: rgba(47, 72, 106, 0.75);
+        font-size: 16px;
+        font-weight: 500;
         height: 24px;
+        line-height: 24px;
         margin-bottom: 16px;
         svg {
           margin-right: 12px;
@@ -249,30 +262,30 @@ input[type=checkbox] {
         }
       }
       .phone-row {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
         color: rgba(47, 72, 106, 0.75);
-        margin-bottom: 16px;
+        font-size: 16px;
+        font-weight: 500;
         height: 24px;
+        line-height: 24px;
+        margin-bottom: 16px;
         svg {
           margin-right: 12px;
           position: relative;
           top: 2px
         }
         .phone-text {
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 24px;
           color: #267FF9;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
         }
       }
       .email-row {
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        height: 24px;
         color: rgba(47, 72, 106, 0.75);
+        font-size: 16px;
+        font-weight: 500;
+        height: 24px;
+        line-height: 24px;
         margin-bottom: 16px;
         svg {
           margin-right: 12px;
@@ -280,245 +293,228 @@ input[type=checkbox] {
           top: 4px
         }
         .text {
-          font-weight: 500;
-          font-size: 16px;
-          line-height: 24px;
           color: #267FF9;
+          display: inline;
+          font-size: 16px;
+          font-weight: 500;
+          line-height: 24px;
         }
       }
     }
     .image {
       display: inline-block;
+      left: 230px;
       position: relative;
       top: -10px;
-      left: 230px;
     }
   }
   .photos {
+    left: 16px;
+    overflow: hidden;
     position: relative;
     top: 45px;
-    left: 16px;
-    width: 925px;
-    overflow: hidden;
     white-space: nowrap;
+    width: 925px;
     img {
       border-radius: 4px;
-      width: 160px;
       height: 90px;
       margin-right: 12px;
+      width: 160px;
     }
   }
   .slick-slide {
-    width: 139px !important;
-    margin-right: 16px;
     cursor: pointer;
+    margin-right: 16px;
+    width: 139px !important;
   }
   .image-fade {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    bottom: 13px;
     display: block;
-    width: 64px;
     height: 90px;
     position: absolute;
-    background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, rgba(255, 255, 255, 1) 100%);
     right: 24px;
-    bottom: 13px;
+    width: 64px;
   }
 }
 .search-form {
   @extend .main-block;
+  background: #267FF9;
+  border-radius: 8px;
+  box-shadow: 0 2px 1px rgba(38, 127, 249, 0.0196802), 0 4px 2px rgba(38, 127, 249, 0.0282725), 0 6px 4px rgba(38, 127, 249, 0.035), 0 8px 8px rgba(38, 127, 249, 0.0417275), 0 18px 16px rgba(38, 127, 249, 0.0503198), 0 30px 40px rgba(38, 127, 249, 0.16);
+  height: 132px;
+  margin-bottom: 32px;
   position: relative;
   width: 960px;
-  height: 132px;
-  background: #267FF9;
-  box-shadow: 0px 2px 1px rgba(38, 127, 249, 0.0196802), 0px 4px 2px rgba(38, 127, 249, 0.0282725), 0px 6px 4px rgba(38, 127, 249, 0.035), 0px 8px 8px rgba(38, 127, 249, 0.0417275), 0px 18px 16px rgba(38, 127, 249, 0.0503198), 0px 30px 40px rgba(38, 127, 249, 0.16);
-  border-radius: 8px;
-  margin-bottom: 32px;
   z-index: 3;
   .title {
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 32px;
-    text-transform: uppercase;
     color: #FFFFFF;
-    position: relative;
-    top: 16px;
+    font-size: 20px;
+    font-weight: bold;
     left: 18px;
+    line-height: 32px;
+    position: relative;
+    text-transform: uppercase;
+    top: 16px;
   }
   .have-promo {
-    position: absolute;
     display: inline-block;
-    top: 20px;
     left: 742px;
+    position: absolute;
+    top: 20px;
     svg {
       margin-right: 4px;
       position: relative;
       top: 2px;
     }
     .value {
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 20px;
-      color: #FFFFFF;
-      padding-bottom: 4px;
       border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      font-weight: 500;
+      line-height: 20px;
+      padding-bottom: 4px;
     }
   }
   .body {
-    position: absolute;
-    width: 456px;
     height: 52px;
     left: 16px;
+    position: absolute;
     top: 64px;
+    width: 456px;
     .in-out {
       .in-out-border {
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        top: 0%;
-        bottom: 0%;
         background: #549CFF;
-        mix-blend-mode: normal;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
         border-radius: 4px;
+        bottom: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        left: 0;
+        mix-blend-mode: normal;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
       .in-out-div {
-        position: absolute;
-        width: 2px;
+        background: #267FF9;
         height: 52px;
         left: 227px;
-        top: 0px;
-        background: #267FF9;
+        position: absolute;
+        top: 0;
+        width: 2px;
       }
       .in-text {
-        position: absolute;
-        width: 35px;
-        height: 16px;
-        left: 12px;
-        top: calc(50% - 16px / 2 - 10px);
-        font-family: Inter;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 16px;
-        /* identical to box height, or 133% */
-        display: flex;
         align-items: center;
         color: #FFFFFF;
+        display: flex;
+        font-size: 12px;
+        height: 16px;
+        left: 12px;
+        line-height: 16px;
+        position: absolute;
+        top: calc(50% - 16px / 2 - 10px);
+        width: 35px;
       }
       .in-date-value {
-        position: absolute;
-        width: 76px;
+        align-items: center;
+        color: #FFFFFF;
+        display: flex;
+        font-weight: 500;
         height: 20px;
         left: 12px;
-        top: calc(50% - 20px / 2 + 8px);
-        font-family: Inter;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
         line-height: 20px;
-        /* identical to box height, or 143% */
-        display: flex;
-        align-items: center;
+        position: absolute;
         text-align: center;
-        color: #FFFFFF;
+        top: calc(50% - 20px / 2 + 8px);
+        width: 76px;
       }
       .out-text {
-        position: absolute;
-        width: 38px;
+        align-items: center;
+        color: #FFFFFF;
+        display: flex;
+        font-size: 12px;
         height: 16px;
         left: 241px;
-        top: calc(50% - 16px / 2 - 10px);
-        font-family: Inter;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
         line-height: 16px;
-        /* identical to box height, or 133% */
-        display: flex;
-        align-items: center;
-        color: #FFFFFF;
+        position: absolute;
+        top: calc(50% - 16px / 2 - 10px);
+        width: 38px;
       }
       .out-date-value {
-        position: absolute;
-        width: 76px;
+        align-items: center;
+        color: #FFFFFF;
+        display: flex;
+        font-weight: 500;
         height: 20px;
         left: 241px;
-        top: calc(50% - 20px / 2 + 8px);
-        font-family: Inter;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
         line-height: 20px;
-        /* identical to box height, or 143% */
-        display: flex;
-        align-items: center;
+        position: absolute;
         text-align: center;
-        color: #FFFFFF;
+        top: calc(50% - 20px / 2 + 8px);
+        width: 76px;
       }
       .calendar-icon {
-        position: absolute;
-        width: 24px;
         height: 24px;
+        position: absolute;
         right: 14px;
         top: calc(50% - 24px / 2);
+        width: 24px;
       }
       .calendar-window {
-        position: relative;
-        width: 420px;
-        height: 494px;
-        top: 80px;
-        left: 36px;
         background: #FFFFFF;
-        box-shadow: 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
         border-radius: 8px;
+        box-shadow: 0 2px 1px rgba(85, 89, 106, 0.0196802), 0 4px 2px rgba(85, 89, 106, 0.0282725), 0 6px 4px rgba(85, 89, 106, 0.035), 0 8px 8px rgba(85, 89, 106, 0.0417275), 0 18px 16px rgba(85, 89, 106, 0.0503198), 0 30px 40px rgba(85, 89, 106, 0.07);
+        height: 494px;
+        left: 36px;
+        position: relative;
+        top: 80px;
+        width: 420px;
         .month-list-decorate {
-          position: absolute;
-          width: 494px;
+          background: #FAFBFC;
+          border-radius: 8px 8px 0 0;
           height: 116px;
           left: -189px;
+          position: absolute;
           top: 189px;
-          background: #FAFBFC;
-          border-radius: 8px 8px 0px 0px;
           transform: rotate(-90deg);
+          width: 494px;
         }
         .calendar-v-div {
-          position: absolute;
+          background: #DCDFE2;
+          bottom: 245px;
           height: 1px;
           left: -134px;
+          position: absolute;
           right: 57px;
-          bottom: 245px;
-          background: #DCDFE2;
           transform: rotate(-90deg);
         }
         .calendar-h-div {
-          position: absolute;
+          background: #DCDFE2;
+          bottom: 441px;
           height: 1px;
           left: 115px;
-          right: 0px;
-          bottom: 441px;
-          background: #DCDFE2;
+          position: absolute;
+          right: 0;
         }
         .month-list {
           display: flex;
           flex-direction: column;
+          height: 494px;
+          left: 0;
           padding: 8px;
           position: absolute;
+          top: 0;
           width: 116px;
-          height: 494px;
-          left: 0px;
-          top: 0px;
           .month-row {
+            align-self: flex-start;
             display: flex;
+            flex: none;
             flex-direction: column;
-            padding: 10px;
-            position: static;
-            width: 77px;
             height: 20px;
             left: 8px;
-            top: 8px;
-            /* Inside Auto Layout */
-            flex: none;
             order: 0;
-            align-self: flex-start;
+            padding: 10px;
+            position: static;
+            top: 8px;
+            width: 77px;
             &:hover {
               cursor: pointer;
             }
@@ -530,48 +526,41 @@ input[type=checkbox] {
               }
             }
             .name {
-              position: static;
+              align-items: center;
+              align-self: flex-start;
+              color: rgba(47, 72, 106, 0.75);
+              display: flex;
+              flex: none;
+              font-weight: 500;
               height: 18px;
               left: calc(50% - 50px / 2 - 15px);
-              top: calc(50% - 18px / 2);
-              font-family: Inter;
-              font-style: normal;
-              font-weight: 500;
-              font-size: 14px;
               line-height: 18px;
-              /* identical to box height, or 129% */
-              display: flex;
-              align-items: center;
-              /* Second Black */
-              color: rgba(47, 72, 106, 0.75);
-              /* Inside Auto Layout */
-              flex: none;
               order: 0;
-              align-self: flex-start;
+              position: static;
+              top: calc(50% - 18px / 2);
             }
           }
         }
         .day-name-cols {
           display: flex;
           flex-direction: row;
-          padding: 0px;
-          position: absolute;
-          width: 280px;
           height: 36px;
           left: 128px;
+          padding: 0;
+          position: absolute;
           top: 8px;
+          width: 280px;
           .day-name-col {
-            position: absolute;
-            width: 40px;
-            height: 36px;
-            top: 0px;
-            /* Inside Auto Layout */
-            flex: none;
-            order: 3;
             align-self: center;
-            margin: 0px 0px;
+            flex: none;
+            height: 36px;
+            margin: 0;
+            order: 3;
+            position: absolute;
+            top: 0;
+            width: 40px;
             &.col-1 {
-              left: 0px;
+              left: 0;
             }
             &.col-2 {
               left: 40px;
@@ -592,160 +581,137 @@ input[type=checkbox] {
               left: 240px;
             }
             .text {
-              position: absolute;
-              left: 30%;
-              right: 27.5%;
-              top: 22.22%;
-              bottom: 22.22%;
-              font-family: Inter;
-              font-style: normal;
-              font-weight: 500;
-              font-size: 12px;
-              line-height: 20px;
-              /* identical to box height, or 167% */
-              display: flex;
               align-items: center;
+              bottom: 22.22%;
+              color: rgba(47, 72, 106, 0.5);
+              display: flex;
+              font-size: 12px;
+              font-weight: 500;
+              left: 30%;
+              line-height: 20px;
+              position: absolute;
+              right: 27.5%;
               text-align: center;
               text-transform: uppercase;
-              color: rgba(47, 72, 106, 0.5);
+              top: 22.22%;
             }
           }
         }
         .top-month {
-          position: absolute;
-          width: 39px;
+          align-items: center;
+          color: #2F486A;
+          display: flex;
+          font-weight: 500;
           height: 20px;
           left: 128px;
-          top: calc(50% - 20px / 2 - 172px);
-          font-family: Inter;
-          font-style: normal;
-          font-weight: 500;
-          font-size: 14px;
           line-height: 20px;
-          /* identical to box height, or 143% */
-          display: flex;
-          align-items: center;
-          /* Black */
-          color: #2F486A;
+          position: absolute;
+          top: calc(50% - 20px / 2 - 172px);
+          width: 39px;
         }
       }
     }
     .guests {
-      position: absolute;
-      width: 220px;
       height: 52px;
       left: 472px;
-      top: 0px;
+      position: absolute;
+      top: 0;
+      width: 220px;
       .guests-back {
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        top: 0%;
-        bottom: 0%;
         background: #549CFF;
-        mix-blend-mode: normal;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
         border-radius: 4px;
+        bottom: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        left: 0;
+        mix-blend-mode: normal;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
       .title-top {
-        position: absolute;
-        width: 34px;
+        align-items: center;
+        color: #FFFFFF;
+        display: flex;
+        font-size: 12px;
         height: 16px;
         left: 12px;
-        top: calc(50% - 16px / 2 - 10px);
-        font-family: Inter;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
         line-height: 16px;
-        /* identical to box height, or 133% */
-        display: flex;
-        align-items: center;
-        color: #FFFFFF;
+        position: absolute;
+        top: calc(50% - 16px / 2 - 10px);
+        width: 34px;
       }
       .guests-value {
-        position: absolute;
-        width: 140px;
-        height: 20px;
-        left: 12px;
-        top: calc(50% - 20px / 2 + 8px);
-        font-family: Inter;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 20px;
-        /* identical to box height, or 143% */
-        display: flex;
         align-items: center;
         color: #FFFFFF;
+        display: flex;
+        font-weight: 500;
+        height: 20px;
+        left: 12px;
+        line-height: 20px;
+        position: absolute;
+        top: calc(50% - 20px / 2 + 8px);
+        width: 140px;
       }
       .guests-icon {
-        position: absolute;
-        width: 24px;
         height: 24px;
         left: 182px;
+        position: absolute;
         top: 14px;
+        width: 24px;
       }
       .popup-select-guest {
-        position: absolute;
-        width: 356px;
-        height: 210px;
-        left: 0px;
-        top: 82px;
-        /* White */
         background: #FFFFFF;
-        box-shadow: 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
         border-radius: 8px;
+        box-shadow: 0 2px 1px rgba(85, 89, 106, 0.0196802), 0 4px 2px rgba(85, 89, 106, 0.0282725), 0 6px 4px rgba(85, 89, 106, 0.035), 0 8px 8px rgba(85, 89, 106, 0.0417275), 0 18px 16px rgba(85, 89, 106, 0.0503198), 0 30px 40px rgba(85, 89, 106, 0.07);
+        height: 210px;
+        left: 0;
+        position: absolute;
+        top: 82px;
+        width: 356px;
       }
     }
     .btn-search {
-      position: absolute;
-      width: 220px;
       height: 52px;
       left: 708px;
-      top: 0px;
+      position: absolute;
+      top: 0;
+      width: 220px;
       .btn-graph {
-        position: absolute;
-        left: 0%;
-        right: 0%;
-        top: 0%;
-        bottom: 0%;
-        /* White */
         background: #FFFFFF;
-        mix-blend-mode: normal;
-        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
         border-radius: 4px;
+        bottom: 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        left: 0;
+        mix-blend-mode: normal;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
       .btn-caption {
-        position: absolute;
-        width: 104px;
+        align-items: center;
+        color: #267FF9;
+        display: flex;
+        font-size: 16px;
+        font-weight: 600;
         height: 20px;
         left: calc(50% - 104px / 2);
-        top: calc(50% - 20px / 2);
-        font-family: Inter;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
         line-height: 20px;
-        /* identical to box height, or 125% */
-        display: flex;
-        align-items: center;
+        position: absolute;
         text-align: center;
-        /* Blue */
-        color: #267FF9;
+        top: calc(50% - 20px / 2);
+        width: 104px;
       }
     }
   }
 }
 .frame-119 {
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 1px rgba(85, 89, 106, 0.0196802), 0 4px 2px rgba(85, 89, 106, 0.0282725), 0 6px 4px rgba(85, 89, 106, 0.035), 0 8px 8px rgba(85, 89, 106, 0.0417275), 0 18px 16px rgba(85, 89, 106, 0.0503198), 0 30px 40px rgba(85, 89, 106, 0.07);
   display: flex;
   flex-direction: column;
+  height: 232px;
   padding: 16px;
   position: relative;
   width: 253px;
-  height: 232px;
-  /* White */
-  background: #FFFFFF;
-  box-shadow: 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
-  border-radius: 8px;
 }

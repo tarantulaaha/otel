@@ -328,7 +328,14 @@ let cumulativeOffset = function(element) {
     };
 };
 $(document).ready(function () {
-
+    var bodyStyles = window.getComputedStyle(document.body);
+    var __zoom = bodyStyles.getPropertyValue('--zoom');
+    $('*[width]').each(function(){
+       // $(this).attr('width',$(this).attr('width')*__zoom);
+    });
+    $('*[height]').each(function(){
+        //$(this).attr('height',$(this).attr('height')*__zoom);
+    });
     $('body').on('click','.left-replies-block-slider .slick-prev,.left-replies-block-slider .slick-next',function(){
         let active_vote={
             value:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-value]').eq(0).attr('data-vote-value'),
@@ -347,16 +354,28 @@ $(document).ready(function () {
     $(window).on('scroll', function () {
         let left_replies_block_slider = $('.left-replies-block-slider');
         if(left_replies_block_slider.length>0) {
-            let _diff=cumulativeOffset(left_replies_block_slider[0]).top-left_replies_block_slider[0].offsetTop;
+            let _diff=cumulativeOffset(left_replies_block_slider[0]).top;
             let _block_height=left_replies_block_slider.height();
-            if (cumulativeOffset(left_replies_block_slider[0]).top-_block_height < window.scrollY ||window.scrollY>_diff) {
-                left_replies_block_slider.stop().animate({
-                    top: window.scrollY-(_diff-_block_height)
-                },500);
-            } else {
+            console.log(left_replies_block_slider.eq(0),cumulativeOffset(left_replies_block_slider[0]).top,window.scrollY);
+            if (cumulativeOffset(left_replies_block_slider[0]).top < window.scrollY) {
+                /*
                 left_replies_block_slider.css({
-                    top: '355px'
+                    display:'block',
+                    position:'fixed',
+                    top: '0px',
+                    left:'0px'
                 });
+
+                 */
+            } else {
+                /*
+                left_replies_block_slider.css({
+                    display:'none',
+                    position:'absolute',
+                    top: '150px'
+                });
+
+                 */
             }
         }
     });
