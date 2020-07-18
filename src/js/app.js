@@ -122,7 +122,7 @@ function daysInMonth(month, year) {
 }
 function loadCalendar() {
     if (calendarObj === null) {
-        $.get('static/calendar.html', function (data) {
+        $.get('templates/calendar.html', function (data) {
             calendarObj = $(data);
             calendarObj.css({
                 opacity: 0
@@ -141,48 +141,101 @@ function loadCalendar() {
                 $(this).addClass('active');
                 setMonth();
             });
+            calendarObj.css({
+                display: 'block'
+            }).animate({
+                opacity: 1
+            }, animationDuration);
             $('div.in-out').append(calendarObj);
-            $('.calendar-window').animate({
+        }).fail(function (err) {
+            console.log(err)
+        });
+    } else {
+        calendarObj.css({
+            display: 'block'
+        }).stop().animate({
+            opacity: 1
+        }, animationDuration);
+    }
+}
+(function ($) {
+    $.fn.disableSelection = function () {
+        return this
+            .attr('unselectable', 'on')
+            .css('user-select', 'none')
+            .on('selectstart dragstart', false);
+    };
+})(jQuery);
+$.fn.inputPlusMinus = function () {
+    this.on('click', '.input-minus', function () {
+        $(this).disableSelection();
+        let input_obj = $(this).parent().find('.input-value').eq(0);
+        let input_value = parseInt(input_obj.val());
+        if (input_value > 0) {
+            input_obj.val(--input_value);
+        }
+    });
+    this.on('click', '.input-plus', function () {
+        $(this).disableSelection();
+        let input_obj = $(this).parent().find('.input-value').eq(0);
+        let input_value = parseInt(input_obj.val());
+        if (input_value <= 255) {
+            input_obj.val(++input_value);
+        }
+    });
+};
+function selectGuestPopup() {
+    if (selectGuestObj === null) {
+        $.get('templates/popup-select-guest.html', function (data) {
+            selectGuestObj = $(data);
+            selectGuestObj.css({
+                opacity: 0,
+            });
+            selectGuestObj.inputPlusMinus();
+            selectGuestObj.on('click', function (event) {
+                event.stopPropagation();
+            });
+            selectGuestObj.find('.button-1').on('click', function () {
+                let guest_row = null;
+                $.get('templates/apartment-block.html', function (data) {
+                    guest_row = $(data);
+                }).done(function () {
+                    selectGuestObj.find('#apartment-blocks').append(guest_row);
+                    let rooms_count = selectGuestObj.find('#apartment-blocks .apartment-block').length;
+                    if (rooms_count > 3) {
+                        $(selectGuestObj.find('.fade-top')[0]).css({
+                            display: 'block'
+                        });
+                    }
+                    selectGuestObj.find('#apartment-blocks').stop().animate({
+                        scrollTop: selectGuestObj.find('#apartment-blocks .apartment-block').last()[0].offsetTop
+                    }, 100);
+                });
+            });
+            selectGuestObj.find('.button-2').on('click', function () {
+                selectGuestObj.css({
+                    opacity: 0,
+                });
+            });
+            $('div.guests').append(selectGuestObj);
+            selectGuestObj.css({
+                display: 'block'
+            }).stop().animate({
                 opacity: 1
             }, animationDuration);
         }).fail(function (err) {
             console.log(err)
         });
     } else {
-        $('.calendar-window').css({
+        selectGuestObj.css({
             display: 'block'
         }).animate({
             opacity: 1
         }, animationDuration);
     }
 }
-function selectGuestPopup() {
-    if (selectGuestObj === null) {
-        $.get('static/popup-select-guest.html', function (data) {
-            selectGuestObj = $(data);
-            selectGuestObj.css({
-                opacity: 0,
-            });
-            selectGuestObj.on('click', function (event) {
-                event.stopPropagation();
-            });
-            $('div.guests').append(selectGuestObj);
-            $('.popup-select-guest').animate({
-                opacity: 1
-            }, animationDuration);
-        }).fail(function (err) {
-            console.log(err)
-        });
-    } else {
-        $('.popup-select-guest').css({
-            display: 'block'
-        }).animate({
-            opacity: 1,
-        }, animationDuration);
-    }
-}
 function showAvailableRooms() {
-    $.get('static/available-rooms.html', function (data) {
+    $.get('templates/available-rooms.html', function (data) {
         let _obj = $(data);
         _obj.css({
             opacity: 0,
@@ -192,7 +245,7 @@ function showAvailableRooms() {
                 showAvailableRooms();
             });
         });
-        let available_rooms=$('body .available-rooms');
+        let available_rooms = $('body .available-rooms');
         if (available_rooms.length > 0) {
             available_rooms.animate({
                 opacity: 0
@@ -289,7 +342,6 @@ function showAvailableRooms() {
                 useTransform: false
             });
         }
-
     }).fail(function (err) {
         console.log(err)
     });
@@ -300,7 +352,7 @@ function searchAvailableRooms() {
         if (Object.keys(_json).length > 0) {
         }
     });
-    $.get('static/available-rooms-none.html', function (data) {
+    $.get('templates/available-rooms-none.html', function (data) {
         let _obj = $(data);
         _obj.css({
             opacity: 0,
@@ -321,49 +373,39 @@ function searchAvailableRooms() {
         console.log(err)
     });
 }
-let cumulativeOffset = function(element) {
+let cumulativeOffset = function (element) {
     let top = 0, left = 0;
     do {
-        top += element.offsetTop  || 0;
+        top += element.offsetTop || 0;
         left += element.offsetLeft || 0;
         element = element.offsetParent;
-    } while(element);
-
+    } while (element);
     return {
         top: top,
         left: left
     };
 };
 $(document).ready(function () {
-    let bodyStyles = window.getComputedStyle(document.body);
-    let __zoom = bodyStyles.getPropertyValue('--zoom');
-    $('*[width]').each(function(){
-       // $(this).attr('width',$(this).attr('width')*__zoom);
-    });
-    $('*[height]').each(function(){
-        //$(this).attr('height',$(this).attr('height')*__zoom);
-    });
-    $('body').on('click','.left-replies-block-slider .slick-prev,.left-replies-block-slider .slick-next',function(){
-        let active_vote={
-            value:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-value]').eq(0).attr('data-vote-value'),
-            level:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-text-level]').eq(0).attr('data-vote-text-level'),
-            name:$('.left-replies-block-slider .slick-slide.slick-active [data-vote-name]').eq(0).attr('data-vote-name'),
-            avatar:$('.left-replies-block-slider .slick-slide.slick-active [data-avatar]').eq(0).attr('data-avatar'),
-            room:$('.left-replies-block-slider .slick-slide.slick-active [data-room-type]').eq(0).attr('data-room-type'),
+    $('body').on('click', '.left-replies-block-slider .slick-prev,.left-replies-block-slider .slick-next', function () {
+        let active_vote = {
+            value: $('.left-replies-block-slider .slick-slide.slick-active [data-vote-value]').eq(0).attr('data-vote-value'),
+            level: $('.left-replies-block-slider .slick-slide.slick-active [data-vote-text-level]').eq(0).attr('data-vote-text-level'),
+            name: $('.left-replies-block-slider .slick-slide.slick-active [data-vote-name]').eq(0).attr('data-vote-name'),
+            avatar: $('.left-replies-block-slider .slick-slide.slick-active [data-avatar]').eq(0).attr('data-avatar'),
+            room: $('.left-replies-block-slider .slick-slide.slick-active [data-room-type]').eq(0).attr('data-room-type'),
         }
-
         $('.left-replies-block-slider .vote-value .middle').html(active_vote.value);
         $('.left-replies-block-slider .vote-level').html(active_vote.level);
         $('.left-replies-block-slider .person .name').html(active_vote.name);
-        $('.left-replies-block-slider .person .avatar').attr('src',active_vote.avatar);
+        $('.left-replies-block-slider .person .avatar').attr('src', active_vote.avatar);
         $('.left-replies-block-slider .person .room-type').html(active_vote.room);
     });
     $(window).on('scroll', function () {
         let left_replies_block_slider = $('.left-replies-block-slider');
-        if(left_replies_block_slider.length>0) {
-            let _diff=cumulativeOffset(left_replies_block_slider[0]).top;
-            let _block_height=left_replies_block_slider.height();
-            console.log(left_replies_block_slider.eq(0),cumulativeOffset(left_replies_block_slider[0]).top,window.scrollY);
+        if (left_replies_block_slider.length > 0) {
+            let _diff = cumulativeOffset(left_replies_block_slider[0]).top;
+            let _block_height = left_replies_block_slider.height();
+            console.log(left_replies_block_slider.eq(0), cumulativeOffset(left_replies_block_slider[0]).top, window.scrollY);
             if (cumulativeOffset(left_replies_block_slider[0]).top < window.scrollY) {
                 /*
                 left_replies_block_slider.css({
@@ -388,7 +430,7 @@ $(document).ready(function () {
     });
     $('body').on('click', '.room-info-btn', function () {
         $('body').find('.popup-room-info').remove();
-        $.get('static/popup-room-info.html', function (data) {
+        $.get('templates/popup-room-info.html', function (data) {
             let popup_room_info = $(data);
             popup_room_info.find('.close-btn').on('click', function () {
                 popup_room_info.remove();
@@ -418,7 +460,7 @@ $(document).ready(function () {
         slidesToShow: 6,
         slidesToScroll: 1
     });
-    $('html,body').on('click', function () {
+    $('html').on('click', function () {
         $('.calendar-window, .popup-select-guest').animate({
             opacity: 0,
         }, animationDuration, function () {
@@ -429,20 +471,29 @@ $(document).ready(function () {
     });
     $('.guests-icon').on('click', function (event) {
         selectGuestPopup();
+        $('.calendar-window').animate({
+            opacity: 0,
+        }, animationDuration, function () {
+            $(this).css({
+                display: 'none'
+            });
+        });
         event.stopPropagation();
-        event.preventDefault();
         return false;
     });
     $('.calendar-icon').on('click', function (event) {
         loadCalendar();
+        $('.popup-select-guest').animate({
+            opacity: 0,
+        }, animationDuration, function () {
+            $(this).css({
+                display: 'none'
+            });
+        });
         event.stopPropagation();
-        event.preventDefault();
         return false;
     });
     $('.btn-search').on('click', function (event) {
         searchAvailableRooms();
-        event.stopPropagation();
-        event.preventDefault();
-        return false;
     });
 });
