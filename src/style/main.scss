@@ -333,8 +333,9 @@ input[type=checkbox] {
     display: block;
     height: 90px;
     position: absolute;
-    right: 24px;
+    right: 19px;
     width: 64px;
+    top: 181px;
   }
 }
 .search-form {
@@ -651,6 +652,9 @@ input[type=checkbox] {
         position: absolute;
         top: calc(50% - 20px / 2 + 8px);
         width: 140px;
+        .adult,.children{
+          margin-right: 3px;
+        }
       }
       .guests-icon {
         height: 24px;

@@ -73,7 +73,7 @@
     position: absolute;
     width: 100%;
   }
-  .fade-top{
+  .fade-top {
     position: absolute;
     display: none;
     width: 100%;
@@ -189,6 +189,58 @@
             text-transform: none;
             top: 0;
             width: 98px;
+          }
+        }
+      }
+      .child-age-row {
+        position: relative;
+        top: 33px;
+        height: 36px;
+        margin-bottom: 12px;
+        .child-count-row {
+          position: absolute;
+          width: 180px;
+          height: 100%;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 20px;
+          align-items: center;
+          color: rgba(47, 72, 106, 0.75);
+          top:7px;
+        }
+        .child-age-select {
+          position: absolute;
+          width: 101px;
+          height: 100%;
+          left: 223px;
+          .decorate {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border: 1px solid #DCDFE2;
+            box-sizing: border-box;
+            border-radius: 4px;
+          }
+          .age-selected {
+            position: absolute;
+            width: 62px;
+            height: 20px;
+            left: 12px;
+            top: calc(50% - 20px / 2);
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            align-items: center;
+            color: #2F486A;
+            .arrow-down-select-mini {
+              position: absolute;
+              width: 24px;
+              height: 24px;
+              right: -25px;
+              bottom: -1px;
+              border-radius: 2px;
+              background: url(../static/arrow-down-select-mini.svg) no-repeat center;
+            }
           }
         }
       }

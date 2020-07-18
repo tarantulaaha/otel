@@ -6,6 +6,15 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/fonts/slick.woff';
 import 'slick-carousel/slick/fonts/slick.ttf';
+let client_data = {
+    rooms: [],
+    peoples: {
+        children: 0,
+        adult: 1
+    },
+    promo_code: '',
+    childId: 1
+}
 let date = new Date();
 let month_start = new Date();
 let weekday = month_start.getDay();
@@ -166,22 +175,110 @@ function loadCalendar() {
             .on('selectstart dragstart', false);
     };
 })(jQuery);
+function updateCounts() {
+    $('.guests-value .adult').html(client_data.peoples.adult);
+    $('.guests-value .children').html(client_data.peoples.children);
+}
+function recountPeoples() {
+    client_data.rooms=[];
+    client_data.peoples.adult = 0;
+    client_data.peoples.children = 0;
+    $('.popup-select-guest .input-value.adult').each(function () {
+        client_data.peoples.adult += parseInt($(this).val());
+    });
+    $('.popup-select-guest .input-value.children').each(function () {
+        client_data.peoples.children += parseInt($(this).val());
+    });
+    $('.popup-select-guest .apartment-block').each(function () {
+        let room_id=$(this).attr('data-id');
+        let adult_count = $(this).find('.input-value.adult').val();
+        client_data.rooms[room_id]={
+            adult:adult_count,
+            children:[]
+        };
+        $(this).find('.child-age-row span.age-value').each(function(i){
+            client_data.rooms[room_id].children[i]=$(this).text();
+        });
+    });
+    updateCounts();
+    console.log(client_data);
+}
 $.fn.inputPlusMinus = function () {
+    let input_obj = null
     this.on('click', '.input-minus', function () {
+        let parent = $(this).parents('.apartment-block');
         $(this).disableSelection();
-        let input_obj = $(this).parent().find('.input-value').eq(0);
+        input_obj = $(this).parent().find('.input-value').eq(0);
         let input_value = parseInt(input_obj.val());
-        if (input_value > 0) {
-            input_obj.val(--input_value);
+        input_obj.val(--input_value);
+        if ($(this).parent().find('input.children').length > 0) {
+            parent.find('.child-age-row').last().remove();
         }
+        input_obj.change();
+        recountPeoples()
     });
     this.on('click', '.input-plus', function () {
         $(this).disableSelection();
-        let input_obj = $(this).parent().find('.input-value').eq(0);
+        input_obj = $(this).parent().find('.input-value').eq(0);
+        let parent = $(this).parents('.apartment-block');
         let input_value = parseInt(input_obj.val());
-        if (input_value <= 255) {
-            input_obj.val(++input_value);
+        input_obj.val(++input_value);
+        if ($(this).parent().find('input.children').length > 0) {
+            $.get('templates/child-age-row.html', function (data) {
+                let child_age_row = $(data);
+                child_age_row.attr('data-child-id', client_data.childId);
+                child_age_row.find('.child-count').html(parent.find('.child-age-row').length + 1);
+                parent.append(child_age_row);
+                input_obj.change();
+            });
         }
+        client_data.childId++;
+        recountPeoples();
+    });
+    this.find('input.children').on("keyup paste change", function () {
+        let child_count = $(this).val();
+        if (child_count > 255) {
+            $(this).val(255);
+        }
+        if (child_count < 1) {
+            $(this).val(0);
+        }
+        let children_rows_count = $(this).parents('.apartment-block').find('.child-age-row').length;
+        if (children_rows_count > child_count) {
+            let _i = 0;
+            $(this).parents('.apartment-block').find('.child-age-row').each(function () {
+                _i++;
+                if (_i > child_count) {
+                    $(this).remove();
+                }
+            });
+        }
+        if (children_rows_count < child_count) {
+            let row_diff=child_count-children_rows_count;
+            let parent = $(this).parents('.apartment-block');
+            for(let i=1;i<=row_diff;i++){
+                $.get('templates/child-age-row.html', function (data) {
+                    let child_age_row = $(data);
+                    child_age_row.attr('data-child-id', client_data.childId);
+                    child_age_row.find('.child-count').html(parent.find('.child-age-row').length + 1);
+                    parent.append(child_age_row);
+                    client_data.childId++;
+                });
+
+
+            }
+        }
+        recountPeoples();
+    });
+    this.find('input.adult').on("keyup paste change", function () {
+        let child_count = $(this).val();
+        if (child_count > 255) {
+            $(this).val(255);
+        }
+        if (child_count < 1) {
+            $(this).val(1);
+        }
+        recountPeoples();
     });
 };
 function selectGuestPopup() {
@@ -191,15 +288,19 @@ function selectGuestPopup() {
             selectGuestObj.css({
                 opacity: 0,
             });
-            selectGuestObj.inputPlusMinus();
             selectGuestObj.on('click', function (event) {
                 event.stopPropagation();
             });
+            selectGuestObj.find('.apartment-block').inputPlusMinus();
             selectGuestObj.find('.button-1').on('click', function () {
                 let guest_row = null;
                 $.get('templates/apartment-block.html', function (data) {
                     guest_row = $(data);
                 }).done(function () {
+                    let round_id = 'room_' + (new Date()).getTime();
+                    guest_row.attr('data-id', round_id);
+                    guest_row.inputPlusMinus();
+                    client_data.rooms[round_id] = {}
                     selectGuestObj.find('#apartment-blocks').append(guest_row);
                     let rooms_count = selectGuestObj.find('#apartment-blocks .apartment-block').length;
                     if (rooms_count > 3) {
@@ -207,6 +308,7 @@ function selectGuestPopup() {
                             display: 'block'
                         });
                     }
+                    recountPeoples();
                     selectGuestObj.find('#apartment-blocks').stop().animate({
                         scrollTop: selectGuestObj.find('#apartment-blocks .apartment-block').last()[0].offsetTop
                     }, 100);
