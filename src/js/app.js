@@ -7,7 +7,13 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/fonts/slick.woff';
 import 'slick-carousel/slick/fonts/slick.ttf';
 let client_data = new Object({
-    rooms: [],
+    roomCount: 0,
+    rooms: {
+        'first_room':{
+            adult:1,
+            children:[]
+        }
+    },
     peoples: {
         children: 0,
         adult: 1
@@ -24,7 +30,41 @@ let client_data = new Object({
         }
     },
     childId: 1,
+    needRefresh: true,
 });
+(function ($) {
+    $.fn.roomSelectionWindow = function () {
+        let currentObj = this;
+        this.refreshWindow = function () {
+            currentObj.find('.room-row').remove();
+            console.log('refreshWindow');
+            let keys=Object.keys(client_data.rooms);
+
+            for (let i=1;i<=keys.length;i++) {
+                $.get('templates/room-row.html', function (data) {
+                        let roomRow = $(data);
+                        roomRow.find('.room-row').eq(0).attr('data-id', keys[i-1]);
+                        roomRow.find('.room-row-count').eq(0).html(i);
+                        roomRow.find('.adult .count').html(client_data.rooms[keys[i-1]].adult);
+                        roomRow.find('.children .count').html(client_data.rooms[keys[i-1]].children.length);
+                        currentObj.find('.rooms-list').append(roomRow);
+                    }
+                ).fail(function (err) {
+                    console.log(err)
+                });
+            }
+
+            return this;
+        }
+        setInterval(function () {
+            if (client_data.needRefresh) {
+                currentObj.refreshWindow();
+                client_data.needRefresh = false;
+            }
+        }, 500);
+        return this;
+    }
+})(jQuery);
 (function ($) {
     $.fn.vcCalendar = function () {
         this.hidden = true;
@@ -96,7 +136,7 @@ let client_data = new Object({
                         $(this).addClass('selected-range');
                     }
                 });
-            }else{
+            } else {
                 calendarObj.find('.day.selected-range').removeClass('selected-range');
             }
         }
@@ -640,7 +680,8 @@ function updateCounts() {
     }
 })(jQuery);
 function recountPeoples() {
-    client_data.rooms = [];
+    client_data.roomCount = 0;
+    client_data.rooms = {};
     client_data.peoples.adult = 0;
     client_data.peoples.children = 0;
     $('.popup-select-guest .input-value.adult').each(function () {
@@ -652,10 +693,10 @@ function recountPeoples() {
     $('.popup-select-guest .apartment-block').each(function () {
         let room_id = $(this).attr('data-id');
         let adult_count = $(this).find('.input-value.adult').val();
-        client_data.rooms[room_id] = {
+        client_data.rooms[room_id] = new Object({
             adult: adult_count,
-            children: []
-        };
+            children: new Array()
+        });
         $(this).find('.child-age-row span.age-value').each(function (i) {
             client_data.rooms[room_id].children[i] = $(this).text();
         });
@@ -753,67 +794,6 @@ $.fn.inputPlusMinus = function () {
         recountPeoples();
     });
 };
-function selectGuestPopup() {
-    if (selectGuestObj === null) {
-        $.get('templates/popup-select-guest.html', function (data) {
-            selectGuestObj = $(data);
-            selectGuestObj.css({
-                opacity: 0,
-            });
-            selectGuestObj.on('click', function (event) {
-                event.stopPropagation();
-            });
-            selectGuestObj.find('.apartment-block').inputPlusMinus();
-            selectGuestObj.find('.apartment-blocks').on('scroll', function () {
-                let top_scroll_position = $('.popup-select-guest #apartment-blocks').scrollTop();
-                if (top_scroll_position > 0) {
-                    $($('.popup-select-guest').find('.fade-top')[0]).css({
-                        display: 'block'
-                    });
-                } else {
-                    $($('.popup-select-guest').find('.fade-top')[0]).css({
-                        display: 'none'
-                    });
-                }
-            });
-            selectGuestObj.find('.button-1').on('click', function () {
-                let guest_row = null;
-                $.get('templates/apartment-block.html', function (data) {
-                    guest_row = $(data);
-                }).done(function () {
-                    let round_id = 'room_' + (new Date()).getTime();
-                    guest_row.attr('data-id', round_id);
-                    guest_row.inputPlusMinus();
-                    client_data.rooms[round_id] = {}
-                    selectGuestObj.find('#apartment-blocks').append(guest_row);
-                    recountPeoples();
-                    selectGuestObj.find('#apartment-blocks').stop().animate({
-                        scrollTop: selectGuestObj.find('#apartment-blocks .apartment-block').last()[0].offsetTop
-                    }, 100);
-                });
-            });
-            selectGuestObj.find('.button-2').on('click', function () {
-                selectGuestObj.css({
-                    opacity: 0,
-                });
-            });
-            $('div.guests').append(selectGuestObj);
-            selectGuestObj.css({
-                display: 'block'
-            }).stop().animate({
-                opacity: 1
-            }, animationDuration);
-        }).fail(function (err) {
-            console.log(err)
-        });
-    } else {
-        selectGuestObj.css({
-            display: 'block'
-        }).animate({
-            opacity: 1
-        }, animationDuration);
-    }
-}
 function showAvailableRooms() {
     $.get('templates/available-rooms.html', function (data) {
         let _obj = $(data);
@@ -863,6 +843,7 @@ function showAvailableRooms() {
                     }
                 });
                 $('body').append(_obj);
+                $('.reserve-room-window').roomSelectionWindow();
                 $('.available-rooms').animate({
                     opacity: 1
                 }, animationDuration);
@@ -968,6 +949,69 @@ let cumulativeOffset = function (element) {
 };
 $(document).ready(function () {
     let calendarWindow = $('.in-out').vcCalendar();
+    function selectGuestPopup() {
+        if (selectGuestObj === null) {
+            $.get('templates/popup-select-guest.html', function (data) {
+                selectGuestObj = $(data);
+                selectGuestObj.css({
+                    opacity: 0,
+                });
+                selectGuestObj.on('click', function (event) {
+                    event.stopPropagation();
+                });
+                selectGuestObj.find('.apartment-block').inputPlusMinus();
+                selectGuestObj.find('.apartment-blocks').on('scroll', function () {
+                    let top_scroll_position = $('.popup-select-guest #apartment-blocks').scrollTop();
+                    if (top_scroll_position > 0) {
+                        $($('.popup-select-guest').find('.fade-top')[0]).css({
+                            display: 'block'
+                        });
+                    } else {
+                        $($('.popup-select-guest').find('.fade-top')[0]).css({
+                            display: 'none'
+                        });
+                    }
+                });
+                selectGuestObj.find('.button-1').on('click', function () {
+                    let guest_row = null;
+                    $.get('templates/apartment-block.html', function (data) {
+                        guest_row = $(data);
+                    }).done(function () {
+                        let round_id = 'room_' + (new Date()).getTime();
+                        guest_row.attr('data-id', round_id);
+                        guest_row.inputPlusMinus();
+                        client_data.rooms[round_id] = new Object({});
+                        selectGuestObj.find('#apartment-blocks').append(guest_row);
+                        recountPeoples();
+                        selectGuestObj.find('#apartment-blocks').stop().animate({
+                            scrollTop: selectGuestObj.find('#apartment-blocks .apartment-block').last()[0].offsetTop
+                        }, 100);
+                    });
+                });
+                selectGuestObj.find('.button-2').on('click', function () {
+                    recountPeoples();
+                    client_data.needRefresh = true;
+                    selectGuestObj.css({
+                        opacity: 0,
+                    });
+                });
+                $('div.guests').append(selectGuestObj);
+                selectGuestObj.css({
+                    display: 'block'
+                }).stop().animate({
+                    opacity: 1
+                }, animationDuration);
+            }).fail(function (err) {
+                console.log(err)
+            });
+        } else {
+            selectGuestObj.css({
+                display: 'block'
+            }).animate({
+                opacity: 1
+            }, animationDuration);
+        }
+    }
     $('body').on('click', '.left-replies-block-slider .slick-prev,.left-replies-block-slider .slick-next', function () {
         let active_vote = {
             value: $('.left-replies-block-slider .slick-slide.slick-active [data-vote-value]').eq(0).attr('data-vote-value'),
@@ -987,7 +1031,6 @@ $(document).ready(function () {
         if (left_replies_block_slider.length > 0) {
             let _diff = cumulativeOffset(left_replies_block_slider[0]).top;
             let _block_height = left_replies_block_slider.height();
-            console.log(left_replies_block_slider.eq(0), cumulativeOffset(left_replies_block_slider[0]).top, window.scrollY);
             if (cumulativeOffset(left_replies_block_slider[0]).top < window.scrollY) {
                 /*
                 left_replies_block_slider.css({
