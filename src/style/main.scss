@@ -21,7 +21,7 @@ body {
   outline: none;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(47, 72, 106, 0.25);
@@ -174,7 +174,7 @@ input[type=checkbox] {
 }
 .clickable {
   cursor: pointer;
-  user-select:none;
+  user-select: none;
 }
 .rectangle-top {
   @extend .main-block;
@@ -423,9 +423,20 @@ input[type=checkbox] {
         left: 12px;
         line-height: 20px;
         position: absolute;
-        text-align: center;
         top: calc(50% - 20px / 2 + 8px);
-        width: 76px;
+        width: 90px;
+        border: none;
+        background: #549cff;
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: #FFFFFF;
+          opacity: 1; /* Firefox */
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: #FFFFFF;
+        }
+        &::-ms-input-placeholder { /* Microsoft Edge */
+          color: #FFFFFF;
+        }
       }
       .out-text {
         align-items: center;
@@ -445,12 +456,23 @@ input[type=checkbox] {
         display: flex;
         font-weight: 500;
         height: 20px;
-        left: 241px;
+        left: 240px;
         line-height: 20px;
         position: absolute;
-        text-align: center;
         top: calc(50% - 20px / 2 + 8px);
-        width: 76px;
+        width: 90px;
+        border: none;
+        background: #549cff;
+        &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: #FFFFFF;
+          opacity: 1; /* Firefox */
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+          color: #FFFFFF;
+        }
+        &::-ms-input-placeholder { /* Microsoft Edge */
+          color: #FFFFFF;
+        }
       }
       .calendar-icon {
         height: 24px;
@@ -491,9 +513,65 @@ input[type=checkbox] {
           background: #DCDFE2;
           bottom: 441px;
           height: 1px;
-          left: 115px;
+          left: 0;
           position: absolute;
           right: 0;
+        }
+        .calendar-year-control {
+          display: flex;
+          flex-direction: row;
+          padding: 0;
+          position: absolute;
+          width: 87px;
+          height: 20px;
+          left: 15px;
+          top: 16px;
+          justify-content: center;
+          .year-left-btn {
+            @extend .clickable;
+            background: url(../static/arrow-left.svg) no-repeat center;
+            position: static;
+            width: 16px;
+            height: 16px;
+            right: 55px;
+            top: calc(50% - 16px / 2);
+            flex: none;
+            order: 0;
+            align-self: center;
+            margin: 4px 0;
+          }
+          .year-value {
+            position: static;
+            left: 22.99%;
+            right: 22.99%;
+            top: 0;
+            bottom: 0;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 20px;
+            display: flex;
+            align-items: center;
+            color: #2F486A;
+            flex: none;
+            order: 1;
+            align-self: center;
+            margin: 4px 4px;
+            height: 20px;
+            width: 47px;
+          }
+          .year-right-btn {
+            @extend .clickable;
+            background: url(../static/arrow-right.svg) no-repeat center;
+            position: static;
+            width: 16px;
+            height: 16px;
+            right: 0;
+            top: calc(50% - 16px / 2 + 16px);
+            flex: none;
+            order: 2;
+            align-self: center;
+            margin: 4px 0;
+          }
         }
         .month-list {
           display: flex;
@@ -502,7 +580,7 @@ input[type=checkbox] {
           left: 0;
           padding: 8px;
           position: absolute;
-          top: 0;
+          top: 50px;
           width: 116px;
           .month-row {
             align-self: flex-start;
@@ -512,7 +590,7 @@ input[type=checkbox] {
             height: 20px;
             left: 8px;
             order: 0;
-            padding: 10px;
+            padding: 8px 10px;
             position: static;
             top: 8px;
             width: 77px;
@@ -556,7 +634,6 @@ input[type=checkbox] {
             flex: none;
             height: 36px;
             margin: 0;
-            order: 3;
             position: absolute;
             top: 0;
             width: 40px;
@@ -578,12 +655,12 @@ input[type=checkbox] {
             &.col-6 {
               left: 200px;
             }
-            &.col-1 {
+            &.col-7 {
               left: 240px;
             }
             .text {
               align-items: center;
-              bottom: 22.22%;
+              bottom: 4.22%;
               color: rgba(47, 72, 106, 0.5);
               display: flex;
               font-size: 12px;
@@ -594,21 +671,117 @@ input[type=checkbox] {
               right: 27.5%;
               text-align: center;
               text-transform: uppercase;
-              top: 22.22%;
+              top: -25.78%;
             }
           }
         }
-        .top-month {
-          align-items: center;
-          color: #2F486A;
-          display: flex;
-          font-weight: 500;
-          height: 20px;
-          left: 128px;
-          line-height: 20px;
+        .dates {
           position: absolute;
-          top: calc(50% - 20px / 2 - 172px);
-          width: 39px;
+          overflow: auto;
+          height: 440px;
+          width: 305px;
+          top: 54px;
+          left: 115px;
+          .month {
+            display: flex;
+            flex-direction: column;
+            padding: 0px;
+            position: relative;
+            width: 280px;
+            top: 0px;
+            flex-wrap: wrap;
+            height: 260px;
+            .year-line {
+              display: none;
+              position: relative;
+              width: 280px;
+              height: 1px;
+              left: 12px;
+              background: #267FF9;
+              top: -5px;
+            }
+            .year-caption {
+              position: absolute;
+              width: 33px;
+              height: 20px;
+              left: 259px;
+              top: 10px;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 20px;
+              display: flex;
+              align-items: center;
+              text-align: right;
+              color: #267FF9;
+            }
+            .month-caption {
+              align-items: center;
+              color: #2F486A;
+              display: flex;
+              font-weight: 500;
+              height: 20px;
+              left: 12px;
+              line-height: 20px;
+              position: relative;
+              top: 12px;
+              width: 39px;
+            }
+            .days {
+              display: flex;
+              flex-direction: row;
+              padding: 0px;
+              position: absolute;
+              width: 280px;
+              height: 212px;
+              left: 12px;
+              top: 48px;
+              flex-wrap: wrap;
+              .day {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                color: rgba(47, 72, 106, 0.75);
+                &.selected-first-date {
+                  background: #267FF9;
+                  border-radius: 8px 0px 0px 8px;
+                  font-weight: 600;
+                  font-size: 14px;
+                  line-height: 17px;
+                  color: #FFFFFF;
+                }
+                &.selected-second-date {
+                  background: #267FF9;
+                  border-radius: 0px 8px 8px 0px;
+                  font-weight: 600;
+                  font-size: 14px;
+                  line-height: 17px;
+                  color: #FFFFFF;
+                }
+                &.selected-range {
+                  background: rgba(38, 127, 249, 0.25);
+                  border-radius: 0px;
+                  font-weight: 600;
+                  font-size: 14px;
+                  line-height: 17px;
+                  color: #106BE9;
+                }
+                @extend .clickable;
+                position: relative;
+                width: 40px;
+                height: 36px;
+                left: 0px;
+                top: 0px;
+                flex: none;
+                order: 1;
+                margin: 0px 0px;
+                text-align: center;
+                span.middle {
+                  display: block;
+                  padding: 10px 0;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -652,7 +825,7 @@ input[type=checkbox] {
         position: absolute;
         top: calc(50% - 20px / 2 + 8px);
         width: 140px;
-        .adult,.children{
+        .adult, .children {
           margin-right: 3px;
         }
       }
@@ -663,7 +836,6 @@ input[type=checkbox] {
         top: 14px;
         width: 24px;
       }
-
     }
     .btn-search {
       height: 52px;
