@@ -9,9 +9,9 @@ import 'slick-carousel/slick/fonts/slick.ttf';
 let client_data = new Object({
     roomCount: 0,
     rooms: {
-        'first_room':{
-            adult:1,
-            children:[]
+        'first_room': {
+            adult: 1,
+            children: []
         }
     },
     peoples: {
@@ -38,22 +38,24 @@ let client_data = new Object({
         this.refreshWindow = function () {
             currentObj.find('.room-row').remove();
             console.log('refreshWindow');
-            let keys=Object.keys(client_data.rooms);
-
-            for (let i=1;i<=keys.length;i++) {
-                $.get('templates/room-row.html', function (data) {
-                        let roomRow = $(data);
-                        roomRow.find('.room-row').eq(0).attr('data-id', keys[i-1]);
-                        roomRow.find('.room-row-count').eq(0).html(i);
-                        roomRow.find('.adult .count').html(client_data.rooms[keys[i-1]].adult);
-                        roomRow.find('.children .count').html(client_data.rooms[keys[i-1]].children.length);
-                        currentObj.find('.rooms-list').append(roomRow);
-                    }
-                ).fail(function (err) {
-                    console.log(err)
-                });
+            let keys = Object.keys(client_data.rooms);
+            function loadNext(i) {
+                if (i <= keys.length) {
+                    $.get('templates/room-row.html', function (data) {
+                            let roomRow = $(data);
+                            roomRow.find('.room-row').eq(0).attr('data-id', keys[i - 1]);
+                            roomRow.find('.room-row-count').eq(0).html(i);
+                            roomRow.find('.adult .count').html(client_data.rooms[keys[i - 1]].adult);
+                            roomRow.find('.children .count').html(client_data.rooms[keys[i - 1]].children.length);
+                            currentObj.find('.rooms-list').append(roomRow);
+                            loadNext(++i);
+                        }
+                    ).fail(function (err) {
+                        console.log(err)
+                    });
+                }
             }
-
+            loadNext(1);
             return this;
         }
         setInterval(function () {
