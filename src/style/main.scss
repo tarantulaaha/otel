@@ -23,6 +23,7 @@ body {
 ::-webkit-scrollbar {
   width: 6px;
   background: none;
+  background-color: rgba(255, 255, 255, 0);
 }
 ::-webkit-scrollbar-thumb {
   background: rgba(47, 72, 106, 0.25);
@@ -680,9 +681,9 @@ input[type=checkbox] {
           position: absolute;
           overflow: auto;
           height: 440px;
-          width: 315px;
+          width: 305px;
           top: 54px;
-          left: 105px;
+          left: 115px;
           .month {
             display: flex;
             flex-direction: column;
