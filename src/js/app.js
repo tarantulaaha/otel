@@ -28,42 +28,109 @@ let client_data = new Object({
 (function ($) {
     $.fn.vcCalendar = function () {
         this.hidden = true;
+        this.scrolling = false;
         let calendarObj = this;
         this.currentYear = new Date().getFullYear();
         this.activeYear = new Date().getFullYear();
         this.currentMonth = new Date().getMonth() + 1;
         this.activeMonth = new Date().getMonth() + 1;
+        this.getDaysInMonth = function (year, month) {
+            return new Date(year, month, 0).getDate();
+        }
+        this.clearMonth = function () {
+            calendarObj.find('.month').remove();
+            return this;
+        }
+        this.getDayInWeek = function (year, month) {
+            let weekday = new Date(year, month - 1, 1).getDay();
+            if (weekday === 0) {
+                weekday = 7;
+            }
+            return weekday;
+        }
         this.scrollToActive = function () {
-            let offsetHeight = 0;
             let offsetTop = 0;
+            calendarObj.find('.month.active').removeClass('active');
+            calendarObj.find('.month').filter($('[data-year="' + calendarObj.activeYear + '"][data-month="' + calendarObj.activeMonth + '"]')).addClass('active');
             if (calendarObj.find('.dates .month.active').length > 0) {
                 offsetTop = calendarObj.find('.dates .month.active')[0].offsetTop;
             }
             calendarObj.find('.dates').eq(0).stop().animate({
                 scrollTop: offsetTop
-            }, 100);
+            }, {
+                duration: 100,
+                easing: "linear",
+                start: function () {
+                    calendarObj.scrolling = true;
+                },
+                complete: function () {
+                    calendarObj.scrolling = false;
+                },
+                queue: false
+            });
             return this;
         }
-        this.refresh = function () {
+        this.selectRange = function () {
+            if (client_data.selectedDate.in.selected) {
+                calendarObj.find('.day[data-date="' + client_data.selectedDate.in.timestamp + '"]').addClass('selected-first-date');
+            } else {
+                calendarObj.find('.day.selected-first-date').removeClass('selected-first-date');
+            }
+            if (client_data.selectedDate.out.selected) {
+                calendarObj.find('.day[data-date="' + client_data.selectedDate.out.timestamp + '"]').addClass('selected-second-date');
+            } else {
+                calendarObj.find('.day.selected-second-date').removeClass('selected-second-date');
+            }
+            if (client_data.selectedDate.in.selected && client_data.selectedDate.out.selected) {
+                let start_selection = false;
+                calendarObj.find('.day').each(function () {
+                    if ($(this).hasClass('selected-first-date')) {
+                        start_selection = true;
+                        return;
+                    }
+                    if ($(this).hasClass('selected-second-date')) {
+                        start_selection = false;
+                        return false;
+                    }
+                    if (start_selection) {
+                        $(this).addClass('selected-range');
+                    }
+                });
+            }else{
+                calendarObj.find('.day.selected-range').removeClass('selected-range');
+            }
+        }
+        this.updateValues = function () {
+            calendarObj.find('.month-row.active').removeClass('active');
             calendarObj.find('.month-row[data-id="' + calendarObj.activeMonth + '"]').addClass('active');
             calendarObj.find('.year-value').eq(0).html(calendarObj.activeYear);
-            calendarObj.find('.month.active').removeClass('active');
-            calendarObj.find('.month').filter($('[data-year="' + calendarObj.activeYear + '"][data-month="' + calendarObj.activeMonth + '"]')).addClass('active');
+        }
+        this.refresh = function () {
+            this.updateValues();
             calendarObj.scrollToActive();
         }
-        this.show = function () {
+        this.showWindow = function () {
             if (calendarObj.hidden) {
-                calendarObj.refresh();
                 calendarObj.find('.calendar-window').css({
                     display: 'block'
                 }).animate({
                     opacity: 1
-                }, animationDuration);
+                }, {
+                    duration: 100,
+                    easing: "linear",
+                    start: function () {
+                        calendarObj.scrolling = true;
+                    },
+                    complete: function () {
+                        calendarObj.scrolling = false;
+                    },
+                    queue: false
+                });
                 calendarObj.hidden = false;
             }
             return this;
         };
-        this.hide = function () {
+        this.hideWindow = function () {
             if (!calendarObj.hidden) {
                 calendarObj.find('.calendar-window').animate({
                     opacity: 0,
@@ -76,9 +143,25 @@ let client_data = new Object({
             }
             return this;
         };
+        this.vc_addScrollEventListener = function () {
+            calendarObj.find('.dates').on('scroll', function () {
+                let _obj = $(this);
+                calendarObj.find('.month').each(function () {
+                    let offsetTop = $(this)[0].offsetTop;
+                    if (calendarObj.scrolling === false && (_obj[0].scrollTop - offsetTop) <= 50 && (_obj[0].scrollTop - offsetTop) >= -200) {
+                        calendarObj.activeYear = parseInt($(this).attr('data-year'));
+                        calendarObj.activeMonth = parseInt($(this).attr('data-month'));
+                        calendarObj.updateValues();
+                        calendarObj.addPreviousMonth(2);
+                        calendarObj.addNextMonth(2);
+                        return false;
+                    }
+                });
+            });
+        }
         this.vc_addEventListeners = function () {
             calendarObj.find('.calendar-icon').on('click', function (event) {
-                calendarObj.show();
+                calendarObj.showWindow();
                 $('.popup-select-guest').animate({
                     opacity: 0,
                 }, animationDuration, function () {
@@ -89,47 +172,21 @@ let client_data = new Object({
                 event.stopPropagation();
                 return false;
             });
-            calendarObj.find('.dates').on('scroll', function () {
-                console.log('scrolling');
-                let _obj = $(this);
-                let active_month_obj = _obj.find('.month.active');
-                let amo_offsetTop = active_month_obj[0].offsetTop * 2;
-                let amo_offsetHeight = active_month_obj[0].offsetHeight;
-                let amo_delta1 = (amo_offsetTop * 0.5) + amo_offsetHeight - 100;
-                console.log(amo_delta1, amo_delta1 / 2, _obj[0].scrollTop);
-                //calendarObj.find('.dates .days .day').remove();
-                let activeObj = active_month_obj;
-                if (_obj[0].scrollTop > amo_delta1) {
-                    if (activeObj.next().next().length === 0) {
-                        calendarObj.addNextMonth();
-                    }
-                    if (active_month_obj.next().length > 0) {
-                        // activeObj = active_month_obj.removeClass('active').next().addClass('active');
-                    }
-                }
-                if (_obj[0].scrollTop < amo_delta1 / 2) {
-                    if (activeObj.prev().prev().length === 0) {
-                        calendarObj.addPreviousMonth();
-                    }
-                    if (active_month_obj.prev().length > 0) {
-                        //activeObj = active_month_obj.removeClass('active').prev().addClass('active');
-                    }
-                }
-                //calendarObj.find('.month-row.active').removeClass('active');
-                //calendarObj.find('.month-row[data-id="' + activeObj.attr('data-month') + '"]').addClass('active');
-                //calendarObj.find('.year-value').html(activeObj.attr('data-year'));
-            });
             calendarObj.find('.year-left-btn').on('click', function () {
                 calendarObj.find('.month').remove();
-                vc_calendar.setYear(parseInt(calendarObj.find('.year-value').eq(0).text()) - 1);
-                vc_calendar.setMonth(parseInt(calendarObj.find('.month-row.active').attr('data-id')));
-                //redraw();
+                calendarObj.activeYear--;
+                calendarObj.addActiveMonth();
+                calendarObj.addPreviousMonth(2);
+                calendarObj.addNextMonth(2);
+                calendarObj.refresh();
             });
             calendarObj.find('.year-right-btn').on('click', function () {
                 calendarObj.find('.month').remove();
-                vc_calendar.setYear(parseInt(calendarObj.find('.year-value').eq(0).text()) + 1);
-                vc_calendar.setMonth(parseInt(calendarObj.find('.month-row.active').attr('data-id')));
-                //redraw();
+                calendarObj.activeYear++;
+                calendarObj.addActiveMonth();
+                calendarObj.addPreviousMonth(2);
+                calendarObj.addNextMonth(2);
+                calendarObj.refresh();
             });
             calendarObj.on('click', function (event) {
                 event.stopPropagation();
@@ -216,30 +273,77 @@ let client_data = new Object({
                 }
             });
             calendarObj.on('click', '.month-row', function () {
-                calendarObj.find('.month-row.active').removeClass('active');
                 calendarObj.activeMonth = parseInt($(this).attr('data-id'));
                 calendarObj.addActiveMonth();
-                calendarObj.addPreviousMonth();
-                calendarObj.addNextMonth();
-                calendarObj.refresh();
+                calendarObj.addPreviousMonth(2);
+                calendarObj.addNextMonth(2);
+                calendarObj.scrollToActive();
             });
             calendarObj.find('.in-date-value').on("keyup paste change", function () {
                 let date_arr = $(this).val().split(".");
                 let start_date = new Date(date_arr[2], date_arr[1] - 1, date_arr[0]).getTime();
                 if (start_date > 0) {
-                    vc_calendar.activeYear = date_arr[2];
-                    vc_calendar.activeMonth = date_arr[1];
-                    vc_calendar.setYear(date_arr[2]).setMonth(date_arr[1]);
-                    client_data.selectedDate.in.timestamp = start_date;
-                    client_data.selectedDate.in.selected = true;
+                    if (start_date < client_data.selectedDate.out.timestamp) {
+                        calendarObj.activeYear = parseInt(date_arr[2]);
+                        calendarObj.activeMonth = parseInt(date_arr[1]);
+                        calendarObj.clearMonth();
+                        calendarObj.addActiveMonth();
+                        calendarObj.addNextMonth(1);
+                        calendarObj.addPreviousMonth(1);
+                        client_data.selectedDate.in.timestamp = start_date;
+                        client_data.selectedDate.in.selected = true;
+                        calendarObj.refresh();
+                        calendarObj.selectRange();
+                        return true;
+                    }
+                } else {
+                    calendarObj.activeYear = calendarObj.currentYear;
+                    calendarObj.activeMonth = calendarObj.currentMonth;
+                    client_data.selectedDate.in.timestamp = 0;
+                    client_data.selectedDate.in.selected = false;
+                    calendarObj.refresh();
+                    calendarObj.selectRange();
                 }
             });
             calendarObj.find('.out-date-value').on("keyup paste change", function () {
                 let date_arr = $(this).val().split(".");
                 let end_date = new Date(date_arr[2], date_arr[1] - 1, date_arr[0]).getTime();
                 if (end_date > 0) {
-                    client_data.selectedDate.out.timestamp = end_date;
-                    client_data.selectedDate.out.selected = true;
+                    if (end_date > client_data.selectedDate.in.timestamp) {
+                        calendarObj.activeYear = parseInt(date_arr[2]);
+                        calendarObj.activeMonth = parseInt(date_arr[1]);
+                        calendarObj.addActiveMonth();
+                        calendarObj.addNextMonth(1);
+                        calendarObj.addPreviousMonth(1);
+                        client_data.selectedDate.out.timestamp = end_date;
+                        client_data.selectedDate.out.selected = true;
+                        calendarObj.refresh();
+                        calendarObj.selectRange();
+                    }
+                } else {
+                    client_data.selectedDate.out.timestamp = 9999999999999;
+                    client_data.selectedDate.out.selected = false;
+                    calendarObj.selectRange();
+                }
+            });
+            $('html').on('click', function () {
+                calendarObj.hideWindow();
+            });
+            $('.in-date-value,.out-date-value').on('keypress', function (event) {
+                if (event.keyCode < 47 || event.keyCode > 57) {
+                    event.preventDefault();
+                }
+                let len = $(this)[0].value.length;
+                if (len !== 1 || len !== 3) {
+                    if (event.keyCode == 47) {
+                        event.preventDefault();
+                    }
+                }
+                if (len === 2) {
+                    $(this)[0].value += '.';
+                }
+                if (len === 5) {
+                    $(this)[0].value += '.';
                 }
             });
             return this;
@@ -258,9 +362,9 @@ let client_data = new Object({
                 month: parseInt(obj.attr('[data-month]'))
             });
         }
-        this.getNext = function () {
-            let year = this.activeYear;
-            let month = this.activeMonth + 1;
+        this.getNext = function (_year, _month) {
+            let year = _year;
+            let month = _month + 1;
             if (month > 12) {
                 month = 1;
                 year++;
@@ -270,9 +374,9 @@ let client_data = new Object({
                 month: month
             });
         }
-        this.getPrevious = function () {
-            let year = this.activeYear;
-            let month = this.activeMonth - 1;
+        this.getPrevious = function (_year, _month) {
+            let year = _year;
+            let month = _month - 1;
             if (month < 1) {
                 month = 12;
                 year--;
@@ -282,9 +386,19 @@ let client_data = new Object({
                 month: month
             });
         }
-        this.addPreviousMonth = function () {
-            let obj = this.getPrevious();
-            this.addMonth(obj.year, obj.month);
+        this.getActiveDate = function () {
+            return new Object({
+                year: calendarObj.activeYear,
+                month: calendarObj.activeMonth
+            });
+        }
+        this.addPreviousMonth = function (i = 1) {
+            let startDate = this.getActiveDate();
+            startDate = this.getPrevious(startDate.year, startDate.month);
+            for (let _i = 1; _i <= i; _i++) {
+                this.addMonth(startDate.year, startDate.month);
+                startDate = this.getPrevious(startDate.year, startDate.month);
+            }
             return this;
         }
         this.addCurrentMonth = function () {
@@ -295,9 +409,13 @@ let client_data = new Object({
             this.addMonth(this.activeYear, this.activeMonth);
             return this;
         }
-        this.addNextMonth = function () {
-            let obj = this.getNext();
-            this.addMonth(obj.year, obj.month);
+        this.addNextMonth = function (i = 1) {
+            let startDate = this.getActiveDate();
+            startDate = this.getNext(startDate.year, startDate.month);
+            for (let _i = 1; _i <= i; _i++) {
+                this.addMonth(startDate.year, startDate.month);
+                startDate = this.getNext(startDate.year, startDate.month);
+            }
             return this;
         }
         this.addDataRangeSelection = function () {
@@ -305,7 +423,7 @@ let client_data = new Object({
             this.find('[data-date="' + client_data.selectedDate.out.timestamp + '"]').addClass('selected-second-date');
         }
         this.addMonth = function (year, month) {
-            console.log(year, month);
+            calendarObj.scrolling = true;
             let monthText = calendarObj.find('.month-row[data-id="' + month + '"]').eq(0).find('.name').eq(0).text();
             let activeClass = ((year === this.activeYear) && (month === this.activeMonth)) ? 'active' : '';
             let monthBlock = $('<div class="month ' + activeClass + '" data-year="' + year + '" data-month="' + month + '"></div>');
@@ -324,26 +442,17 @@ let client_data = new Object({
                 yearCaption.html('');
             }
             monthBlock.append(monthCaption);
-            if (vc_calendar.getDayInWeek() > 1) {
-                for (let i = 1; i < vc_calendar.getDayInWeek(); i++) {
+            if (this.getDayInWeek(year, month) > 1) {
+                for (let i = 1; i < this.getDayInWeek(year, month); i++) {
                     daysBlock.append($('<div class="day"></div>'));
                 }
             }
-            for (let i = 1; i <= vc_calendar.getDaysInMonth(); i++) {
+            for (let i = 1; i <= this.getDaysInMonth(year, month); i++) {
                 daysBlock.append($('<div class="day" data-date="' + new Date(year, month - 1, i).getTime() + '"><span class="middle">' + i + '</span></div>'));
             }
             monthBlock.append(daysBlock);
             let elementExists = calendarObj.find('.month').filter($('[data-year="' + year + '"][data-month="' + month + '"]'));
             if (elementExists.length === 0) {
-                let biggerYear = calendarObj.find('.month').filter(function () {
-                    return parseInt($(this).attr("data-year")) > year;
-                });
-                let likeYear = calendarObj.find('.month').filter(function () {
-                    return parseInt($(this).attr("data-year")) === year;
-                });
-                let lessYear = calendarObj.find('.month').filter(function () {
-                    return parseInt($(this).attr("data-year")) < year;
-                });
                 let biggerMonth = calendarObj.find('.month').filter(function () {
                     return parseInt($(this).attr("data-month")) > month;
                 });
@@ -353,19 +462,43 @@ let client_data = new Object({
                 let lessMonth = calendarObj.find('.month').filter(function () {
                     return parseInt($(this).attr("data-month")) < month;
                 });
-                monthBlock.insertAfter(lessYear.filter($(lessMonth)).last());
-                monthBlock.insertAfter(lessYear.filter($(likeMonth)).last());
-                monthBlock.insertAfter(lessYear.filter($(biggerMonth)).last());
-                monthBlock.insertAfter(likeYear.filter($(lessMonth)).last());
-                monthBlock.insertBefore(likeYear.filter($(biggerMonth)).first());
-                monthBlock.insertBefore(biggerYear.filter($(lessMonth)).first());
-                monthBlock.insertBefore(biggerYear.filter($(likeMonth)).first());
-                monthBlock.insertBefore(biggerYear.filter($(biggerMonth)).first());
-                if (biggerYear.length === 0 && likeYear.length === 0 && lessYear.length === 0) {
+                let biggerYear = calendarObj.find('.month').filter(function () {
+                    return parseInt($(this).attr("data-year")) > year;
+                });
+                let likeYear = calendarObj.find('.month').filter(function () {
+                    return parseInt($(this).attr("data-year")) === year;
+                });
+                let lessYear = calendarObj.find('.month').filter(function () {
+                    return parseInt($(this).attr("data-year")) < year;
+                });
+                if (likeYear.length > 0) {
+                    let filter1 = likeYear.filter($(lessMonth));
+                    let filter2 = likeYear.filter($(biggerMonth));
+                    if (filter1.length > 0) {
+                        monthBlock.insertAfter(filter1.last());
+                    } else if (filter2.length > 0) {
+                        monthBlock.insertBefore(filter2.first());
+                    }
+                } else if (lessYear.length > 0) {
+                    let filter1 = lessYear.filter($(lessMonth));
+                    let filter2 = lessYear.filter($(biggerMonth));
+                    let filter3 = lessYear.filter($(likeMonth));
+                    if (filter2.length > 0) {
+                        monthBlock.insertAfter(filter2.last());
+                    }
+                } else if (biggerYear.length > 0) {
+                    let filter1 = biggerYear.filter($(lessMonth));
+                    let filter2 = biggerYear.filter($(biggerMonth));
+                    let filter3 = biggerYear.filter($(likeMonth));
+                    if (filter1.length > 0) {
+                        monthBlock.insertBefore(filter1.first());
+                    }
+                } else {
                     calendarObj.find('.dates').append(monthBlock);
                 }
             } else {
             }
+            calendarObj.scrolling = false;
         }
         $.get('templates/calendar.html', function (data) {
                 calendarObj.append($(data));
@@ -373,138 +506,20 @@ let client_data = new Object({
                     opacity: 0
                 });
                 calendarObj.vc_addEventListeners();
-                calendarObj.addPreviousMonth();
-                calendarObj.addCurrentMonth();
-                calendarObj.addNextMonth();
+                calendarObj.vc_addScrollEventListener();
+                calendarObj.addPreviousMonth(3);
+                calendarObj.addNextMonth(3);
+                calendarObj.addActiveMonth();
+                calendarObj.refresh();
             }
         ).fail(function (err) {
             console.log(err)
         });
+        return this;
     }
 })(jQuery);
-let vc_calendar = {
-    'calendarObj': null,
-    'currentYear': new Date().getFullYear(),
-    'currentMonth': new Date().getMonth() + 1,
-    'activeYear': new Date().getFullYear(),
-    'activeMonth': new Date().getMonth() + 1,
-    'setYear': function (i) {
-        this.year.current = i;
-        this.activeYear = i;
-        return this;
-    },
-    'setMonth': function (i) {
-        this.month.current = i;
-        this.activeMonth = i;
-        return this;
-    },
-    'year': {
-        previous: 0,
-        current: 0,
-        next: 0
-    },
-    'month': {
-        previous: 0,
-        current: 0,
-        next: 0
-    },
-    'init': function () {
-        this.reset();
-        return this;
-    },
-    'reset': function () {
-        let date = new Date();
-        this.year.current = date.getFullYear();
-        this.month.current = date.getMonth() + 1;
-        return this;
-    },
-    'next': function () {
-        this.month.current++;
-        if (this.month.current > 12) {
-            this.month.current = 1;
-            this.year.current++;
-        }
-        return this;
-    },
-    'previous': function () {
-        this.month.current--;
-        if (this.month.current === 0) {
-            this.month.current = 12;
-            this.year.current--;
-        }
-        return this;
-    },
-    'getDaysInMonth': function () {
-        return new Date(this.year.current, this.month.current, 0).getDate();
-    },
-    'getDayInWeek': function () {
-        let weekday = new Date(this.year.current, this.month.current - 1, 1).getDay();
-        if (weekday === 0) {
-            weekday = 7;
-        }
-        return weekday;
-    }
-}
 let selectGuestObj = null;
 const animationDuration = 100;
-function loadCalendar() {
-    /*
-    function drawMonth(type = 'next') {
-
-    }
-    let redraw = function () {
-        calendarObj.find('.year-value').eq(0).html(vc_calendar.year.current);
-        vc_calendar.previous();
-        drawMonth();
-        vc_calendar.next();
-        drawMonth();
-        vc_calendar.next();
-        drawMonth();
-        vc_calendar.next();
-        drawMonth();
-        calendarObj.find('.dates').scrollTop(calendarObj.find('.dates .month')[0].offsetHeight);
-    }
-    if (calendarObj === null) {
-    } else {
-        calendarObj.find('.month-row.active').removeClass('.active');
-        calendarObj.find('.month-row[data-id="' + vc_calendar.currentMonth + '"]').addClass('active');
-        redraw();
-        calendarObj.find('.dates').scrollTop(calendarObj.find('.dates .month')[0].offsetHeight);
-        calendarObj.css({
-            display: 'block'
-        }).stop().animate({
-            opacity: 1
-        }, animationDuration);
-    }
-
-     */
-}
-let input = document.querySelectorAll('.in-date-value,.out-date-value');
-let dateInputMask = function dateInputMask(elm) {
-    elm.addEventListener('keypress', function (e) {
-        if (e.keyCode < 47 || e.keyCode > 57) {
-            e.preventDefault();
-        }
-        let len = elm.value.length;
-        // If we're at a particular place, let the user type the slash
-        // i.e., 12/12/1212
-        if (len !== 1 || len !== 3) {
-            if (e.keyCode == 47) {
-                e.preventDefault();
-            }
-        }
-        // If they don't add the slash, do it for them...
-        if (len === 2) {
-            elm.value += '.';
-        }
-        // If they don't add the slash, do it for them...
-        if (len === 5) {
-            elm.value += '.';
-        }
-    });
-}
-dateInputMask(input[0]);
-dateInputMask(input[1]);
 (function ($) {
     function isDOMAttrModifiedSupported() {
         let p = document.createElement('p');
@@ -952,7 +967,7 @@ let cumulativeOffset = function (element) {
     };
 };
 $(document).ready(function () {
-    $('.in-out').vcCalendar();
+    let calendarWindow = $('.in-out').vcCalendar();
     $('body').on('click', '.left-replies-block-slider .slick-prev,.left-replies-block-slider .slick-next', function () {
         let active_vote = {
             value: $('.left-replies-block-slider .slick-slide.slick-active [data-vote-value]').eq(0).attr('data-vote-value'),
@@ -1028,7 +1043,7 @@ $(document).ready(function () {
         slidesToScroll: 1
     });
     $('html').on('click', function () {
-        $('.calendar-window, .popup-select-guest').animate({
+        $('.popup-select-guest').animate({
             opacity: 0,
         }, animationDuration, function () {
             $(this).css({
@@ -1038,13 +1053,7 @@ $(document).ready(function () {
     });
     $('.guests-icon').on('click', function (event) {
         selectGuestPopup();
-        $('.calendar-window').animate({
-            opacity: 0,
-        }, animationDuration, function () {
-            $(this).css({
-                display: 'none'
-            });
-        });
+        calendarWindow.hideWindow();
         event.stopPropagation();
         return false;
     });
