@@ -101,10 +101,11 @@
       .checkbox {
         @extend .clickable;
         position: relative;
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         left: 24px;
         top: 24px;
+
       }
       .checkbox-label {
         position: absolute;
@@ -503,7 +504,6 @@
         font-size: 16px;
         line-height: 20px;
         color: #FFFFFF;
-        margin-top: 12px;
       }
     }
     .down-title {
