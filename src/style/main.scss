@@ -5,6 +5,8 @@
 @import "popup.room.info";
 @import "elements";
 @import "reserve.room.window";
+@import "reserve.selection.popup";
+@import "services.block";
 body {
   --zoom: 0.8;
   background: #FAFBFC;
@@ -105,6 +107,10 @@ body {
     width: 8px;
   }
 }
+.content-page{
+  width:960px;
+  margin: 0 auto;
+}
 .title-box {
   height: 56px;
   position: absolute;
@@ -130,8 +136,9 @@ body {
     line-height: 32px;
     padding: 12px 24px;
     position: relative;
-    top: 12px;
     width: 299px;
+    margin: 0 auto;
+    justify-content: center;
   }
 }
 .help-icon {

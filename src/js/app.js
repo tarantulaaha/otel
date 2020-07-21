@@ -6,6 +6,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/fonts/slick.woff';
 import 'slick-carousel/slick/fonts/slick.ttf';
+let loadNextPage = '';
+let hideSearchBox=false;
 let client_data = new Object({
     roomCount: 0,
     rooms: {
@@ -33,15 +35,125 @@ let client_data = new Object({
     needRefresh: true,
 });
 (function ($) {
+    $.fn.roomAppendingWindow = function () {
+        let thisObj = this;
+        let keys = Object.keys(client_data.rooms);
+        this.refreshKeys = function () {
+            keys = Object.keys(client_data.rooms);
+            return this;
+        }
+        this.removeWindow = function () {
+            $('body').find('.reserve-selection-popup').remove();
+        }
+        this.unbindWindow = function () {
+            thisObj.unbind().removeData().find('.reserve-selection-popup').remove();
+        }
+        this.attachEventListeners = function () {
+            thisObj.on('click', '.reserve-selection-popup', function (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            });
+            thisObj.on('click', function (event) {
+                thisObj.removeWindow();
+                thisObj.refreshKeys();
+                if (keys.length > 1) {
+                    thisObj.windowLoad();
+                }
+                event.stopPropagation();
+                event.preventDefault();
+                return false;
+            });
+            $('body').on('click', function () {
+                thisObj.removeWindow();
+            });
+            thisObj.on('click', '.window-close-btn', function (event) {
+                thisObj.removeWindow();
+                event.stopPropagation();
+                event.preventDefault();
+            });
+            return this;
+        }
+        this.getRows = function () {
+            $.get('templates/reserve-selection-row.html', function (data) {
+                    let row = $(data);
+                }
+            ).fail(function (err) {
+                console.log(err)
+            });
+            return this;
+        }
+        this.showWindow = function () {
+            thisObj.removeWindow();
+            thisObj.refreshKeys();
+            if (keys.length > 1) {
+                thisObj.windowLoad();
+            } else {
+                loadNextPage = 'services-block';
+            }
+            return false;
+        }
+        this.windowLoad = function () {
+            $.get('templates/reserve-selection-popup.html', function (data) {
+                    let reserveWindow = $(data);
+                    thisObj.append(reserveWindow);
+                }
+            ).fail(function (err) {
+                console.log(err)
+            });
+            return this;
+        }
+        thisObj.showWindow();
+        thisObj.attachEventListeners();
+        return true;
+    }
+})(jQuery);
+(function ($) {
     $.fn.roomSelectionWindow = function () {
         let currentObj = this;
+        let keys = Object.keys(client_data.rooms);
+        this.stopUpdate = false;
+        this.windowExists = function () {
+            if (currentObj.find('.reserve-room-window').length > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        this.refreshKeys = function () {
+            keys = Object.keys(client_data.rooms);
+            return this;
+        }
+        this.removeWindow = function () {
+            currentObj.find('.reserve-room-window').remove();
+        }
+        this.loadWindow = function () {
+            console.log('load window right');
+            currentObj.refreshKeys();
+            currentObj.refreshKeys();
+            let arrb = $('body').find('.available-rooms-results-block').length > 0;
+            if ((keys.length > 1) && arrb) {
+                $.get('templates/room-reserve-window.html', function (data) {
+                        let roomWindow = $(data);
+                        currentObj.stopUpdate = true;
+                        currentObj.removeWindow();
+                        currentObj.append(roomWindow);
+                        currentObj.stopUpdate = false;
+                        currentObj.refreshWindow();
+                    }
+                ).fail(function (err) {
+                    console.log(err);
+                });
+            } else {
+                currentObj.removeWindow();
+            }
+        }
         this.refreshWindow = function () {
             currentObj.find('.room-row').remove();
-            console.log('refreshWindow');
-            let keys = Object.keys(client_data.rooms);
+            currentObj.refreshKeys();
             function loadNext(i) {
                 if (i <= keys.length) {
                     $.get('templates/room-row.html', function (data) {
+                            currentObj.stopUpdate = true;
                             let roomRow = $(data);
                             roomRow.find('.room-row').eq(0).attr('data-id', keys[i - 1]);
                             roomRow.find('.room-row-count').eq(0).html(i);
@@ -49,6 +161,7 @@ let client_data = new Object({
                             roomRow.find('.children .count').html(client_data.rooms[keys[i - 1]].children.length);
                             currentObj.find('.rooms-list').append(roomRow);
                             loadNext(++i);
+                            currentObj.stopUpdate = false;
                         }
                     ).fail(function (err) {
                         console.log(err)
@@ -60,7 +173,7 @@ let client_data = new Object({
         }
         setInterval(function () {
             if (client_data.needRefresh) {
-                currentObj.refreshWindow();
+                currentObj.loadWindow();
                 client_data.needRefresh = false;
             }
         }, 500);
@@ -113,6 +226,9 @@ let client_data = new Object({
             return this;
         }
         this.selectRange = function () {
+            calendarObj.find('.day.selected-first-date').removeClass('selected-first-date');
+            calendarObj.find('.day.selected-second-date').removeClass('selected-second-date');
+            calendarObj.find('.day.selected-range').removeClass('selected-range');
             if (client_data.selectedDate.in.selected) {
                 calendarObj.find('.day[data-date="' + client_data.selectedDate.in.timestamp + '"]').addClass('selected-first-date');
             } else {
@@ -365,6 +481,7 @@ let client_data = new Object({
                 } else {
                     client_data.selectedDate.out.timestamp = 9999999999999;
                     client_data.selectedDate.out.selected = false;
+                    calendarObj.refresh();
                     calendarObj.selectRange();
                 }
             });
@@ -545,7 +662,8 @@ let client_data = new Object({
         $.get('templates/calendar.html', function (data) {
                 calendarObj.append($(data));
                 calendarObj.find('.calendar-window').css({
-                    opacity: 0
+                    opacity: 0,
+                    display:'none'
                 });
                 calendarObj.vc_addEventListeners();
                 calendarObj.vc_addScrollEventListener();
@@ -713,7 +831,6 @@ function recountPeoples() {
         });
     }
     updateCounts();
-    console.log(client_data);
 }
 $.fn.inputPlusMinus = function () {
     let input_obj = null
@@ -844,7 +961,7 @@ function showAvailableRooms() {
                         $(this).parents('.available-rooms-result').eq(0).find('.counter > .value').html(cur_slide + '/' + all_slides);
                     }
                 });
-                $('body').append(_obj);
+                $('.content-page').append(_obj);
                 $('.reserve-room-window').roomSelectionWindow();
                 $('.available-rooms').animate({
                     opacity: 1
@@ -891,7 +1008,7 @@ function showAvailableRooms() {
                     all_slides = $(this).parents('.available-rooms-result').eq(0).find('.slick-slide').not('.slick-cloned').length
                 }
             });
-            $('body').append(_obj);
+            $('.content-page').append(_obj);
             $('.available-rooms').animate({
                 opacity: 1
             }, animationDuration);
@@ -929,7 +1046,7 @@ function searchAvailableRooms() {
         if (_available_rooms.length > 0) {
             _available_rooms.remove();
         }
-        $('body').append(_obj);
+        $('.content-page').append(_obj);
         $('.available-rooms').animate({
             opacity: 1
         }, animationDuration);
@@ -950,7 +1067,46 @@ let cumulativeOffset = function (element) {
     };
 };
 $(document).ready(function () {
+    $('body').on('click','.service-checkbox',function(){
+        if(typeof $(this).attr('checked') === typeof undefined){
+            $(this).attr('src','static/checkbox-checked.svg').attr('checked','checked');
+            $(this).parent().find('.price').addClass('price-blue');
+        }else{
+            $(this).attr('src','static/checkbox.svg').removeAttr('checked');
+            $(this).parent().find('.price').removeClass('price-blue');
+        }
+    });
+    setInterval(function () {
+        if(hideSearchBox){
+            $('.search-form').css({
+                display:'none'
+            });
+        }else{
+            $('.search-form').css({
+                display:'block'
+            });
+        }
+        if (loadNextPage.length > 0) {
+            if(loadNextPage==='services-block'){
+                hideSearchBox=true;
+            }
+            $('.content-page').html('');
+            $.get('templates/'+loadNextPage+'.html', function (data) {
+                $('.content-page').append($(data));
+            });
+            loadNextPage='';
+        }
+    }, 100);
+    $('body').on('click','.back-box',function(){
+        hideSearchBox=false;
+        $('.content-page').html('');
+        showAvailableRooms();
+    });
     let calendarWindow = $('.in-out').vcCalendar();
+    $('body').roomSelectionWindow();
+    $('body').on('click', '.select-tariff-group .btn-large', function () {
+        $(this).parent().roomAppendingWindow();
+    });
     function selectGuestPopup() {
         if (selectGuestObj === null) {
             $.get('templates/popup-select-guest.html', function (data) {
