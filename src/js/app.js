@@ -1067,7 +1067,7 @@ let cumulativeOffset = function (element) {
     };
 };
 $(document).ready(function () {
-    loadNextPage = 'services-block';
+    //loadNextPage = 'services-block';
     $('body').on('click', '.services-block .button-subbmit', function () {
         loadNextPage = 'pay-parameters';
     });
