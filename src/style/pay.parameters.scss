@@ -467,7 +467,7 @@
         position: relative;
         left: -5px;
         label {
-          margin: 12px 0;
+          margin: 8px 0;
           input {
             width: 0px;
             height: 0px;
@@ -491,7 +491,7 @@
       }
       button {
         @extend .clickable;
-        position: relative;
+        position: absolute;
         border: none;
         background: #267FF9;
         box-shadow: 0px 6px 12px rgba(38, 127, 249, 0.2), 0px 4px 6px rgba(38, 127, 249, 0.2);
@@ -504,6 +504,8 @@
         font-size: 16px;
         line-height: 20px;
         color: #FFFFFF;
+        bottom: 24px;
+        left: 24px;
       }
     }
     .down-title {
@@ -524,7 +526,6 @@
         display: flex;
         justify-content: center;
         img {
-          margin: auto;
           &.faded {
             opacity: 0.5;
           }
