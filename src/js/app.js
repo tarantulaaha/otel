@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/fonts/slick.woff';
 import 'slick-carousel/slick/fonts/slick.ttf';
 let loadNextPage = '';
-let hideSearchBox=false;
+let hideSearchBox = false;
 let client_data = new Object({
     roomCount: 0,
     rooms: {
@@ -663,7 +663,7 @@ let client_data = new Object({
                 calendarObj.append($(data));
                 calendarObj.find('.calendar-window').css({
                     opacity: 0,
-                    display:'none'
+                    display: 'none'
                 });
                 calendarObj.vc_addEventListeners();
                 calendarObj.vc_addScrollEventListener();
@@ -1067,40 +1067,64 @@ let cumulativeOffset = function (element) {
     };
 };
 $(document).ready(function () {
-    $('body').on('click','.service-checkbox',function(){
-        if(typeof $(this).attr('checked') === typeof undefined){
-            $(this).attr('src','static/checkbox-checked.svg').attr('checked','checked');
+    loadNextPage = 'services-block';
+    $('body').on('click', '.services-block .button-subbmit', function () {
+        loadNextPage = 'pay-parameters';
+    });
+    $('body').on('click', '.service-checkbox', function () {
+        if (typeof $(this).attr('checked') === typeof undefined) {
+            $(this).attr('src', 'static/checkbox-checked.svg').attr('checked', 'checked');
             $(this).parent().find('.price').addClass('price-blue');
-        }else{
-            $(this).attr('src','static/checkbox.svg').removeAttr('checked');
+        } else {
+            $(this).attr('src', 'static/checkbox.svg').removeAttr('checked');
             $(this).parent().find('.price').removeClass('price-blue');
         }
     });
+    $('body').on('click', '.contacts-block .checkbox', function () {
+        if (typeof $(this).attr('checked') === typeof undefined) {
+            $(this).attr('src', 'static/checkbox-checked.svg').attr('checked', 'checked');
+        } else {
+            $(this).attr('src', 'static/checkbox.svg').removeAttr('checked');
+        }
+    });
+    $('body').on('click', '.room-info .checkbox', function () {
+        if (typeof $(this).attr('checked') === typeof undefined) {
+            $(this).attr('src', 'static/checkbox-checked.svg').attr('checked', 'checked');
+        } else {
+            $(this).attr('src', 'static/checkbox.svg').removeAttr('checked');
+        }
+    });
     setInterval(function () {
-        if(hideSearchBox){
+        if (hideSearchBox) {
             $('.search-form').css({
-                display:'none'
+                display: 'none'
             });
-        }else{
+        } else {
             $('.search-form').css({
-                display:'block'
+                display: 'block'
             });
         }
         if (loadNextPage.length > 0) {
-            if(loadNextPage==='services-block'){
-                hideSearchBox=true;
+            if (loadNextPage === 'services-block') {
+                hideSearchBox = true;
             }
             $('.content-page').html('');
-            $.get('templates/'+loadNextPage+'.html', function (data) {
+            $.get('templates/' + loadNextPage + '.html', function (data) {
                 $('.content-page').append($(data));
             });
-            loadNextPage='';
+            loadNextPage = '';
         }
     }, 100);
-    $('body').on('click','.back-box',function(){
-        hideSearchBox=false;
+    $('body').on('click', '.back-box-services', function () {
+        hideSearchBox = false;
         $('.content-page').html('');
         showAvailableRooms();
+    });
+    $('body').on('click', '.next-box-services', function () {
+        loadNextPage = 'pay-parameters';
+    });
+    $('body').on('click', '.back-box-pay-parameters', function () {
+        loadNextPage = 'services-block';
     });
     let calendarWindow = $('.in-out').vcCalendar();
     $('body').roomSelectionWindow();

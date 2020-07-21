@@ -7,6 +7,10 @@
 @import "reserve.room.window";
 @import "reserve.selection.popup";
 @import "services.block";
+@import "pay.parameters";
+.checkbox{
+  @extend .clickable;
+}
 body {
   --zoom: 0.8;
   background: #FAFBFC;
@@ -36,6 +40,9 @@ body {
   position: absolute;
   top: 155px;
   width: 8px;
+}
+.flex{
+  display: flex;
 }
 .text {
   align-items: center;
@@ -892,3 +899,4 @@ input[type=checkbox] {
   position: relative;
   width: 253px;
 }
+
