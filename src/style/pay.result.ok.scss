@@ -284,7 +284,28 @@
         background: #FAFBFC;
         border-radius: 0 0 8px 8px;
         border: 1px solid #DCDFE2;
-
+        .summ-title{
+          position: absolute;
+          width: 116px;
+          height: 26px;
+          left: 24px;
+          top: 24px;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 26px;
+          color: #2F486A;
+        }
+        .summ-value{
+          position: absolute;
+          width: 118px;
+          height: 26px;
+          left: 215px;
+          top: 24px;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 26px;
+          color: #267FF9;
+        }
       }
     }
   }

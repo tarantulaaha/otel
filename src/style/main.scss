@@ -169,7 +169,7 @@ button{
     position:absolute;
     top:30px;
     width:960px;
-    z-index:0;
+    z-index:-1;
   }
   .title{
     align-self:center;
@@ -184,6 +184,7 @@ button{
     width:299px;
     margin:0 auto;
     justify-content:center;
+    z-index: -1;
   }
 }
 .help-icon{

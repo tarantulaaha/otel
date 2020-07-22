@@ -286,6 +286,13 @@ let client_data = new Object({
                 });
                 calendarObj.hidden = false;
             }
+            $('.popup-select-guest').animate({
+                opacity: 0,
+            }, animationDuration, function () {
+                $(this).css({
+                    display: 'none'
+                });
+            });
             return this;
         };
         this.hideWindow = function () {
@@ -320,13 +327,6 @@ let client_data = new Object({
         this.vc_addEventListeners = function () {
             calendarObj.find('.calendar-icon').on('click', function (event) {
                 calendarObj.showWindow();
-                $('.popup-select-guest').animate({
-                    opacity: 0,
-                }, animationDuration, function () {
-                    $(this).css({
-                        display: 'none'
-                    });
-                });
                 event.stopPropagation();
                 return false;
             });
@@ -437,7 +437,12 @@ let client_data = new Object({
                 calendarObj.addNextMonth(2);
                 calendarObj.scrollToActive();
             });
+
+            calendarObj.on('click','.in-date-value,.out-date-value',function(){
+                calendarObj.showWindow();
+            });
             calendarObj.find('.in-date-value').on("keyup paste change", function () {
+
                 let date_arr = $(this).val().split(".");
                 let start_date = new Date(date_arr[2], date_arr[1] - 1, date_arr[0]).getTime();
                 if (start_date > 0) {
@@ -952,13 +957,13 @@ function showAvailableRooms() {
                 let all_slides = 0
                 _obj.find('.slick-prev,.slick-next').on('click', function () {
                     cur_slide = parseInt($(this).parent().find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
-                    $(this).parent().parent().eq(0).find('.counter > .value').html(cur_slide + '/' + all_slides);
+                    $(this).parent().parent().eq(0).find('.slick-counter > .value').html(cur_slide + '/' + all_slides);
                 });
                 _obj.find('.room-photos .slick-track').attr_change({
                     callback: function () {
                         cur_slide = parseInt($(this).parent().find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
                         all_slides = $(this).parents('.available-rooms-result').eq(0).find('.room-photos .slick-slide').not('.slick-cloned').length;
-                        $(this).parents('.available-rooms-result').eq(0).find('.counter > .value').html(cur_slide + '/' + all_slides);
+                        $(this).parents('.available-rooms-result').eq(0).find('.slick-counter > .value').html(cur_slide + '/' + all_slides);
                     }
                 });
                 $('.content-page').append(_obj);
@@ -1000,7 +1005,7 @@ function showAvailableRooms() {
             _obj.find('.slick-prev,.slick-next').on('click', function () {
                 cur_slide = parseInt($(this).parent().find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
                 all_slides = $(this).parents('.available-rooms-result').eq(0).find('.room-photos .slick-slide').not('.slick-cloned').length;
-                $(this).parent().parent().find('.counter > .value').html(cur_slide + '/' + all_slides);
+                $(this).parent().parent().find('.slick-counter > .value').html(cur_slide + '/' + all_slides);
             });
             _obj.find('.room-photos .slick-track').attr_change({
                 callback: function () {
@@ -1071,7 +1076,12 @@ $(document).ready(function () {
     //loadNextPage = 'pay-parameters';
     //loadNextPage = 'paying';
     //loadNextPage = 'pay-result-ok';
-
+    $('body').on('mouseover','.available-rooms-result .slick-slider',function(){
+        $(this).parents('.available-rooms-result').eq(0).find('.slick-counter').addClass('slick-counter-show');
+    });
+    $('body').on('mouseout','.available-rooms-result .slick-slider',function(){
+        $(this).parents('.available-rooms-result').eq(0).find('.slick-counter').removeClass('slick-counter-show');
+    });
     $('body').on('click', '.pay-result-ok .back-to-main-page', function () {
         hideSearchBox = false;
         loadNextPage = 'main-page';

@@ -7,7 +7,7 @@
 .title-row {
   @extend .main-info;
   position: relative;
-  top: 170px;
+  top: 130px;
 }
 .room-type {
   align-items: center;
@@ -389,11 +389,15 @@
           }
         }
       }
-      span.counter {
+      span.slick-counter {
+        &.slick-counter-show{
+          display: flex;
+        }
+        display: none;
         background: rgba(47, 72, 106, 0.35);
         background-blend-mode: multiply;
         border-radius: 4px;
-        display: flex;
+        /*display: flex;*/
         flex-direction: row;
         height: 24px;
         left: 884px;
@@ -667,7 +671,7 @@
   .faq {
     height: 423px;
     position: relative;
-    top: 145px;
+    top: 100px;
     width: 960px;
     .line1 {
       background: #DCDFE2;
@@ -759,7 +763,7 @@
   }
   .replies{
     position: relative;
-    margin-top: 255px;
+    margin-top: 150px;
     .reply{
       @extend .main-block;
       height:265px;
