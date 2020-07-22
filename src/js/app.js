@@ -1076,6 +1076,7 @@ $(document).ready(function () {
     //loadNextPage = 'pay-parameters';
     //loadNextPage = 'paying';
     //loadNextPage = 'pay-result-ok';
+
     $('body').on('mouseover','.available-rooms-result .slick-slider',function(){
         $(this).parents('.available-rooms-result').eq(0).find('.slick-counter').addClass('slick-counter-show');
     });
@@ -1098,9 +1099,27 @@ $(document).ready(function () {
         if (typeof $(this).attr('checked') === typeof undefined) {
             $(this).attr('src', 'static/checkbox-checked.svg').attr('checked', 'checked');
             $(this).parent().find('.price').addClass('price-blue');
+            let minHeight=parseInt($(this).parents('.service-row').eq(0).find('.service-settings').attr('data-css-min-height'));
+            /* future !!!!!!!!!!!!!!! DONT DELETE!!!!!!! */
+            /*
+            $(this).parents('.service-row').eq(0).find('.service-settings').css({
+                display:'block'
+            }).stop().animate({
+                'min-height':minHeight,
+            },500);
+
+             */
         } else {
             $(this).attr('src', 'static/checkbox.svg').removeAttr('checked');
             $(this).parent().find('.price').removeClass('price-blue');
+            $(this).parents('.service-row').eq(0).find('.service-settings').animate({
+                'min-height':0,
+                'height':0
+            },500,function(){
+                $(this).css({
+                    display:'none'
+                });
+            });
         }
     });
     $('body').on('click', '.contacts-block .checkbox', function () {
