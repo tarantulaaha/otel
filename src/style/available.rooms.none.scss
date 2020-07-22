@@ -1,7 +1,10 @@
 .available-rooms {
   position: relative;
   width: 960px;
-  height: 56px;
+  .section{
+    position: relative;
+    margin-top: 54px;
+  }
   .available-rooms-title-box {
     display: flex;
     flex-direction: row;
@@ -40,7 +43,7 @@
     position: relative;
     width: 631px;
     height: 48px;
-    top: 84px;
+    top: 18px;
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
@@ -56,7 +59,6 @@
   .alternative-dates {
     position: relative;
     width: 960px;
-    top: 100px;
     display: flex;
     justify-content: space-between;
     .alternative-date {

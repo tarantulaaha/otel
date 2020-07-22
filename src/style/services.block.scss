@@ -64,7 +64,7 @@
   .service-rows {
     position: relative;
     width: 960px;
-    top: 75px;
+    top: 28px;
     .service-row {
       position: relative;
       margin-bottom: 24px;
@@ -240,11 +240,10 @@
     position: relative;
     width: 268px;
     height: 52px;
-    bottom: -140px;
     background: #267FF9;
     box-shadow: 0px 6px 12px rgba(38, 127, 249, 0.2), 0px 4px 6px rgba(38, 127, 249, 0.2);
     border-radius: 4px;
-    margin: 42px auto;
+    margin:135px auto 42px;
     .button-label {
       position: relative;
       font-weight: 600;

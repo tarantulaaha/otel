@@ -6,7 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/fonts/slick.woff';
 import 'slick-carousel/slick/fonts/slick.ttf';
-let loadNextPage = '';
+let loadNextPage = 'main-page';
 let hideSearchBox = false;
 let client_data = new Object({
     roomCount: 0,
@@ -1068,7 +1068,20 @@ let cumulativeOffset = function (element) {
 };
 $(document).ready(function () {
     //loadNextPage = 'services-block';
+    //loadNextPage = 'pay-parameters';
+    //loadNextPage = 'paying';
+    //loadNextPage = 'pay-result-ok';
+
+    $('body').on('click', '.pay-result-ok .back-to-main-page', function () {
+        hideSearchBox = false;
+        loadNextPage = 'main-page';
+    });
+    $('body').on('click', '.paying .pay-confirm', function () {
+        hideSearchBox = true;
+        loadNextPage = 'pay-result-ok';
+    });
     $('body').on('click', '.services-block .button-subbmit', function () {
+        hideSearchBox = true;
         loadNextPage = 'pay-parameters';
     });
     $('body').on('click', '.service-checkbox', function () {
@@ -1115,15 +1128,25 @@ $(document).ready(function () {
             loadNextPage = '';
         }
     }, 100);
+    $('body').on('click', '.pay-parameters .next-step-button', function () {
+        hideSearchBox = true;
+        loadNextPage = 'paying';
+    });
+    $('body').on('click', '.back-paying', function () {
+        hideSearchBox = true;
+        loadNextPage = 'pay-parameters';
+    });
     $('body').on('click', '.back-box-services', function () {
         hideSearchBox = false;
         $('.content-page').html('');
         showAvailableRooms();
     });
     $('body').on('click', '.next-box-services', function () {
+        hideSearchBox = true;
         loadNextPage = 'pay-parameters';
     });
     $('body').on('click', '.back-box-pay-parameters', function () {
+        hideSearchBox = true;
         loadNextPage = 'services-block';
     });
     let calendarWindow = $('.in-out').vcCalendar();
