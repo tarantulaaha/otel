@@ -1134,6 +1134,14 @@ $(document).ready(function () {
     //loadNextPage = 'pay-parameters';
     //loadNextPage = 'paying';
     //loadNextPage = 'pay-result-ok';
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+        $(window).on('scroll',function(){
+            $('.popup-room-info').css({
+                top: $('html')[0].scrollTop*1.25 +25
+            });
+        });
+    }
+
     $('body').on('mouseover', '.available-rooms-result .slick-slider', function () {
         $(this).parents('.available-rooms-result').eq(0).find('.slick-counter').addClass('slick-counter-show');
     });
@@ -1345,6 +1353,7 @@ $(document).ready(function () {
         }
     });
     $('body').on('click', '.room-info-btn', function () {
+
         $('body').find('.popup-room-info').remove();
         $.get('templates/popup-room-info.html', function (data) {
             let popup_room_info = $(data);
@@ -1353,6 +1362,9 @@ $(document).ready(function () {
             });
             popup_room_info.css({});
             $('body').append(popup_room_info);
+            $('.popup-room-info').css({
+                top: $('html')[0].scrollTop*1.25 +25
+            });
         });
     });
     $('body').on('mouseover', '[data-tooltip]', function () {
@@ -1384,7 +1396,7 @@ $(document).ready(function () {
             });
         });
     });
-    $('.guests-icon').on('click', function (event) {
+    $('.guests,.guests-icon').on('click', function (event) {
         selectGuestPopup();
         calendarWindow.hideWindow();
         event.stopPropagation();

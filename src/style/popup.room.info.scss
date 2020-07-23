@@ -1,4 +1,9 @@
 .popup-room-info {
+  transform: translate3d(0px, 0px, 0px);
+  -o-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   position: fixed;
   width: 796px;
   margin: 0 auto;
