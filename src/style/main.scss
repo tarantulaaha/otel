@@ -158,7 +158,6 @@ button, .btn-large{
   width:960px;
 }
 .title-box{
-  height:56px;
   position:relative;
   text-align:center;
   width:960px;
@@ -168,7 +167,7 @@ button, .btn-large{
     height:1px;
     left:0;
     position:absolute;
-    top:30px;
+    top:21px;
     width:960px;
     z-index:-1;
   }
@@ -178,7 +177,6 @@ button, .btn-large{
     color:rgba(47, 72, 106, 0.24);
     font-size:26px;
     font-weight:600;
-    height:32px;
     justify-content:center;
     line-height:32px;
     margin:0 auto;

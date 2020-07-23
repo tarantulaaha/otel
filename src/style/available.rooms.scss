@@ -270,7 +270,7 @@
   }
   .available-rooms-results-block{
     position:relative;
-    top:90px;
+    padding-top: 90px;
     .available-rooms-result{
       height:660px;
       margin-bottom:32px;
@@ -649,12 +649,12 @@
   }
   .faq{
     position:relative;
-    top:100px;
+    margin-top: 25px;
     width:960px;
     background:#FFFFFF;
     border-radius:8px;
     box-shadow:0 2px 1px rgba(85, 89, 106, 0.0196802), 0 4px 2px rgba(85, 89, 106, 0.0282725), 0 6px 4px rgba(85, 89, 106, 0.035), 0 8px 8px rgba(85, 89, 106, 0.0417275), 0 18px 16px rgba(85, 89, 106, 0.0503198), 0 30px 40px rgba(85, 89, 106, 0.07);
-
+margin-bottom: 23px;
     .frame-122{
       .text{
         @extend .buf1;
@@ -719,7 +719,7 @@
           left:20px;
           color:#2F486A;
           opacity:0.85;
-          padding-bottom: 22px;
+          padding-bottom: 55px;
           &.hide{
             display: none;
             height: 0;
@@ -737,7 +737,7 @@
   }
   .replies{
     position:relative;
-    margin-top:150px;
+    margin-top:23px;
     .reply{
       @extend .main-block;
       height:265px;
