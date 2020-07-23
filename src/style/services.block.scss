@@ -6,8 +6,7 @@
     width:206px;
     height:38px;
     left:0px;
-    top:12px;
-    z-index:100;
+    top:0px;
     background:#FAFBFC;
     .back-arrow{
       @extend .clickable;
@@ -36,8 +35,8 @@
     width:206px;
     height:38px;
     right:0px;
-    top:12px;
-    z-index:100;
+    top:0px;
+    z-index:0;
     background:#FAFBFC;
     .next-arrow{
       @extend .clickable;
