@@ -928,7 +928,20 @@ function showAvailableRooms() {
             });
         });
         _obj.find('.arrow-down').on('classChange', function () {
+
             if ($(this).hasClass('opened')) {
+                $(this).parent().find('.answer').css({
+                    display:'block'
+                }).animate({
+                    height: 100
+                },{
+                    duration:500,
+                    step: function (now) {
+                        $(this).css({heigh: now + '%)'});
+                    },
+                    complete:function(){
+                    }
+                });
                 $(this).animate({
                     deg: -180
                 }, {
@@ -941,6 +954,19 @@ function showAvailableRooms() {
                     }
                 });
             } else {
+                $(this).parent().find('.answer').animate({
+                    height:0
+                },{
+                    duration:500,
+                    step: function (now) {
+                        $(this).css({heigh: now + '%)'});
+                    },
+                    complete:function(){
+                        $(this).css({
+                            display:'none'
+                        });
+                    }
+                });
                 $(this).animate({
                     deg: 0
                 }, {
@@ -954,10 +980,13 @@ function showAvailableRooms() {
                 });
             }
         }).on('click', function () {
+            //$(this).parent().find('.answer').attr('data-height',$(this).parent().find('.answer')[0].offsetHeight-23);
+            $('.faq .arrow-down').not(this).removeClass('opened').trigger('classChange');
             $(this).toggleClass('opened').promise().done(function () {
                 $(this).trigger('classChange');
             });
         });
+        _obj.find('.arrow-down').trigger('classChange');
         let available_rooms = $('body .available-rooms');
         if (available_rooms.length > 0) {
             available_rooms.animate({

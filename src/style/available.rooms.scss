@@ -648,35 +648,14 @@
     }
   }
   .faq{
-    height:423px;
     position:relative;
     top:100px;
     width:960px;
-    .line1{
-      background:#DCDFE2;
-      bottom:99.76%;
-      left:0;
-      position:absolute;
-      right:0;
-      top:0;
-    }
+    background:#FFFFFF;
+    border-radius:8px;
+    box-shadow:0 2px 1px rgba(85, 89, 106, 0.0196802), 0 4px 2px rgba(85, 89, 106, 0.0282725), 0 6px 4px rgba(85, 89, 106, 0.035), 0 8px 8px rgba(85, 89, 106, 0.0417275), 0 18px 16px rgba(85, 89, 106, 0.0503198), 0 30px 40px rgba(85, 89, 106, 0.07);
+
     .frame-122{
-      border-radius:8px;
-      bottom:0;
-      left:0;
-      position:absolute;
-      right:0;
-      top:7.8%;
-      .decorate{
-        background:#FFFFFF;
-        border-radius:8px;
-        box-shadow:0 2px 1px rgba(85, 89, 106, 0.0196802), 0 4px 2px rgba(85, 89, 106, 0.0282725), 0 6px 4px rgba(85, 89, 106, 0.035), 0 8px 8px rgba(85, 89, 106, 0.0417275), 0 18px 16px rgba(85, 89, 106, 0.0503198), 0 30px 40px rgba(85, 89, 106, 0.07);
-        height:390px;
-        left:0;
-        position:absolute;
-        top:0;
-        width:960px;
-      }
       .text{
         @extend .buf1;
         font-size:20px;
@@ -698,27 +677,28 @@
       }
       .line-vert{
         background:#DCDFE2;
-        height:1px;
-        left:33px;
+        height:100%;
+        left:225px;
         position:absolute;
-        top:195px;
-        transform:rotate(90deg);
-        width:390px;
+        width:1px;
       }
       .question{
-        height:24px;
         left:233px;
         position:relative;
         width:684.8px;
+        padding-top: 23px;
+        padding-bottom: 7px;
         .text{
           @extend .buf1;
           font-size:16px;
           font-weight:500;
           height:20px;
           line-height:20px;
-          position:absolute;
+          position:relative;
           width:547px;
           top:auto;
+          margin-top: 0;
+          padding-bottom: 0px;
         }
         .arrow-down{
           @extend .clickable;
@@ -729,14 +709,28 @@
           top:20px;
           width:24px;
         }
+        .answer{
+          overflow: hidden;
+          width:685px;
+          font-weight:normal;
+          font-size:16px;
+          line-height:24px;
+          position:relative;
+          left:20px;
+          color:#2F486A;
+          opacity:0.85;
+          padding-bottom: 22px;
+          &.hide{
+            display: none;
+            height: 0;
+          }
+        }
       }
       .line-hor{
         background:#DCDFE2;
         height:1px;
         left:253px;
-        margin:20px 0;
         position:relative;
-        top:20px;
         width:685px;
       }
     }
