@@ -63,7 +63,7 @@ input{
     color:rgba(47, 72, 106, 0.5);
   }
 }
-button,.btn-large{
+button, .btn-large{
   @extend .clickable;
   background:#267FF9;
   border:none;
@@ -304,7 +304,7 @@ input[type=checkbox]{
     .contacts{
       display:inline-block;
       position:relative;
-      top:21px;
+      top:30px;
       .address-row{
         color:rgba(47, 72, 106, 0.75);
         font-size:16px;
@@ -362,20 +362,20 @@ input[type=checkbox]{
       display:inline-block;
       left:230px;
       position:relative;
-      top:-10px;
+      top:20px;
     }
   }
   .photos{
     left:16px;
     overflow:hidden;
     position:relative;
-    top:45px;
+    top:70px;
     white-space:nowrap;
-    width:925px;
+    width:930px;
     img{
       border-radius:4px;
       height:90px;
-      margin-right:12px;
+      margin:auto 6px;
       width:160px;
     }
   }
@@ -391,7 +391,7 @@ input[type=checkbox]{
     height:90px;
     position:absolute;
     right:19px;
-    top:181px;
+    top:208px;
     width:64px;
   }
 }
