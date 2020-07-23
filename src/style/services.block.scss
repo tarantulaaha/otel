@@ -71,6 +71,8 @@
         position:relative;
         height:98px;
         background-color:white;
+        box-shadow:0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
+        border-radius: 8px;
         .service-image{
           position:absolute;
           width:157px;
@@ -252,5 +254,4 @@
       box-shadow:0px 12px 16px rgba(38, 127, 249, 0.2), 0px 6px 12px rgba(38, 127, 249, 0.2);
     }
   }
-
 }
