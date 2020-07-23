@@ -158,18 +158,20 @@ button, .btn-large{
   width:960px;
 }
 .title-box{
+  display: block;
   position:relative;
   text-align:center;
   width:960px;
   z-index:-1;
+  min-height: 32px;
   .line{
-    background:#DCDFE2;
-    height:1px;
-    left:0;
-    position:absolute;
-    top:21px;
-    width:960px;
-    z-index:-1;
+    background: #dcdfe2;
+    height: 1.17px;
+    left: 0;
+    position: absolute;
+    top:50%;
+    width: 960px;
+    z-index: -1;
   }
   .title{
     align-self:center;
