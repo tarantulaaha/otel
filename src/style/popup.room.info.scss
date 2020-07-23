@@ -1,8 +1,10 @@
 .popup-room-info {
-  position: relative;
+  position: fixed;
   width: 796px;
   margin: 0 auto;
   z-index: 100;
+  top: 38px;
+  left: 29%;
   .decorate {
     position: absolute;
     width: 796px;

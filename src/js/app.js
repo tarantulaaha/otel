@@ -1295,7 +1295,7 @@ $(document).ready(function () {
                 popup_room_info.remove();
             });
             popup_room_info.css({
-                top: window.scrollY - 526
+
             });
             $('body').append(popup_room_info);
         });

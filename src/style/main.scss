@@ -17,9 +17,8 @@
   @extend .clickable;
   color:#267FF9;
 }
-.slick-next,.slick-prev{
-  box-shadow: none;
-
+.slick-next, .slick-prev{
+  box-shadow:none;
 }
 body{
   --zoom:0.8;
@@ -30,19 +29,17 @@ body{
   font-weight:normal;
   margin:0;
   padding:0;
+  -moz-transform:scale(0.8);
   transform-origin:50% 0;
   zoom:80%;
-  -moz-transform:scale(0.8);
 }
-
 :focus{
   outline:none;
 }
 ::-webkit-scrollbar{
-  width:6px;
   background:rgba(255, 255, 255, 0) none;
+  width:6px;
 }
-
 ::-webkit-scrollbar-thumb{
   background:rgba(47, 72, 106, 0.25);
   border-radius:19px;
@@ -53,8 +50,8 @@ body{
   width:8px;
 }
 input{
-  border:none;
   background:none;
+  border:none;
   &::placeholder{
     color:rgba(47, 72, 106, 0.5);
     opacity:1; /* Firefox */
@@ -66,17 +63,21 @@ input{
     color:rgba(47, 72, 106, 0.5);
   }
 }
-button{
+button,.btn-large{
   @extend .clickable;
-  display:block;
-  border:none;
   background:#267FF9;
-  box-shadow:0 6px 12px rgba(38, 127, 249, 0.2), 0 4px 6px rgba(38, 127, 249, 0.2);
+  border:none;
   border-radius:4px;
-  font-weight:600;
-  font-size:16px;
-  line-height:20px;
+  box-shadow:0 6px 12px rgba(38, 127, 249, 0.2), 0 4px 6px rgba(38, 127, 249, 0.2);
   color:#FFFFFF;
+  display:block;
+  font-size:16px;
+  font-weight:600;
+  line-height:20px;
+  &:hover{
+    background:#529BFF;
+    box-shadow:0px 12px 16px rgba(38, 127, 249, 0.2), 0px 6px 12px rgba(38, 127, 249, 0.2);
+  }
 }
 .flex{
   display:flex;
@@ -152,9 +153,9 @@ button{
   }
 }
 .content-page{
-  width:960px;
   margin:0 auto;
-  position: relative;
+  position:relative;
+  width:960px;
 }
 .title-box{
   height:56px;
@@ -178,13 +179,13 @@ button{
     font-size:26px;
     font-weight:600;
     height:32px;
+    justify-content:center;
     line-height:32px;
+    margin:0 auto;
     padding:12px 24px;
     position:relative;
     width:299px;
-    margin:0 auto;
-    justify-content:center;
-    z-index: -1;
+    z-index:-1;
   }
 }
 .help-icon{
@@ -390,8 +391,8 @@ input[type=checkbox]{
     height:90px;
     position:absolute;
     right:19px;
-    width:64px;
     top:181px;
+    width:64px;
   }
 }
 .search-form{
@@ -472,6 +473,8 @@ input[type=checkbox]{
       }
       .in-date-value{
         align-items:center;
+        background:#549cff;
+        border:none;
         color:#FFFFFF;
         display:flex;
         font-weight:500;
@@ -481,8 +484,6 @@ input[type=checkbox]{
         position:absolute;
         top:calc(50% - 20px / 2 + 8px);
         width:90px;
-        border:none;
-        background:#549cff;
         &::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
           color:#FFFFFF;
           opacity:1; /* Firefox */
@@ -508,6 +509,8 @@ input[type=checkbox]{
       }
       .out-date-value{
         align-items:center;
+        background:#549cff;
+        border:none;
         color:#FFFFFF;
         display:flex;
         font-weight:500;
@@ -517,8 +520,6 @@ input[type=checkbox]{
         position:absolute;
         top:calc(50% - 20px / 2 + 8px);
         width:90px;
-        border:none;
-        background:#549cff;
         &::placeholder{ /* Chrome, Firefox, Opera, Safari 10.1+ */
           color:#FFFFFF;
           opacity:1; /* Firefox */
@@ -576,57 +577,57 @@ input[type=checkbox]{
         .calendar-year-control{
           display:flex;
           flex-direction:row;
+          height:20px;
+          justify-content:center;
+          left:15px;
           padding:0;
           position:absolute;
-          width:87px;
-          height:20px;
-          left:15px;
           top:16px;
-          justify-content:center;
+          width:87px;
           .year-left-btn{
             @extend .clickable;
+            align-self:center;
             background:url(../static/arrow-left.svg) no-repeat center;
-            position:static;
-            width:16px;
+            flex:none;
             height:16px;
+            margin:4px 0;
+            order:0;
+            position:static;
             right:55px;
             top:calc(50% - 16px / 2);
-            flex:none;
-            order:0;
-            align-self:center;
-            margin:4px 0;
+            width:16px;
           }
           .year-value{
-            position:static;
+            align-items:center;
+            align-self:center;
+            bottom:0;
+            color:#2F486A;
+            display:flex;
+            flex:none;
+            font-size:18px;
+            font-weight:600;
+            height:20px;
             left:22.99%;
+            line-height:20px;
+            margin:4px 4px;
+            order:1;
+            position:static;
             right:22.99%;
             top:0;
-            bottom:0;
-            font-weight:600;
-            font-size:18px;
-            line-height:20px;
-            display:flex;
-            align-items:center;
-            color:#2F486A;
-            flex:none;
-            order:1;
-            align-self:center;
-            margin:4px 4px;
-            height:20px;
             width:47px;
           }
           .year-right-btn{
             @extend .clickable;
+            align-self:center;
             background:url(../static/arrow-right.svg) no-repeat center;
-            position:static;
-            width:16px;
+            flex:none;
             height:16px;
+            margin:4px 0;
+            order:2;
+            position:static;
             right:0;
             top:calc(50% - 16px / 2 + 16px);
-            flex:none;
-            order:2;
-            align-self:center;
-            margin:4px 0;
+            width:16px;
           }
         }
         .month-list{
@@ -732,43 +733,43 @@ input[type=checkbox]{
           }
         }
         .dates{
-          position:absolute;
-          overflow:auto;
           height:440px;
-          width:308px;
-          top:54px;
           left:115px;
+          overflow:auto;
+          position:absolute;
+          top:54px;
+          width:308px;
           .month{
             display:flex;
             flex-direction:column;
-            padding:0;
-            position:relative;
-            width:280px;
-            top:0;
             flex-wrap:wrap;
             height:260px;
+            padding:0;
+            position:relative;
+            top:0;
+            width:280px;
             .year-line{
+              background:#267FF9;
               display:none;
-              position:relative;
-              width:280px;
               height:1px;
               left:12px;
-              background:#267FF9;
+              position:relative;
               top:-5px;
+              width:280px;
             }
             .year-caption{
-              position:absolute;
-              width:33px;
+              align-items:center;
+              color:#267FF9;
+              display:flex;
+              font-size:14px;
+              font-weight:500;
               height:20px;
               left:259px;
-              top:10px;
-              font-weight:500;
-              font-size:14px;
               line-height:20px;
-              display:flex;
-              align-items:center;
+              position:absolute;
               text-align:right;
-              color:#267FF9;
+              top:10px;
+              width:33px;
             }
             .month-caption{
               align-items:center;
@@ -785,52 +786,52 @@ input[type=checkbox]{
             .days{
               display:flex;
               flex-direction:row;
-              padding:0;
-              position:absolute;
-              width:280px;
+              flex-wrap:wrap;
               height:212px;
               left:12px;
+              padding:0;
+              position:absolute;
               top:48px;
-              flex-wrap:wrap;
+              width:280px;
               .day{
-                font-weight:500;
-                font-size:14px;
-                line-height:17px;
                 color:rgba(47, 72, 106, 0.75);
+                flex:none;
+                font-size:14px;
+                font-weight:500;
+                height:36px;
+                left:0;
+                line-height:17px;
+                @extend .clickable;
+                margin:0 0;
+                order:1;
+                position:relative;
+                text-align:center;
+                top:0;
+                width:40px;
                 &.selected-first-date{
                   background:#267FF9;
                   border-radius:8px 0 0 8px;
-                  font-weight:600;
-                  font-size:14px;
-                  line-height:17px;
                   color:#FFFFFF;
+                  font-size:14px;
+                  font-weight:600;
+                  line-height:17px;
                 }
                 &.selected-second-date{
                   background:#267FF9;
                   border-radius:0 8px 8px 0;
-                  font-weight:600;
-                  font-size:14px;
-                  line-height:17px;
                   color:#FFFFFF;
+                  font-size:14px;
+                  font-weight:600;
+                  line-height:17px;
                 }
                 &.selected-range{
                   background:rgba(38, 127, 249, 0.25);
                   border-radius:0;
-                  font-weight:600;
-                  font-size:14px;
-                  line-height:17px;
                   color:#106BE9;
+                  font-size:14px;
+                  font-weight:600;
+                  line-height:17px;
                 }
-                @extend .clickable;
-                position:relative;
-                width:40px;
-                height:36px;
-                left:0;
-                top:0;
-                flex:none;
-                order:1;
-                margin:0 0;
-                text-align:center;
                 span.middle{
                   display:block;
                   padding:10px 0;
@@ -893,36 +894,28 @@ input[type=checkbox]{
         width:24px;
       }
     }
-    .btn-search{
+    button{
+      background:#FFFFFF;
+      border-radius:4px;
+      box-shadow:0 4px 12px rgba(0, 0, 0, 0.08);
+      color:#267FF9;
+      font-size:16px;
+      font-weight:600;
       height:52px;
       left:708px;
+      line-height:20px;
+      mix-blend-mode:normal;
       position:absolute;
       top:0;
       width:220px;
-      .btn-graph{
+      &:hover{
         background:#FFFFFF;
         border-radius:4px;
-        bottom:0;
-        box-shadow:0 4px 12px rgba(0, 0, 0, 0.08);
-        left:0;
-        mix-blend-mode:normal;
-        position:absolute;
-        right:0;
-        top:0;
-      }
-      .btn-caption{
-        align-items:center;
-        color:#267FF9;
-        display:flex;
+        box-shadow:0px 8px 16px rgba(0, 0, 0, 0.28);
         font-size:16px;
-        font-weight:600;
-        height:20px;
-        left:calc(50% - 104px / 2);
+        font-weight:bold;
         line-height:20px;
-        position:absolute;
-        text-align:center;
-        top:calc(50% - 20px / 2);
-        width:104px;
+        mix-blend-mode:normal;
       }
     }
   }
@@ -939,19 +932,19 @@ input[type=checkbox]{
   width:253px;
 }
 .copyright{
-  position:relative;
-  width:100%;
-  height:24px;
-  font-weight:500;
-  font-size:14px;
-  line-height:24px;
-  display:flex;
   align-items:center;
+  color:rgba(47, 72, 106, 0.5);
+  display:flex;
+  font-size:14px;
+  font-weight:500;
+  height:24px;
+  justify-content:center;
+  line-height:24px;
+  margin-top:100px;
+  position:relative;
   text-align:center;
   text-transform:uppercase;
-  margin-top: 100px;
-  color:rgba(47, 72, 106, 0.5);
-  justify-content:center;
+  width:100%;
   a{
     color:#267FF9;
     display:inline-block;
