@@ -721,6 +721,7 @@
           top:auto;
         }
         .arrow-down{
+          @extend .clickable;
           background:url(../static/arrow-down.svg) no-repeat center;
           height:24px;
           left:683px;
