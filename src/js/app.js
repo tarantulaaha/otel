@@ -1163,6 +1163,13 @@ $(document).ready(function () {
         $(this).find('.droopdown-expanded').toggleClass('show');
     });
     $('body').on('click', '.droopdown-element', function (e) {
+        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
+        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
+        if(input4 && input3){
+            $('.available-rooms-filter .input1').removeClass('selected');
+        }else{
+            $('.available-rooms-filter .input1').addClass('selected');
+        }
         e.stopPropagation();
         $(this).parents('.droopdown-expanded').find('[data-value]').removeClass('selected');
         $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).find('.value').text());
@@ -1170,6 +1177,13 @@ $(document).ready(function () {
         $(this).parents('.droopdown-expanded').removeClass('show');
     });
     $('body').on('click', '.droopdown-clear-checked', function (e) {
+        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
+        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
+        if(input4 && input3){
+            $('.available-rooms-filter .input1').removeClass('selected');
+        }else{
+            $('.available-rooms-filter .input1').addClass('selected');
+        }
         $(this).parents('.droopdown').find('.selected').removeClass('selected');
         $(this).parents('.droopdown').eq(0).attr('data-value', '0');
         $(this).parents('.droopdown').eq(0).find('.droopdown-value').css({
@@ -1186,6 +1200,13 @@ $(document).ready(function () {
         });
     });
     $('body').on('click', '.droopdown-check-element', function (e) {
+        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
+        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
+        if(input4 && input3){
+            $('.available-rooms-filter .input1').removeClass('selected');
+        }else{
+            $('.available-rooms-filter .input1').addClass('selected');
+        }
         e.stopPropagation();
         $(this).toggleClass('selected');
         let arr = [];
@@ -1251,6 +1272,9 @@ $(document).ready(function () {
                 });
             }
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value .var1').html(arr.length);
+        }
+        if(arr.length===0){
+            arr.push("0");
         }
         $(this).parents('.droopdown').eq(0).attr('data-value', arr.toString());
     });
