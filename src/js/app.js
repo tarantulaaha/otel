@@ -1458,33 +1458,7 @@ $(document).ready(function () {
                 }
             }
         });
-        let absolutePosition = cumulativeOffset(fixedObjects[0]);
-        console.log($(this), $('html')[0].scrollTop, fixedObjects.eq(0).offset());
-        let left_replies_block_slider = $('.left-replies-block-slider');
-        if (left_replies_block_slider.length > 0) {
-            let _diff = cumulativeOffset(left_replies_block_slider[0]).top;
-            let _block_height = left_replies_block_slider.height();
-            if (cumulativeOffset(left_replies_block_slider[0]).top < window.scrollY) {
-                /*
-                left_replies_block_slider.css({
-                    display:'block',
-                    position:'fixed',
-                    top: '0px',
-                    left:'0px'
-                });
 
-                 */
-            } else {
-                /*
-                left_replies_block_slider.css({
-                    display:'none',
-                    position:'absolute',
-                    top: '150px'
-                });
-
-                 */
-            }
-        }
     });
     $('body').on('click', '.room-info-btn', function () {
         $('body').find('.popup-room-info').remove();
