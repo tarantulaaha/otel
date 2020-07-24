@@ -603,13 +603,14 @@ input[type=checkbox]{
           align-items:center;
           color:#FFFFFF;
           width:100%;
-          &::placeholder{
+          &::placeholder, &:-moz-placeholder{
             font-weight:500;
             font-size:14px;
-            line-height:20px;
+            line-height:32px;
             display:flex;
             align-items:center;
             color:#99C4FF;
+            justify-content:flex-start;
           }
         }
       }
@@ -658,13 +659,12 @@ input[type=checkbox]{
           display:flex;
           align-items:center;
           text-align:center;
-          margin-left: 4px;
+          margin-left:4px;
           color:#FFFFFF;
         }
         .promo-cross{
-          display: flex;
+          display:flex;
         }
-
       }
     }
     svg{
@@ -676,7 +676,7 @@ input[type=checkbox]{
       border-bottom:1px dashed rgba(255, 255, 255, 0.25);
       color:#FFFFFF;
       font-weight:500;
-      line-height:20px;
+      line-height:25px;
       padding-bottom:4px;
     }
   }
