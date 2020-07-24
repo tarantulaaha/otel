@@ -9,6 +9,7 @@ import 'slick-carousel/slick/fonts/slick.ttf';
 let loadNextPage = 'main-page';
 let hideSearchBox = false;
 let client_data = new Object({
+    promoCode:'',
     roomCount: 0,
     rooms: {
         'first_room': {
@@ -1155,10 +1156,50 @@ $(document).ready(function () {
             });
         });
     }
-    $('body').on('click','.available-rooms-filter .input1',function(){
-        $('.available-rooms-filter .input3').attr('data-value',"any");
+    let promoShowed = false;
+    $('.have-promo').on('click', function (e) {
+        let havePromo = $(this);
+        if (!promoShowed) {
+            $.get('templates/promo1.html', function (data) {
+                    let promo1 = $(data);
+                    promo1.on('click', '.accept-promo-btn', function (e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        client_data.promoCode=promo1.find('.promo-value').val();
+                        $.get('templates/promo2.html', function (data) {
+                                let promo2 = $(data);
+                                promo2.find('.promo-value').html(client_data.promoCode);
+                                promo2.on('click', '.promo-cross', function (e) {
+                                    $.get('templates/promo0.html', function (data) {
+                                            let promo0 = $(data);
+                                            promo2.on('click', '.promo-cross', function (e) {
+                                            });
+                                            havePromo.html('').append(promo0);
+                                            promoShowed = false;
+                                        }
+                                    ).fail(function (err) {
+                                        console.log(err)
+                                    });
+                                });
+                                havePromo.html('').append(promo2);
+                                promoShowed = true;
+                            }
+                        ).fail(function (err) {
+                            console.log(err)
+                        });
+                    });
+                    havePromo.html('').append(promo1);
+                    promoShowed = true;
+                }
+            ).fail(function (err) {
+                console.log(err)
+            });
+        }
+    });
+    $('body').on('click', '.available-rooms-filter .input1', function () {
+        $('.available-rooms-filter .input3').attr('data-value', "any");
         $('.available-rooms-filter .input3').find('.droopdown-value').html($('.available-rooms-filter .input3 [data-value="any"] .value').text());
-        $('.available-rooms-filter .input4').attr('data-value',"0");
+        $('.available-rooms-filter .input4').attr('data-value', "0");
         $('.available-rooms-filter .input4').find('.droopdown-value').html($('.available-rooms-filter .input3 [data-value="any"] .value').text());
         $(this).parents('.available-rooms-filter').find('[data-value]').removeClass('selected');
         $(this).parents('.available-rooms-filter').eq(0).find('.input4 .droopdown-value').css({
@@ -1188,16 +1229,15 @@ $(document).ready(function () {
         $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).find('.value').text());
         $(this).parents('.droopdown').eq(0).attr('data-value', $(this).attr('data-value'));
         $(this).parents('.droopdown-expanded').removeClass('show');
-        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
-        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
-        if(input4 && input3){
+        let input3 = $('.available-rooms-filter .input3[data-value="any"]').length > 0;
+        let input4 = $('.available-rooms-filter .input4[data-value="0"]').length > 0;
+        if (input4 && input3) {
             $('.available-rooms-filter .input1').addClass('selected');
-        }else{
+        } else {
             $('.available-rooms-filter .input1').removeClass('selected');
         }
     });
     $('body').on('click', '.droopdown-clear-checked', function (e) {
-
         $(this).parents('.droopdown').find('.selected').removeClass('selected');
         $(this).parents('.droopdown').eq(0).attr('data-value', '0');
         $(this).parents('.droopdown').eq(0).find('.droopdown-value').css({
@@ -1212,16 +1252,15 @@ $(document).ready(function () {
         $(this).parents('.droopdown').find('.droopdown-variable-value').css({
             display: 'none'
         });
-        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
-        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
-        if(input4 && input3){
+        let input3 = $('.available-rooms-filter .input3[data-value="any"]').length > 0;
+        let input4 = $('.available-rooms-filter .input4[data-value="0"]').length > 0;
+        if (input4 && input3) {
             $('.available-rooms-filter .input1').addClass('selected');
-        }else{
+        } else {
             $('.available-rooms-filter .input1').removeClass('selected');
         }
     });
     $('body').on('click', '.droopdown-check-element', function (e) {
-
         e.stopPropagation();
         $(this).toggleClass('selected');
         let arr = [];
@@ -1288,15 +1327,15 @@ $(document).ready(function () {
             }
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value .var1').html(arr.length);
         }
-        if(arr.length===0){
+        if (arr.length === 0) {
             arr.push("0");
         }
         $(this).parents('.droopdown').eq(0).attr('data-value', arr.toString());
-        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
-        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
-        if(input4 && input3){
+        let input3 = $('.available-rooms-filter .input3[data-value="any"]').length > 0;
+        let input4 = $('.available-rooms-filter .input4[data-value="0"]').length > 0;
+        if (input4 && input3) {
             $('.available-rooms-filter .input1').addClass('selected');
-        }else{
+        } else {
             $('.available-rooms-filter .input1').removeClass('selected');
         }
     });
@@ -1488,8 +1527,8 @@ $(document).ready(function () {
     $(window).on('scroll', function () {
         let fixedObjects = $('.fixed');
         fixedObjects.each(function () {
-            if(typeof $(this).attr('data-css-top')=== typeof undefined){
-                $(this).attr('data-css-top',$(this)[0].offsetTop);
+            if (typeof $(this).attr('data-css-top') === typeof undefined) {
+                $(this).attr('data-css-top', $(this)[0].offsetTop);
             }
             if ($(this).attr('scrolling') !== 'true') {
                 if (parseInt($(this).attr('data-offset')) < $('html')[0].scrollTop) {
@@ -1504,7 +1543,6 @@ $(document).ready(function () {
                 }
             }
         });
-
     });
     $('body').on('click', '.room-info-btn', function () {
         $('body').find('.popup-room-info').remove();

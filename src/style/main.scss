@@ -49,7 +49,7 @@ body{
   }
   .droopdown-variable-value{
     .var1{
-      display: inline-block;
+      display:inline-block;
     }
     .var1-1, .var1-2, .var1-5{
       display:none;
@@ -575,14 +575,102 @@ input[type=checkbox]{
     top:16px;
   }
   .have-promo{
-    display:inline-block;
-    left:742px;
+    display:flex;
+    left:558px;
     position:absolute;
-    top:20px;
+    top:14px;
+    width:385px;
+    justify-content:flex-end;
+    .promo1{
+      display:flex;
+      flex-direction:row;
+      height:36px;
+      .input-block{
+        display:flex;
+        flex-direction:row;
+        width:348px;
+        height:36px;
+        background:#166DE5;
+        mix-blend-mode:normal;
+        border-radius:4px;
+        .promo-arrow{
+          margin:6px 8px;
+        }
+        .promo-value{
+          font-weight:500;
+          font-size:14px;
+          line-height:20px;
+          align-items:center;
+          color:#FFFFFF;
+          width:100%;
+          &::placeholder{
+            font-weight:500;
+            font-size:14px;
+            line-height:20px;
+            display:flex;
+            align-items:center;
+            color:#99C4FF;
+          }
+        }
+      }
+      button.accept-promo-btn{
+        display:flex;
+        flex-direction:row;
+        padding:10px 16px;
+        position:relative;
+        width:92px;
+        height:36px;
+        background:rgba(84, 156, 255, 0.35);
+        mix-blend-mode:normal;
+        border-radius:4px;
+        font-weight:600;
+        font-size:14px;
+        line-height:20px;
+        align-items:center;
+        text-align:center;
+        color:#FFFFFF;
+        margin:0 0 0 16px;
+      }
+    }
+    .promo2{
+      .input-block{
+        display:flex;
+        flex-direction:row;
+        width:255px;
+        height:36px;
+        .promo-arrow{
+          margin:6px 8px;
+        }
+        .promo-title{
+          font-weight:500;
+          font-size:14px;
+          line-height:20px;
+          /* identical to box height, or 143% */
+          display:flex;
+          align-items:center;
+          color:#99C4FF;
+        }
+        .promo-value{
+          font-weight:bold;
+          font-size:14px;
+          line-height:20px;
+          width:100px;
+          display:flex;
+          align-items:center;
+          text-align:center;
+          margin-left: 4px;
+          color:#FFFFFF;
+        }
+        .promo-cross{
+          display: flex;
+        }
+
+      }
+    }
     svg{
-      margin-right:4px;
+      margin-right:14px;
       position:relative;
-      top:2px;
+      top:6px;
     }
     .value{
       border-bottom:1px dashed rgba(255, 255, 255, 0.25);
