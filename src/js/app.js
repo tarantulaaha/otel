@@ -1155,6 +1155,26 @@ $(document).ready(function () {
             });
         });
     }
+    $('body').on('click','.available-rooms-filter .input1',function(){
+        $('.available-rooms-filter .input3').attr('data-value',"any");
+        $('.available-rooms-filter .input3').find('.droopdown-value').html($('.available-rooms-filter .input3 [data-value="any"] .value').text());
+        $('.available-rooms-filter .input4').attr('data-value',"0");
+        $('.available-rooms-filter .input4').find('.droopdown-value').html($('.available-rooms-filter .input3 [data-value="any"] .value').text());
+        $(this).parents('.available-rooms-filter').find('[data-value]').removeClass('selected');
+        $(this).parents('.available-rooms-filter').eq(0).find('.input4 .droopdown-value').css({
+            display: 'none'
+        });
+        $(this).parents('.available-rooms-filter').eq(0).find('.input4 .droopdown-default-value').css({
+            display: 'block'
+        });
+        $(this).parents('.available-rooms-filter').find('.input4 .droopdown-variable-value').find('.var1-2,.var1-5').css({
+            display: 'none'
+        });
+        $(this).parents('.available-rooms-filter').find('.input4 .droopdown-variable-value').css({
+            display: 'none'
+        });
+        $(this).addClass('selected');
+    });
     $('body').on('click', '.droopdown', function (e) {
         e.stopPropagation();
         $('body').find('.droopdown-expanded').removeClass('show');
@@ -1163,7 +1183,6 @@ $(document).ready(function () {
         $(this).find('.droopdown-expanded').toggleClass('show');
     });
     $('body').on('click', '.droopdown-element', function (e) {
-
         e.stopPropagation();
         $(this).parents('.droopdown-expanded').find('[data-value]').removeClass('selected');
         $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).find('.value').text());
