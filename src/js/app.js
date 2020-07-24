@@ -1163,27 +1163,22 @@ $(document).ready(function () {
         $(this).find('.droopdown-expanded').toggleClass('show');
     });
     $('body').on('click', '.droopdown-element', function (e) {
-        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
-        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
-        if(input4 && input3){
-            $('.available-rooms-filter .input1').removeClass('selected');
-        }else{
-            $('.available-rooms-filter .input1').addClass('selected');
-        }
+
         e.stopPropagation();
         $(this).parents('.droopdown-expanded').find('[data-value]').removeClass('selected');
         $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).find('.value').text());
         $(this).parents('.droopdown').eq(0).attr('data-value', $(this).attr('data-value'));
         $(this).parents('.droopdown-expanded').removeClass('show');
-    });
-    $('body').on('click', '.droopdown-clear-checked', function (e) {
         let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
         let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
         if(input4 && input3){
-            $('.available-rooms-filter .input1').removeClass('selected');
-        }else{
             $('.available-rooms-filter .input1').addClass('selected');
+        }else{
+            $('.available-rooms-filter .input1').removeClass('selected');
         }
+    });
+    $('body').on('click', '.droopdown-clear-checked', function (e) {
+
         $(this).parents('.droopdown').find('.selected').removeClass('selected');
         $(this).parents('.droopdown').eq(0).attr('data-value', '0');
         $(this).parents('.droopdown').eq(0).find('.droopdown-value').css({
@@ -1198,15 +1193,16 @@ $(document).ready(function () {
         $(this).parents('.droopdown').find('.droopdown-variable-value').css({
             display: 'none'
         });
-    });
-    $('body').on('click', '.droopdown-check-element', function (e) {
         let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
         let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
         if(input4 && input3){
-            $('.available-rooms-filter .input1').removeClass('selected');
-        }else{
             $('.available-rooms-filter .input1').addClass('selected');
+        }else{
+            $('.available-rooms-filter .input1').removeClass('selected');
         }
+    });
+    $('body').on('click', '.droopdown-check-element', function (e) {
+
         e.stopPropagation();
         $(this).toggleClass('selected');
         let arr = [];
@@ -1277,6 +1273,13 @@ $(document).ready(function () {
             arr.push("0");
         }
         $(this).parents('.droopdown').eq(0).attr('data-value', arr.toString());
+        let input3=$('.available-rooms-filter .input3[data-value="any"]').length>0;
+        let input4=$('.available-rooms-filter .input4[data-value="0"]').length>0;
+        if(input4 && input3){
+            $('.available-rooms-filter .input1').addClass('selected');
+        }else{
+            $('.available-rooms-filter .input1').removeClass('selected');
+        }
     });
     $('body').on('mouseover', '.available-rooms-result .slick-slider', function () {
         $(this).parents('.available-rooms-result').eq(0).find('.slick-counter').addClass('slick-counter-show');
