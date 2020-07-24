@@ -368,6 +368,16 @@
         border:1px solid #DCDFE2;
         box-sizing:border-box;
         border-radius:4px;
+        .droopdown-expanded{
+          top:58px;
+          .droopdown-elements{
+            width:283px;
+            max-height: 200px;
+            .droopdown-element{
+              width: 100%;
+            }
+          }
+        }
         .caption{
           position:absolute;
           width:82px;
@@ -381,9 +391,9 @@
           align-items:center;
           color:rgba(47, 72, 106, 0.75);
         }
-        .value{
+        .box-value{
           position:absolute;
-          width:83px;
+          width:125px;
           height:20px;
           left:12px;
           top:24px;

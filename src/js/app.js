@@ -863,14 +863,20 @@ $.fn.inputPlusMinus = function () {
         if ($(this).parent().find('input.children').length > 0) {
             $.get('templates/child-age-row.html', function (data) {
                 let child_age_row = $(data);
-                child_age_row.find('.droopdown').on('click', function (e) {
-                    child_age_row.parents('.apartment-blocks').find('.droopdown-expanded').removeClass('show');
-                    child_age_row.find('.droopdown-expanded').toggleClass('show');
+                child_age_row.on('click', '.droopdown', function (e) {
                     e.stopPropagation();
+                    $('body').find('.droopdown-expanded').removeClass('show');
+                    $(this).find('.droopdown-element').removeClass('selected');
+                    $(this).find('[data-value="' + $(this).attr('data-value') + '"]').addClass('selected');
+                    $(this).find('.droopdown-expanded').toggleClass('show');
                 });
-                child_age_row.find('.droopdown-element').on('click', function () {
-                    child_age_row.find('.age-value').html($(this).find('.value').attr('data-value'));
-                    child_age_row.find('.droopdown-expanded').removeClass('show');
+                child_age_row.on('click', '.droopdown-element', function (e) {
+                    e.stopPropagation();
+                    $(this).parents('.droopdown-expanded').find('[data-value]').removeClass('selected');
+                    $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).find('.value').text());
+                    $(this).parents('.droopdown').eq(0).attr('data-value', $(this).attr('data-value'));
+                    $(this).parents('.droopdown-expanded').removeClass('show');
+                    child_age_row.find('.age-value').html($(this).attr('data-value'));
                 });
                 child_age_row.attr('data-child-id', client_data.childId);
                 child_age_row.find('.child-count').html(parent.find('.child-age-row').length + 1);
@@ -1167,16 +1173,16 @@ $(document).ready(function () {
         $(this).parents('.droopdown').find('.selected').removeClass('selected');
         $(this).parents('.droopdown').eq(0).attr('data-value', '0');
         $(this).parents('.droopdown').eq(0).find('.droopdown-value').css({
-            display:'none'
+            display: 'none'
         });
         $(this).parents('.droopdown').eq(0).find('.droopdown-default-value').css({
-            display:'block'
+            display: 'block'
         });
         $(this).parents('.droopdown').find('.droopdown-variable-value').find('.var1-2,.var1-5').css({
-            display:'none'
+            display: 'none'
         });
         $(this).parents('.droopdown').find('.droopdown-variable-value').css({
-            display:'none'
+            display: 'none'
         });
     });
     $('body').on('click', '.droopdown-check-element', function (e) {
@@ -1188,60 +1194,60 @@ $(document).ready(function () {
         });
         if (arr.length === 0) {
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-default-value').css({
-                display:'block'
+                display: 'block'
             });
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown').find('.droopdown-variable-value').find('.var1-2,.var1-5').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown').find('.droopdown-variable-value').css({
-                display:'none'
+                display: 'none'
             });
         } else if (arr.length === 1) {
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').css({
-                display:'block'
+                display: 'block'
             });
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-default-value').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown').find('.droopdown-variable-value').find('.var1-2,.var1-5').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown').find('.droopdown-variable-value').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).parents('.droopdown-expanded').parent().find('[data-value="' + arr[0] + '"] .value').text());
         } else {
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-default-value').css({
-                display:'none'
+                display: 'none'
             });
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value').css({
-                display:'block'
+                display: 'block'
             });
-            if(arr.length<5){
+            if (arr.length < 5) {
                 $(this).parents('.droopdown').find('.droopdown-variable-value .var1-2').css({
-                    display:'inline-block'
+                    display: 'inline-block'
                 });
                 $(this).parents('.droopdown').find('.droopdown-variable-value .var1-5').css({
-                    display:'none'
+                    display: 'none'
                 });
-            }else {
+            } else {
                 $(this).parents('.droopdown').find('.droopdown-variable-value .var1-2').css({
-                    display:'none'
+                    display: 'none'
                 });
                 $(this).parents('.droopdown').find('.droopdown-variable-value .var1-5').css({
-                    display:'inline-block'
+                    display: 'inline-block'
                 });
             }
             $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value .var1').html(arr.length);
@@ -1434,6 +1440,26 @@ $(document).ready(function () {
         $('.left-replies-block-slider .person .room-type').html(active_vote.room);
     });
     $(window).on('scroll', function () {
+        let fixedObjects = $('.fixed');
+        fixedObjects.each(function () {
+            if(typeof $(this).attr('data-css-top')=== typeof undefined){
+                $(this).attr('data-css-top',$(this)[0].offsetTop);
+            }
+            if ($(this).attr('scrolling') !== 'true') {
+                if (parseInt($(this).attr('data-offset')) < $('html')[0].scrollTop) {
+                    let top = $('html')[0].scrollTop - $(this).offset().top + $(this)[0].offsetTop;
+                    $(this).css({
+                        top: top
+                    });
+                } else {
+                    $(this).css({
+                        top: $(this).attr('data-css-top')
+                    });
+                }
+            }
+        });
+        let absolutePosition = cumulativeOffset(fixedObjects[0]);
+        console.log($(this), $('html')[0].scrollTop, fixedObjects.eq(0).offset());
         let left_replies_block_slider = $('.left-replies-block-slider');
         if (left_replies_block_slider.length > 0) {
             let _diff = cumulativeOffset(left_replies_block_slider[0]).top;
