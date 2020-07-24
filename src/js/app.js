@@ -863,6 +863,15 @@ $.fn.inputPlusMinus = function () {
         if ($(this).parent().find('input.children').length > 0) {
             $.get('templates/child-age-row.html', function (data) {
                 let child_age_row = $(data);
+                child_age_row.find('.droopdown').on('click', function (e) {
+                    child_age_row.parents('.apartment-blocks').find('.droopdown-expanded').removeClass('show');
+                    child_age_row.find('.droopdown-expanded').toggleClass('show');
+                    e.stopPropagation();
+                });
+                child_age_row.find('.droopdown-element').on('click', function () {
+                    child_age_row.find('.age-value').html($(this).find('.value').attr('data-value'));
+                    child_age_row.find('.droopdown-expanded').removeClass('show');
+                });
                 child_age_row.attr('data-child-id', client_data.childId);
                 child_age_row.find('.child-count').html(parent.find('.child-age-row').length + 1);
                 parent.append(child_age_row);
@@ -928,18 +937,17 @@ function showAvailableRooms() {
             });
         });
         _obj.find('.arrow-down').on('classChange', function () {
-
             if ($(this).hasClass('opened')) {
                 $(this).parent().find('.answer').css({
-                    display:'block'
+                    display: 'block'
                 }).animate({
                     height: 100
-                },{
-                    duration:500,
+                }, {
+                    duration: 500,
                     step: function (now) {
                         $(this).css({heigh: now + '%)'});
                     },
-                    complete:function(){
+                    complete: function () {
                     }
                 });
                 $(this).animate({
@@ -955,15 +963,15 @@ function showAvailableRooms() {
                 });
             } else {
                 $(this).parent().find('.answer').animate({
-                    height:0
-                },{
-                    duration:500,
+                    height: 0
+                }, {
+                    duration: 500,
                     step: function (now) {
                         $(this).css({heigh: now + '%)'});
                     },
-                    complete:function(){
+                    complete: function () {
                         $(this).css({
-                            display:'none'
+                            display: 'none'
                         });
                     }
                 });
@@ -1134,14 +1142,112 @@ $(document).ready(function () {
     //loadNextPage = 'pay-parameters';
     //loadNextPage = 'paying';
     //loadNextPage = 'pay-result-ok';
-    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
-        $(window).on('scroll',function(){
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+        $(window).on('scroll', function () {
             $('.popup-room-info').css({
-                top: $('html')[0].scrollTop*1.25 +25
+                top: $('html')[0].scrollTop * 1.25 + 25
             });
         });
     }
-
+    $('body').on('click', '.droopdown', function (e) {
+        e.stopPropagation();
+        $('body').find('.droopdown-expanded').removeClass('show');
+        $(this).find('.droopdown-element').removeClass('selected');
+        $(this).find('[data-value="' + $(this).attr('data-value') + '"]').addClass('selected');
+        $(this).find('.droopdown-expanded').toggleClass('show');
+    });
+    $('body').on('click', '.droopdown-element', function (e) {
+        e.stopPropagation();
+        $(this).parents('.droopdown-expanded').find('[data-value]').removeClass('selected');
+        $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).find('.value').text());
+        $(this).parents('.droopdown').eq(0).attr('data-value', $(this).attr('data-value'));
+        $(this).parents('.droopdown-expanded').removeClass('show');
+    });
+    $('body').on('click', '.droopdown-clear-checked', function (e) {
+        $(this).parents('.droopdown').find('.selected').removeClass('selected');
+        $(this).parents('.droopdown').eq(0).attr('data-value', '0');
+        $(this).parents('.droopdown').eq(0).find('.droopdown-value').css({
+            display:'none'
+        });
+        $(this).parents('.droopdown').eq(0).find('.droopdown-default-value').css({
+            display:'block'
+        });
+        $(this).parents('.droopdown').find('.droopdown-variable-value').find('.var1-2,.var1-5').css({
+            display:'none'
+        });
+        $(this).parents('.droopdown').find('.droopdown-variable-value').css({
+            display:'none'
+        });
+    });
+    $('body').on('click', '.droopdown-check-element', function (e) {
+        e.stopPropagation();
+        $(this).toggleClass('selected');
+        let arr = [];
+        $(this).parents('.droopdown-expanded').find('.droopdown-check-element.selected').each(function () {
+            arr.push($(this).attr('data-value'));
+        });
+        if (arr.length === 0) {
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-default-value').css({
+                display:'block'
+            });
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown').find('.droopdown-variable-value').find('.var1-2,.var1-5').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown').find('.droopdown-variable-value').css({
+                display:'none'
+            });
+        } else if (arr.length === 1) {
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').css({
+                display:'block'
+            });
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-default-value').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown').find('.droopdown-variable-value').find('.var1-2,.var1-5').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown').find('.droopdown-variable-value').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').html($(this).parents('.droopdown-expanded').parent().find('[data-value="' + arr[0] + '"] .value').text());
+        } else {
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-value').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-default-value').css({
+                display:'none'
+            });
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value').css({
+                display:'block'
+            });
+            if(arr.length<5){
+                $(this).parents('.droopdown').find('.droopdown-variable-value .var1-2').css({
+                    display:'inline-block'
+                });
+                $(this).parents('.droopdown').find('.droopdown-variable-value .var1-5').css({
+                    display:'none'
+                });
+            }else {
+                $(this).parents('.droopdown').find('.droopdown-variable-value .var1-2').css({
+                    display:'none'
+                });
+                $(this).parents('.droopdown').find('.droopdown-variable-value .var1-5').css({
+                    display:'inline-block'
+                });
+            }
+            $(this).parents('.droopdown-expanded').parent().find('.droopdown-variable-value .var1').html(arr.length);
+        }
+        $(this).parents('.droopdown').eq(0).attr('data-value', arr.toString());
+    });
     $('body').on('mouseover', '.available-rooms-result .slick-slider', function () {
         $(this).parents('.available-rooms-result').eq(0).find('.slick-counter').addClass('slick-counter-show');
     });
@@ -1253,9 +1359,11 @@ $(document).ready(function () {
             $.get('templates/popup-select-guest.html', function (data) {
                 selectGuestObj = $(data);
                 selectGuestObj.css({
+                    display: 'none',
                     opacity: 0,
                 });
                 selectGuestObj.on('click', function (event) {
+                    selectGuestObj.find('.droopdown-expanded').removeClass('show');
                     event.stopPropagation();
                 });
                 selectGuestObj.find('.apartment-block').inputPlusMinus();
@@ -1353,7 +1461,6 @@ $(document).ready(function () {
         }
     });
     $('body').on('click', '.room-info-btn', function () {
-
         $('body').find('.popup-room-info').remove();
         $.get('templates/popup-room-info.html', function (data) {
             let popup_room_info = $(data);
@@ -1363,7 +1470,7 @@ $(document).ready(function () {
             popup_room_info.css({});
             $('body').append(popup_room_info);
             $('.popup-room-info').css({
-                top: $('html')[0].scrollTop*1.25 +25
+                top: $('html')[0].scrollTop * 1.25 + 25
             });
         });
     });
@@ -1384,10 +1491,10 @@ $(document).ready(function () {
     $('.photos').slick({
         infinite: true,
         slidesToShow: 6,
-
         swipeToSlide: true,
     });
     $('html').on('click', function () {
+        $(this).find('.droopdown-expanded').removeClass('show');
         $('.popup-select-guest').animate({
             opacity: 0,
         }, animationDuration, function () {

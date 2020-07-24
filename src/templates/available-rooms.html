@@ -9,22 +9,69 @@
             <div class="input1">
                 <span class="text">Все</span>
             </div>
-            <div class="input2">
-                <span class="text">С бесплатной отменой</span>
-            </div>
-            <div class="input3">
-                <span class="text">Любой тип оплаты</span>
+            <div class="input3 droopdown" data-value="any">
+                <span class="text droopdown-value">Любой тип оплаты</span>
                 <svg class="select-arrow-down" width="16" height="16" viewBox="0 0 16 16" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 10L4 6L12 6L8 10Z" fill="#267FF9"/>
                 </svg>
+                <div class="droopdown-expanded align-left">
+                    <div class="droopdown-elements">
+                        <div class="droopdown-element  pay-type" data-value="any">
+                            <div class="value">Любой тип оплаты</div>
+                        </div>
+                        <div class="droopdown-element  pay-type" data-value="full-pay">
+                            <div class="value">Полная предоплата</div>
+                        </div>
+                        <div class="droopdown-element  pay-type" data-value="part-pay">
+                            <div class="value">Частичная предоплата</div>
+                        </div>
+                        <div class="droopdown-element  pay-type" data-value="after">
+                            <div class="value">Оплата по приезду</div>
+                        </div>
+                        <div class="droopdown-element  pay-type" data-value="free-cancel">
+                            <div class="value">С бесплатной отменой</div>
+                        </div>
+                        <div class="droopdown-element  pay-type" data-value="all-inclusive">
+                            <div class="value">Все включено</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="input4">
-                <span class="text">Любой тип питания</span>
+            <div class="input4 droopdown" data-value="0">
+                <span class="droopdown-caption">Питание:</span>
+                <span class="text droopdown-value">Все варианты</span>
+                <span class="text droopdown-default-value">Все варианты</span>
+                <div class="text droopdown-variable-value">
+                    <div class="var1">0</div>
+                    <div class="var1-1">вариант</div>
+                    <div class="var1-2">варианта</div>
+                    <div class="var1-5">вариантов</div>
+                </div>
                 <svg class="select-arrow-down" width="16" height="16" viewBox="0 0 16 16" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
                     <path d="M8 10L4 6L12 6L8 10Z" fill="#267FF9"/>
                 </svg>
+                <div class="droopdown-expanded align-left">
+                    <div class="droopdown-elements">
+                        <div class="droopdown-check-element  food-type" data-value="1">
+                            <div class="value">Без питания</div>
+                        </div>
+                        <div class="droopdown-check-element  food-type" data-value="2">
+                            <div class="value">Завтрак</div>
+                        </div>
+                        <div class="droopdown-check-element  food-type" data-value="3">
+                            <div class="value">Завтрак + обед или ужин</div>
+                        </div>
+                        <div class="droopdown-check-element  food-type" data-value="4">
+                            <div class="value">Завтрак, обед и ужин</div>
+                        </div>
+                        <div class="droopdown-check-element  food-type" data-value="5">
+                            <div class="value">Все включено</div>
+                        </div>
+                    </div>
+                    <div class="droopdown-clear-checked">Очистить</div>
+                </div>
             </div>
         </div>
     </div>

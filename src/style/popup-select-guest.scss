@@ -221,24 +221,31 @@
           }
           .age-selected {
             position: absolute;
-            width: 62px;
-            height: 20px;
-            left: 12px;
+            display: flex;
+            width: 101px;
+            height: 100%;
+            left: 0;
             top: calc(50% - 20px / 2);
             font-weight: 500;
             font-size: 14px;
             line-height: 20px;
             align-items: center;
             color: #2F486A;
+            .age-value{
+              margin: 8px 4px 8px 12px;
+            }
             .arrow-down-select-mini {
               position: absolute;
               width: 24px;
               height: 24px;
-              right: -25px;
-              bottom: -1px;
+              right: 0;
+              bottom: 5px;
               border-radius: 2px;
               background: url(../static/arrow-down-select-mini.svg) no-repeat center;
             }
+          }
+          .droopdown-expanded{
+            top:50px;
           }
         }
       }
