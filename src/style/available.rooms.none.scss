@@ -41,15 +41,13 @@
     }
     .available-rooms-none-text{
       position: relative;
-      font-size:12px;
-      line-height:16px;
-      /* or 133% */
-      display:flex;
-      align-items:center;
-      text-align:center;
-      /* Second Black */
-      color:rgba(47, 72, 106, 0.75);
-      margin: 32px 16px;
+      font-size: 12px;
+      line-height: 16px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: rgba(47, 72, 106, 0.75);
+      margin: 8px 16px 18px;
     }
     .alternative-dates{
       position:relative;
