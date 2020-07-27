@@ -1,3 +1,4 @@
+
 @media only screen and (max-width:1199px){
   .popup-room-info{
     transform:translate3d(0px, 0px, 0px);
@@ -6,9 +7,11 @@
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
     position:absolute;
-    width:328px;
+    height:608px;
+    width:328px ;
     margin:0 auto;
     z-index:100;
+    overflow: auto;
     top:38px;
     left:29%;
     font-family:Inter;
@@ -89,6 +92,7 @@
       position:relative;
       left:16px;
       margin-bottom:45px;
+      width: 300px;
       .title{
         position:relative;
         font-weight:bold;
@@ -126,29 +130,26 @@
     -moz-backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
-    position:fixed;
-    width:796px;
+    position:absolute;
+    width:960px;
+    height: 832px;
     margin:0 auto;
     z-index:100;
     top:38px;
     left:29%;
-    .decorate{
-      position:absolute;
-      width:796px;
-      height:1100px;
-      /* White */
-      background:#FFFFFF;
-      /* 30 dp */
-      box-shadow:0px -2px 1px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
-      border-radius:8px;
-    }
+    overflow: auto;
+    background:#FFFFFF;
+
+    box-shadow:0px -2px 1px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0196802), 0px 4px 2px rgba(85, 89, 106, 0.0282725), 0px 6px 4px rgba(85, 89, 106, 0.035), 0px 8px 8px rgba(85, 89, 106, 0.0417275), 0px 18px 16px rgba(85, 89, 106, 0.0503198), 0px 30px 40px rgba(85, 89, 106, 0.07);
+    border-radius:8px;
+
     .close-btn{
       cursor:pointer;
       position:absolute;
       width:24px;
       height:24px;
-      left:736px;
-      top:36px;
+      right:32px;
+      top:32px;
       background:url(../static/close-icon.svg) no-repeat center;
     }
     .title{
@@ -239,7 +240,7 @@
     }
     .description{
       position:absolute;
-      width:714px;
+      width:866px;
       height:240px;
       left:32px;
       top:180px;
@@ -254,10 +255,12 @@
       color:#2F486A;
     }
     .room-comfort-item{
-      position:relative;
-      left:32px;
-      top:452px;
-      margin-bottom:45px;
+      position: relative;
+      left: 32px;
+      top: 452px;
+      margin-bottom: 45px;
+      display: block;
+      width: 96%;
       .title{
         position:absolute;
         height:20px;
@@ -308,7 +311,7 @@
         display:inline-block;
         padding:0px;
         position:relative;
-        width:235px;
+        width:300px;
         height:24px;
         top:20px;
         &:before{

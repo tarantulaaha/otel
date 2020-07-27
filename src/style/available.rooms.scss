@@ -645,13 +645,13 @@
             top:-17px;
           }
           .room-right-decor{
-            display:none;
-            background:rgba(253, 195, 54, 0.1);
-            border-radius:0;
-            height:174px;
-            left:640px;
-            position:absolute;
-            width:320px;
+            display: block;
+            background: rgba(253, 195, 54, 0.1);
+            border-radius: 0;
+            height: 143px;
+            position: absolute;
+            width: 290px;
+            bottom: 0px;
           }
           .room-price-block{
             padding:0;
@@ -1634,17 +1634,17 @@
             width:960px;
           }
           .room-title{
-            align-items:center;
-            bottom:72.41%;
-            color:#2F486A;
-            display:flex;
-            font-size:20px;
-            font-weight:600;
-            left:2.5%;
-            line-height:32px;
-            position:absolute;
-            right:84.9%;
-            top:9.2%;
+            align-items: center;
+            bottom: 72.41%;
+            color: #2F486A;
+            display: flex;
+            font-size: 20px;
+            font-weight: 600;
+            left: 2.5%;
+            line-height: 32px;
+            position: absolute;
+            right: 35.9%;
+            top: 9.2%;
           }
           .room-attribute-caption{
             align-items:center;
@@ -1752,6 +1752,15 @@
             left:640px;
             position:absolute;
             width:320px;
+          }
+          .room-right-decor-gray{
+            background: #FAFBFC;
+            border-radius: 0;
+            height: 172px;
+            left: 642px;
+            position: absolute;
+            width: 319px;
+            top: 2px;
           }
           .room-price-block{
             bottom:70.11%;

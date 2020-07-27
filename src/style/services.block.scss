@@ -1,9 +1,9 @@
 @media only screen and (max-width:1199px){
   .services-block{
     position:relative;
-.title-box{
-  margin-top: 16px;
-}
+    .title-box{
+      margin-top:16px;
+    }
     .back-box-services{
       cursor:pointer;
       position:absolute;
@@ -85,14 +85,14 @@
             border-radius:8px 8px 0 0;
           }
           .image-closer{
-            position: relative;
-            top: -23px;
-            background: #FFFFFF;
-            border-radius: 8px;
+            position:relative;
+            top:-23px;
+            background:#FFFFFF;
+            border-radius:8px;
           }
           .service-text{
-            position: relative;
-            margin: 32px 16px 16px 16px;
+            position:relative;
+            padding:16px;
             .service-title{
               position:relative;
               width:186px;
@@ -102,7 +102,7 @@
               color:#2F486A;
             }
             .service-text-value{
-              margin-top: 8px;
+              margin-top:8px;
               position:relative;
               width:296px;
               font-weight:normal;
@@ -112,18 +112,17 @@
             }
           }
           .price{
-            position: absolute;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 24px;
-            display: flex;
-            align-items: center;
-            color: #2F486A;
-            order: 0;
-            align-self: center;
-            margin: 8px 0;
-            top: -8px;
-            right: 45px;
+            position:absolute;
+            font-weight:600;
+            font-size:16px;
+            line-height:24px;
+            display:flex;
+            align-items:center;
+            color:#2F486A;
+            order:0;
+            align-self:center;
+            top:17px;
+            right:45px;
             &.price-blue{
               color:#267FF9;
             }
@@ -134,7 +133,7 @@
             width:24px;
             height:24px;
             right:12px;
-            top:0;
+            top:18px;
           }
         }
         .service-settings{
@@ -334,13 +333,13 @@
             border-radius:8px 0 0 8px;
           }
           .image-closer{
-            position: absolute;
-            height: 98px;
-            width: 814px;
-            left: 146px;
-            top: 0px;
-            background: #FFFFFF;
-            border-radius: 8px;
+            position:absolute;
+            height:98px;
+            width:814px;
+            left:146px;
+            top:0px;
+            background:#FFFFFF;
+            border-radius:8px;
           }
           .service-text{
             .service-title{
@@ -371,18 +370,18 @@
             }
           }
           .price{
-            position: absolute;
-            right: 6%;
-            top: 4px;
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 24px;
-            display: flex;
-            align-items: center;
-            color: #2F486A;
-            order: 0;
-            align-self: center;
-            margin: 8px 0;
+            position:absolute;
+            right:6%;
+            top:4px;
+            font-weight:600;
+            font-size:16px;
+            line-height:24px;
+            display:flex;
+            align-items:center;
+            color:#2F486A;
+            order:0;
+            align-self:center;
+            margin:8px 0;
             &.price-blue{
               color:#267FF9;
             }
