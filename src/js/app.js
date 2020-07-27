@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/fonts/slick.woff';
 import 'slick-carousel/slick/fonts/slick.ttf';
+
 let loadNextPage = 'main-page';
 let hideSearchBox = false;
 let client_data = new Object({
@@ -1658,8 +1659,11 @@ $(document).ready(function () {
         }
     });
     $('body').on('click', '.room-info-btn', function () {
+        let _zoom = $('body').css('zoom')||new WebKitCSSMatrix($('body').css('-moz-transform')).a;
         $('.hide-doc').css({
-            display: 'block'
+            display: 'block',
+            top:$('html')[0].scrollTop / _zoom,
+            width:window.innerWidth
         });
         $('body').find('.popup-room-info').remove();
         $.get('templates/popup-room-info.html', function (data) {
@@ -1672,10 +1676,10 @@ $(document).ready(function () {
             });
             popup_room_info.css({});
             $('body').append(popup_room_info);
-            let _zoom = $('body').css('zoom');
+
             popup_room_info.css({
-                top: $('html')[0].scrollTop / _zoom + window.outerHeight / 2 - ((popup_room_info[0].offsetHeight / 2) * $('body').css('zoom')),
-                left: (window.innerWidth / 2) - ((popup_room_info[0].offsetWidth / 2) * _zoom)
+                top: $('html')[0].scrollTop / _zoom + window.outerHeight / 2 - ((popup_room_info[0].offsetHeight / 2) * _zoom),
+                left: ((window.innerWidth / 2) - (popup_room_info[0].offsetWidth / 2) * _zoom)-5
             });
             // if (window.innerWidth > 1199) {
             //     $('.popup-room-info').css({
@@ -1697,17 +1701,19 @@ $(document).ready(function () {
             let value = $(this).attr('data-tooltip');
             $('.mobile-tooltip .tooltip-value').html(value);
             let _obj=$('.mobile-tooltip');
-            let _zoom = $('body').css('zoom');
+            let _zoom = $('body').css('zoom')||new WebKitCSSMatrix($('body').css('-moz-transform')).a;
             $('.mobile-tooltip').css({
                 display:'block'
             });
             $('.hide-doc').css({
-                display:'block'
+                display:'block',
+                top:$('html')[0].scrollTop / _zoom,
+                width:window.innerWidth
             });
-            console.log(_obj[0].offsetHeight);
+
             $('.mobile-tooltip').css({
                 top: ($('html')[0].scrollTop / _zoom) + (window.outerHeight / 2) - ((_obj[0].offsetHeight / 2) * _zoom),
-                left: (window.innerWidth / 2) - ((_obj[0].offsetWidth / 2) * _zoom)
+                left: ((window.innerWidth / 2) - (_obj[0].offsetWidth / 2) * _zoom)-5
             });
 
 
