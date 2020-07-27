@@ -1,187 +1,357 @@
-.paying{
-  position:relative;
-  .back-paying{
-    @extend .clickable;
-    position:absolute;
-    height:38px;
-    left:0;
-    width:250px;
-    top:0;
-    z-index:0;
-    background:#FAFBFC;
-    .back-arrow{
-      @extend .clickable;
+@media only screen and (max-width:1199px){
+  .paying{
+    position:relative;
+    margin-top: 16px;
+    .back-paying{
+      cursor:pointer;
       position:absolute;
-      top:12px;
+      height:38px;
       left:0;
+      width:250px;
+      top:0;
+      z-index:0;
+      background:#FAFBFC;
+      .back-arrow{
+        cursor:pointer;
+        position:absolute;
+        top:12px;
+        left:0;
+      }
+      .back-to-previous-page{
+        cursor:pointer;
+        position:absolute;
+        height:20px;
+        left:30px;
+        top:calc(50% - 20px / 2);
+        font-weight:600;
+        font-size:14px;
+        line-height:20px;
+        display:flex;
+        align-items:center;
+        color:rgba(47, 72, 106, 0.75);
+      }
     }
-    .back-to-previous-page{
-      @extend .clickable;
-      position:absolute;
-      height:20px;
-      left:30px;
-      top:calc(50% - 20px / 2);
-      font-weight:600;
-      font-size:14px;
-      line-height:20px;
-      display:flex;
-      align-items:center;
-      color:rgba(47, 72, 106, 0.75);
-    }
-  }
-  .paying-contacts-block{
-    position:relative;
-    width:632px;
-    height:113px;
-    margin:32px auto;
-    background:#FFFFFF;
-    box-shadow:0px 1px 0.5px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0282725), 0px 3px 2px rgba(85, 89, 106, 0.035), 0px 4px 4px rgba(85, 89, 106, 0.0417275), 0px 9px 8px rgba(85, 89, 106, 0.0503198), 0px 20px 20px rgba(85, 89, 106, 0.07);
-    border-radius:4px;
-    .contact-name-caption{
-      position:absolute;
-      width:156px;
-      height:20px;
-      left:24px;
-      top:18px;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      display:flex;
-      align-items:center;
-      color:#2F486A;
-    }
-    .contact-name-value{
-      position:absolute;
-      width:300px;
-      height:20px;
-      left:202px;
-      top:18px;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      display:flex;
-      align-items:center;
-      color:rgba(47, 72, 106, 0.5);
-    }
-    .line{
-      position:absolute;
-      width:100%;
-      height:1px;
-      top:49%;
-      background:#DCDFE2;
-    }
-    .contact-email-caption{
-      position:absolute;
-      width:156px;
-      height:20px;
-      left:24px;
-      top:72px;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      display:flex;
-      align-items:center;
-      color:#2F486A;
-    }
-    .contact-email-value{
-      position:absolute;
-      width:300px;
-      height:20px;
-      left:202px;
-      top:72px;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      display:flex;
-      align-items:center;
-      color:rgba(47, 72, 106, 0.5);
-    }
-  }
-  .credit-card{
-    position:relative;
-    width:632px;
-    height:56px;
-    margin:32px auto;
-    background:#FFFFFF;
-    box-shadow:0px 1px 0.5px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0282725), 0px 3px 2px rgba(85, 89, 106, 0.035), 0px 4px 4px rgba(85, 89, 106, 0.0417275), 0px 9px 8px rgba(85, 89, 106, 0.0503198), 0px 20px 20px rgba(85, 89, 106, 0.07);
-    border-radius:4px;
-    .credit-card-title{
-      position:absolute;
-      width:118px;
-      height:20px;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      display:flex;
-      align-items:center;
-      color:#2F486A;
-      top:18px;
-      left:24px;
-    }
-    .credit-card-icon{
-      position:absolute;
-      width:31px;
-      height:20px;
-      left:202px;
-      top:18px;
-    }
-    .credit-card-value{
-      position:absolute;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      text-transform:uppercase;
-      left:242px;
-      top:18px;
-      width:191px;
-    }
-    .credit-card-exp{
-      position:absolute;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      text-transform:uppercase;
-      left:484px;
-      top:18px;
-      width:54px;
-    }
-    .credit-card-cvc{
-      position:absolute;
-      font-weight:500;
-      font-size:14px;
-      line-height:20px;
-      text-transform:uppercase;
-      left:574px;
-      top:18px;
-      width:30px;
-    }
-  }
-  .pay-confirm{
-    @extend .clickable;
-    position:relative;
-    height:56px;
-    width:632px;
-    margin:32px auto;
-  }
-  .accepted-currency{
-    position:relative;
-    width:632px;
-    height:65px;
-    margin:32px auto;
-    opacity: 0.5;
-    background:#FAFBFC;
-    .currency-group{
+    .paying-contacts-block{
       position:relative;
-      height:35px;
-      margin: 14px auto;
-      img {
-        mix-blend-mode:luminosity;
+      width:296px;
+      margin:20px auto;
+      background:#FFFFFF;
+      box-shadow:0px 1px 0.5px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0282725), 0px 3px 2px rgba(85, 89, 106, 0.035), 0px 4px 4px rgba(85, 89, 106, 0.0417275), 0px 9px 8px rgba(85, 89, 106, 0.0503198), 0px 20px 20px rgba(85, 89, 106, 0.07);
+      border-radius:4px;
+      padding:16px;
+      .contact-name-caption{
+        position:relative;
+        font-weight:500;
+        font-size:12px;
+        line-height:20px;
+        color:#2F486A;
+      }
+      .contact-name-value{
+        position:relative;
+        font-weight:500;
+        font-size:12px;
+        line-height:20px;
+        color:rgba(47, 72, 106, 0.5);
+        left: -2px;
+        margin-top:12px;
+        margin-bottom: 16px;
+      }
+      .line{
+        position:relative;
+        width:calc(100% + 32px);
+        height:1px;
+        background:#DCDFE2;
+        left: -16px;
+      }
+      .contact-email-caption{
+        position:relative;
+        font-weight:500;
+        font-size:12px;
+        line-height:20px;
+        color:#2F486A;
+        margin-top:16px;
+      }
+      .contact-email-value{
+        position:relative;
+        font-weight:500;
+        font-size:12px;
+        line-height:20px;
+        color:rgba(47, 72, 106, 0.5);
+        left: -2px;
+        margin-top:12px;
+      }
+    }
+    .credit-card{
+      position:relative;
+      width:296px;
+      margin:4px auto;
+      background:#FFFFFF;
+      box-shadow:0px 1px 0.5px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0282725), 0px 3px 2px rgba(85, 89, 106, 0.035), 0px 4px 4px rgba(85, 89, 106, 0.0417275), 0px 9px 8px rgba(85, 89, 106, 0.0503198), 0px 20px 20px rgba(85, 89, 106, 0.07);
+      border-radius:4px;
+      padding: 18px 16px;
+      .credit-card-title{
+        position:relative;
+        width:118px;
+        font-weight:500;
+        font-size:12px;
+        line-height:20px;
+        color:#2F486A;
+      }
+      .credit-card-icon{
+        position:absolute;
+        width:31px;
+        height:20px;
+        left:282px;
+        top:18px;
+      }
+      .credit-card-value{
+        position:relative;
+        font-weight:500;
+        font-size:12px;
+        line-height:20px;
+        text-transform:uppercase;
+        width:164px;
+        margin-top: 12px;
+      }
+      .credit-card-exp{
+        position: absolute;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        text-transform: uppercase;
+        left: 222px;
+        top: 50px;
+        width: 47px;
+      }
+      .credit-card-cvc{
+        position:absolute;
+        font-weight:500;
+        font-size:12px;
+        line-height:20px;
+        text-transform:uppercase;
+        left:284px;
+        top:50px;
+        width:26px;
+      }
+    }
+    .pay-confirm{
+      cursor:pointer;
+      position:relative;
+      height:56px;
+      width:328px;
+      margin:32px auto;
+    }
+    .accepted-currency{
+      position: relative;
+      width: 337px;
+      height: 34.66px;
+      margin: 32px auto;
+      opacity: 0.5;
+      background: #FAFBFC;
+      background:#FAFBFC;
+      .currency-group{
         position: relative;
-        height: 35px;
-        width: 153px;
-        display: inline-block;
-        &.faded {
-          opacity: 0.5;
+        margin: 14px auto;
+        img{
+          mix-blend-mode: luminosity;
+          position: relative;
+          height: 18.66px;
+          width: 81.58px;
+          display: inline-block;
+          &.faded{
+            opacity:0.5;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width:1200px){
+  .paying{
+    position:relative;
+    .back-paying{
+      cursor:pointer;
+      position:absolute;
+      height:38px;
+      left:0;
+      width:250px;
+      top:0;
+      z-index:0;
+      background:#FAFBFC;
+      .back-arrow{
+        cursor:pointer;
+        position:absolute;
+        top:12px;
+        left:0;
+      }
+      .back-to-previous-page{
+        cursor:pointer;
+        position:absolute;
+        height:20px;
+        left:30px;
+        top:calc(50% - 20px / 2);
+        font-weight:600;
+        font-size:14px;
+        line-height:20px;
+        display:flex;
+        align-items:center;
+        color:rgba(47, 72, 106, 0.75);
+      }
+    }
+    .paying-contacts-block{
+      position:relative;
+      width:632px;
+      height:113px;
+      margin:32px auto;
+      background:#FFFFFF;
+      box-shadow:0px 1px 0.5px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0282725), 0px 3px 2px rgba(85, 89, 106, 0.035), 0px 4px 4px rgba(85, 89, 106, 0.0417275), 0px 9px 8px rgba(85, 89, 106, 0.0503198), 0px 20px 20px rgba(85, 89, 106, 0.07);
+      border-radius:4px;
+      .contact-name-caption{
+        position:absolute;
+        width:156px;
+        height:20px;
+        left:24px;
+        top:18px;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        display:flex;
+        align-items:center;
+        color:#2F486A;
+      }
+      .contact-name-value{
+        position:absolute;
+        width:300px;
+        height:20px;
+        left:202px;
+        top:18px;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        display:flex;
+        align-items:center;
+        color:rgba(47, 72, 106, 0.5);
+      }
+      .line{
+        position:absolute;
+        width:100%;
+        height:1px;
+        top:49%;
+        background:#DCDFE2;
+      }
+      .contact-email-caption{
+        position:absolute;
+        width:156px;
+        height:20px;
+        left:24px;
+        top:72px;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        display:flex;
+        align-items:center;
+        color:#2F486A;
+      }
+      .contact-email-value{
+        position:absolute;
+        width:300px;
+        height:20px;
+        left:202px;
+        top:72px;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        display:flex;
+        align-items:center;
+        color:rgba(47, 72, 106, 0.5);
+      }
+    }
+    .credit-card{
+      position:relative;
+      width:632px;
+      height:56px;
+      margin:32px auto;
+      background:#FFFFFF;
+      box-shadow:0px 1px 0.5px rgba(85, 89, 106, 0.0196802), 0px 2px 1px rgba(85, 89, 106, 0.0282725), 0px 3px 2px rgba(85, 89, 106, 0.035), 0px 4px 4px rgba(85, 89, 106, 0.0417275), 0px 9px 8px rgba(85, 89, 106, 0.0503198), 0px 20px 20px rgba(85, 89, 106, 0.07);
+      border-radius:4px;
+      .credit-card-title{
+        position:absolute;
+        width:118px;
+        height:20px;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        display:flex;
+        align-items:center;
+        color:#2F486A;
+        top:18px;
+        left:24px;
+      }
+      .credit-card-icon{
+        position:absolute;
+        width:31px;
+        height:20px;
+        left:202px;
+        top:18px;
+      }
+      .credit-card-value{
+        position:absolute;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        text-transform:uppercase;
+        left:242px;
+        top:18px;
+        width:191px;
+      }
+      .credit-card-exp{
+        position:absolute;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        text-transform:uppercase;
+        left:484px;
+        top:18px;
+        width:54px;
+      }
+      .credit-card-cvc{
+        position:absolute;
+        font-weight:500;
+        font-size:14px;
+        line-height:20px;
+        text-transform:uppercase;
+        left:574px;
+        top:18px;
+        width:30px;
+      }
+    }
+    .pay-confirm{
+      cursor:pointer;
+      position:relative;
+      height:56px;
+      width:632px;
+      margin:32px auto;
+    }
+    .accepted-currency{
+      position:relative;
+      width:632px;
+      height:65px;
+      margin:32px auto;
+      opacity:0.5;
+      background:#FAFBFC;
+      .currency-group{
+        position:relative;
+        height:35px;
+        margin:14px auto;
+        img{
+          mix-blend-mode:luminosity;
+          position:relative;
+          height:35px;
+          width:153px;
+          display:inline-block;
+          &.faded{
+            opacity:0.5;
+          }
         }
       }
     }

@@ -1,318 +1,611 @@
-.pay-result-ok{
-  position:relative;
-  .info1{
+@media only screen and (max-width:1199px){
+  .pay-result-ok{
     position:relative;
-    width:960px;
-    height:360px;
-    margin:16px auto;
-    background:#FFFFFF;
-    border:1px solid #DCDFE2;
-    box-sizing:border-box;
-    border-radius:8px;
-    .left-block{
-      position:absolute;
-      left:24px;
-      top:24px;
-      .reserve-number{
-        position:absolute;
+    margin-top: 16px;
+    .info1{
+      position:relative;
+      width:328px;
+      margin:16px auto;
+      background:#FFFFFF;
+      border:1px solid #DCDFE2;
+      box-sizing:border-box;
+      border-radius:8px;
+      .left-block{
+        margin:16px;
+        .reserve-number{
+          position:relative;
+          font-weight:600;
+          font-size:18px;
+          line-height:30px;
+          color:#2F486A;
+          width:250px;
+        }
+        .reserve-date{
+          position: absolute;
+          left: 232px;
+          top: 24px;
+          font-size: 11px;
+          line-height: 18px;
+          color: #2F486A;
+        }
+        .text{
+          position:relative;
+          left:0px;
+          width:305px;
+          height:48px;
+          font-weight:500;
+          font-size:14px;
+          line-height:22px;
+          color:rgba(47, 72, 106, 0.75);
+        }
+        .contact-info{
+          position: relative;
+          width: 600px;
+          margin-top: 32px;
+          .contact-info-title{
+            position:relative;
+            width:249px;
+            height:32px;
+            font-weight:600;
+            font-size:18px;
+            line-height:30px;
+            color:#2F486A;
+          }
+          .contact-row{
+            position:relative;
+            width:250px;
+            &.row2{
+              top:-54px;
+            }
+            .title{
+              position:relative;
+              width:150px;
+              font-weight:500;
+              font-size:12px;
+              line-height:24px;
+              color:rgba(47, 72, 106, 0.75);
+            }
+            .value{
+              position: relative;
+              width: 300px;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 24px;
+              color: #2F486A;
+            }
+            .contact-row-col1{
+              position:relative;
+              left:0px;
+              height:50px;
+              margin-top:12px;
+            }
+            .contact-row-col2{
+              position:relative;
+              height:50px;
+              top:62px;
+            }
+          }
+        }
+      }
+      .right-block{
+        position:relative;
+        width:326px;
+        background:#FAFBFC;
+        border-radius:0 0 8px 8px;
+        border:1px solid #DCDFE2;
+        left:-1px;
+        height:165px;
+        top:1px;
+        margin-top:12px;
+        .right-block-title{
+          position:relative;
+          width:192px;
+          left:16px;
+          margin-top:16px;
+          font-weight:600;
+          font-size:18px;
+          line-height:32px;
+          display:flex;
+          align-items:center;
+          color:#2F486A;
+        }
+        .right-block-content{
+          position:relative;
+          left:16px;
+          width:260px;
+          font-weight:500;
+          font-size:14px;
+          line-height:18px;
+          color:rgba(47, 72, 106, 0.75);
+          margin-top:12px;
+          .value{
+            position:absolute;
+            left:36px;
+            top:5px;
+            align-items:center;
+            flex:none;
+            order:1;
+            align-self:center;
+            font-size:12px;
+            line-height:18px;
+          }
+          .icon{
+            position:relative;
+            width:21px;
+            height:21px;
+          }
+          .guests-count{
+            position:relative;
+            margin-bottom:8px;
+          }
+          .rooms-days-count{
+            position:relative;
+            margin-bottom:8px;
+          }
+          .dates-count{
+            position:relative;
+            margin-bottom:8px;
+          }
+        }
+      }
+    }
+    .info2{
+      position:relative;
+      width:328px;
+      min-height:458px;
+      margin:16px auto;
+      background:#FFFFFF;
+      border:1px solid #DCDFE2;
+      box-sizing:border-box;
+      border-radius:8px;
+      padding:16px;
+      .title{
+        position:relative;
+        width:146px;
         font-weight:600;
-        font-size:20px;
+        font-size:18px;
         line-height:32px;
         color:#2F486A;
-        width:250px;
+        height:32px;
       }
-      .reserve-date{
-        position:absolute;
-        left:240px;
-        top:10px;
-        font-size:12px;
-        line-height:18px;
-        color:#2F486A;
+      .rooms{
+        position:relative;
+        width:320px;
+        .room-row{
+          position:relative;
+          margin-top:12px;
+          .room-title{
+            position:relative;
+            width:93px;
+            height:32px;
+            left:0;
+            top:0;
+            font-weight:600;
+            font-size:18px;
+            line-height:30px;
+            color:#2F486A;
+          }
+          .room-info-row{
+            position:relative;
+            left:0;
+            margin-bottom:8px;
+            .col1{
+              position:relative;
+              top:0;
+              left:0;
+              width:76px;
+              font-weight:500;
+              font-size:12px;
+              line-height:24px;
+              color:rgba(47, 72, 106, 0.75);
+            }
+            .col2{
+              position:relative;
+              top:0;
+              width:334px;
+              font-weight:600;
+              font-size:14px;
+              line-height:24px;
+              color:#2F486A;
+            }
+          }
+        }
       }
-      .text{
-        position:absolute;
-        top:20px;
-        left:0px;
-        width:505px;
-        height:48px;
-        font-weight:500;
-        font-size:16px;
-        line-height:24px;
-        color:rgba(47, 72, 106, 0.75);
+      .services{
+        position: relative;
+        width: 936px;
+        .service-row{
+          position:relative;
+          top:18px;
+          .service-title{
+            position: relative;
+            width: 93px;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 32px;
+            color: #2F486A;
+          }
+          .service-info-row{
+            position: relative;
+            left: 0;
+            margin-bottom: 8px;
+            .col1{
+              position:relative;
+              top:0;
+              left:0;
+              width:76px;
+              font-weight:500;
+              font-size:12px;
+              line-height:24px;
+              color:rgba(47, 72, 106, 0.75);
+            }
+            .col2{
+              position: relative;
+              width: 306px;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 24px;
+              color: #2F486A;
+            }
+          }
+        }
+        .bottom-block{
+          position: relative;
+          width: 326px;
+          height: 74px;
+          left: -17px;
+          top: 17px;
+          background: #FAFBFC;
+          border-radius: 0 0 8px 8px;
+          border: 1px solid #DCDFE2;
+          .summ-title{
+            position: relative;
+            width: 116px;
+            left: 16px;
+            top: 24px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 26px;
+            color: #2F486A;
+          }
+          .summ-value{
+            position: absolute;
+            width: 118px;
+            left: 195px;
+            top: 24px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 26px;
+            color: #267FF9;
+          }
+        }
       }
-      .contact-info{
+    }
+    .back-to-main-page{
+      position: relative;
+      width: 328px;
+      height: 52px;
+      margin: 16px auto;
+    }
+  }
+}
+@media only screen and (min-width:1200px){
+  .pay-result-ok{
+    position:relative;
+    .info1{
+      position:relative;
+      width:960px;
+      height:360px;
+      margin:16px auto;
+      background:#FFFFFF;
+      border:1px solid #DCDFE2;
+      box-sizing:border-box;
+      border-radius:8px;
+      .left-block{
         position:absolute;
-        top:100px;
-        width:600px;
-        .contact-info-title{
+        left:24px;
+        top:24px;
+        .reserve-number{
           position:absolute;
-          width:249px;
-          height:32px;
           font-weight:600;
           font-size:20px;
           line-height:32px;
           color:#2F486A;
-          top:18px;
-        }
-        .contact-row{
-          position:relative;
-          top:75px;
           width:250px;
-          margin-bottom:85px;
-          .title{
+        }
+        .reserve-date{
+          position:absolute;
+          left:240px;
+          top:10px;
+          font-size:12px;
+          line-height:18px;
+          color:#2F486A;
+        }
+        .text{
+          position:absolute;
+          top:20px;
+          left:0px;
+          width:505px;
+          height:48px;
+          font-weight:500;
+          font-size:16px;
+          line-height:22px;
+          color:rgba(47, 72, 106, 0.75);
+        }
+        .contact-info{
+          position:absolute;
+          top:100px;
+          width:600px;
+          .contact-info-title{
             position:absolute;
-            width:150px;
-            font-weight:500;
-            font-size:14px;
-            line-height:26px;
-            color:rgba(47, 72, 106, 0.75);
+            width:249px;
+            height:32px;
+            font-weight:600;
+            font-size:20px;
+            line-height:32px;
+            color:#2F486A;
+            top:18px;
           }
+          .contact-row{
+            position:relative;
+            top:75px;
+            width:250px;
+            margin-bottom:85px;
+            .title{
+              position:absolute;
+              width:150px;
+              font-weight:500;
+              font-size:14px;
+              line-height:26px;
+              color:rgba(47, 72, 106, 0.75);
+            }
+            .value{
+              position:absolute;
+              width:300px;
+              font-weight:600;
+              font-size:16px;
+              line-height:26px;
+              color:#2F486A;
+              top:20px
+            }
+            .contact-row-col1{
+              position:absolute;
+              left:0px;
+              height:50px;
+            }
+            .contact-row-col2{
+              position:absolute;
+              left:315px;
+              height:50px;
+            }
+          }
+        }
+      }
+      .right-block{
+        position:absolute;
+        width:334px;
+        height:357px;
+        left:623px;
+        background:#FAFBFC;
+        border-radius:0 8px 8px 0;
+        top:-1px;
+        border:1px solid #DCDFE2;
+        .right-block-title{
+          position:absolute;
+          width:214px;
+          height:32px;
+          left:24px;
+          top:24px;
+          font-weight:600;
+          font-size:20px;
+          line-height:32px;
+          display:flex;
+          align-items:center;
+          color:#2F486A;
+        }
+        .right-block-content{
+          position:absolute;
+          top:80px;
+          left:24px;
+          width:260px;
+          height:120px;
+          font-weight:500;
+          font-size:14px;
+          line-height:18px;
+          color:rgba(47, 72, 106, 0.75);
           .value{
             position:absolute;
-            width:300px;
-            font-weight:600;
-            font-size:16px;
-            line-height:26px;
-            color:#2F486A;
-            top:20px
+            height:18px;
+            left:36px;
+            top:15px;
+            line-height:18px;
+            align-items:center;
+            flex:none;
+            order:1;
+            align-self:center;
+            margin:12px 0;
           }
-          .contact-row-col1{
-            position:absolute;
-            left:0px;
-            height:50px;
+          .icon{
+            position:relative;
+            width:24px;
+            height:24px;
+            top:23px;
           }
-          .contact-row-col2{
-            position:absolute;
-            left:315px;
-            height:50px;
+          .guests-count{
+            position:relative;
+            margin-bottom:8px;
+          }
+          .rooms-days-count{
+            position:relative;
+            margin-bottom:8px;
+          }
+          .dates-count{
+            position:relative;
+            margin-bottom:8px;
           }
         }
       }
     }
-    .right-block{
-      position:absolute;
-      width:334px;
-      height:357px;
-      left:623px;
-      background:#FAFBFC;
-      border-radius:0 8px 8px 0;
-      top:-1px;
+    .info2{
+      position:relative;
+      width:960px;
+      min-height:458px;
+      margin:16px auto;
+      background:#FFFFFF;
       border:1px solid #DCDFE2;
-      .right-block-title{
+      box-sizing:border-box;
+      border-radius:8px;
+      .title{
         position:absolute;
-        width:214px;
+        width:146px;
         height:32px;
-        left:24px;
-        top:24px;
         font-weight:600;
         font-size:20px;
         line-height:32px;
-        display:flex;
-        align-items:center;
         color:#2F486A;
-      }
-      .right-block-content{
-        position:absolute;
-        top:80px;
+        top:24px;
         left:24px;
-        width:260px;
-        height:120px;
-        font-weight:500;
-        font-size:14px;
-        line-height:18px;
-        color:rgba(47, 72, 106, 0.75);
-        .value{
-          position:absolute;
-          height:18px;
-          left:36px;
-          top:15px;
-          line-height:18px;
-          align-items:center;
-          flex:none;
-          order:1;
-          align-self:center;
-          margin:12px 0;
-        }
-        .icon{
+      }
+      .rooms{
+        position:relative;
+        width:936px;
+        left:24px;
+        top:40px;
+        .room-row{
           position:relative;
-          width:24px;
-          height:24px;
-          top:23px;
-        }
-        .guests-count{
-          position:relative;
-          margin-bottom:8px;
-        }
-        .rooms-days-count{
-          position:relative;
-          margin-bottom:8px;
-        }
-        .dates-count{
-          position:relative;
-          margin-bottom:8px;
+          height:100px;
+          top:28px;
+          .room-title{
+            position:absolute;
+            width:93px;
+            height:32px;
+            left:0;
+            top:0;
+            font-weight:600;
+            font-size:18px;
+            line-height:32px;
+            color:#2F486A;
+          }
+          .room-info-row{
+            position:relative;
+            left:0;
+            top:48px;
+            margin-bottom:8px;
+            height:26px;
+            .col1{
+              position:absolute;
+              top:0;
+              left:0;
+              width:76px;
+              height:50px;
+              font-weight:500;
+              font-size:16px;
+              line-height:26px;
+              color:rgba(47, 72, 106, 0.75);
+            }
+            .col2{
+              position:absolute;
+              top:0;
+              left:192px;
+              width:396px;
+              height:26px;
+              font-weight:600;
+              font-size:16px;
+              line-height:26px;
+              color:#2F486A;
+            }
+          }
         }
       }
-    }
-  }
-  .info2{
-    position:relative;
-    width:960px;
-    min-height:458px;
-    margin:16px auto;
-    background:#FFFFFF;
-    border:1px solid #DCDFE2;
-    box-sizing:border-box;
-    border-radius:8px;
-    .title{
-      position:absolute;
-      width:146px;
-      height:32px;
-      font-weight:600;
-      font-size:20px;
-      line-height:32px;
-      color:#2F486A;
-      top:24px;
-      left:24px;
-    }
-    .rooms{
-      position:relative;
-      width:936px;
-      left:24px;
-      top:40px;
-      .room-row{
+      .services{
         position:relative;
-        height:100px;
-        top:28px;
-        .room-title{
-          position:absolute;
-          width:93px;
-          height:32px;
-          left:0;
-          top:0;
-          font-weight:600;
-          font-size:18px;
-          line-height:32px;
-          color:#2F486A;
-        }
-        .room-info-row{
-          position: relative;
-          left: 0;
-          top: 48px;
-          margin-bottom: 8px;
-          height: 26px;
-          .col1{
+        width:936px;
+        left:24px;
+        top:105px;
+        .service-row{
+          position:relative;
+          height:100px;
+          top:18px;
+          .service-title{
             position:absolute;
-            top:0;
+            width:93px;
+            height:32px;
             left:0;
-            width:76px;
-            height:50px;
-            font-weight:500;
-            font-size:16px;
-            line-height:26px;
-            color:rgba(47, 72, 106, 0.75);
-          }
-          .col2{
-            position:absolute;
             top:0;
-            left:192px;
-            width:396px;
+            font-weight:600;
+            font-size:18px;
+            line-height:32px;
+            color:#2F486A;
+          }
+          .service-info-row{
+            position:relative;
+            left:0;
+            top:43px;
+            margin-bottom:8px;
             height:26px;
+            .col1{
+              position:absolute;
+              top:0;
+              left:0;
+              width:76px;
+              height:50px;
+              font-weight:500;
+              font-size:16px;
+              line-height:26px;
+              color:rgba(47, 72, 106, 0.75);
+            }
+            .col2{
+              position:absolute;
+              top:0;
+              left:192px;
+              width:396px;
+              height:26px;
+              font-weight:600;
+              font-size:16px;
+              line-height:26px;
+              color:#2F486A;
+            }
+          }
+        }
+        .bottom-block{
+          position:absolute;
+          width:958px;
+          height:74px;
+          left:-25px;
+          top:175px;
+          background:#FAFBFC;
+          border-radius:0 0 8px 8px;
+          border:1px solid #DCDFE2;
+          .summ-title{
+            position:absolute;
+            width:116px;
+            height:26px;
+            left:24px;
+            top:24px;
             font-weight:600;
             font-size:16px;
             line-height:26px;
             color:#2F486A;
           }
-        }
-      }
-    }
-    .services{
-      position:relative;
-      width:936px;
-      left:24px;
-      top:105px;
-      .service-row{
-        position:relative;
-        height:100px;
-        top:18px;
-        .service-title{
-          position:absolute;
-          width:93px;
-          height:32px;
-          left:0;
-          top:0;
-          font-weight:600;
-          font-size:18px;
-          line-height:32px;
-          color:#2F486A;
-        }
-        .service-info-row{
-          position: relative;
-          left: 0;
-          top: 43px;
-          margin-bottom: 8px;
-          height: 26px;
-          .col1{
+          .summ-value{
             position:absolute;
-            top:0;
-            left:0;
-            width:76px;
-            height:50px;
-            font-weight:500;
-            font-size:16px;
-            line-height:26px;
-            color:rgba(47, 72, 106, 0.75);
-          }
-          .col2{
-            position:absolute;
-            top:0;
-            left:192px;
-            width:396px;
+            width:118px;
             height:26px;
+            left:215px;
+            top:24px;
             font-weight:600;
             font-size:16px;
             line-height:26px;
-            color:#2F486A;
+            color:#267FF9;
           }
         }
       }
-      .bottom-block{
-        position: absolute;
-        width: 958px;
-        height: 74px;
-        left: -25px;
-        top: 175px;
-        background: #FAFBFC;
-        border-radius: 0 0 8px 8px;
-        border: 1px solid #DCDFE2;
-        .summ-title{
-          position: absolute;
-          width: 116px;
-          height: 26px;
-          left: 24px;
-          top: 24px;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 26px;
-          color: #2F486A;
-        }
-        .summ-value{
-          position: absolute;
-          width: 118px;
-          height: 26px;
-          left: 215px;
-          top: 24px;
-          font-weight: 600;
-          font-size: 16px;
-          line-height: 26px;
-          color: #267FF9;
-        }
-      }
     }
-  }
-  .back-to-main-page{
-    position:relative;
-    width:303px;
-    height:52px;
-    margin:16px auto;
+    .back-to-main-page{
+      position:relative;
+      width:303px;
+      height:52px;
+      margin:16px auto;
+    }
   }
 }

@@ -2,9 +2,10 @@
     <div class="title-box">
         <div class="line"></div>
         <span class="title">Параметры оплаты</span>
+        <img class="mobile-version back-btn" src="../static/mobile-arrow-back.svg" alt="">
     </div>
-    <div class="back-box-pay-parameters">
-        <span class="back-to-previous-page">Назад к выбору услуги</span>
+    <div class="back-box-pay-parameters desktop-only">
+        <span class="back-to-previous-page ">Назад к выбору услуги</span>
         <img class="back-arrow" alt="" src="../static/back-arrow.svg">
     </div>
     <div class="pay-parameters-content">
@@ -32,48 +33,36 @@
             <div class="checkbox-label">Я принимаю <span class="url">соглашение</span> об обработке персональных данных.
             </div>
         </div>
-        <div class="paragon-block fixed" data-offset="395">
-            <div class="guests-count">
-                <img class="icon" alt="" src="../static/guests-icon.svg">
-                <div class="value"><span class="count">4</span> гостя</div>
-            </div>
-            <div class="rooms-days-count">
-                <img class="icon" alt="" src="../static/room-days-icon.svg">
-                <div class="value"><span class="rooms-count">2</span> номера на <span class="night-count">6</span> ночей
-                </div>
-            </div>
-            <div class="dates-count">
-                <img class="icon" alt="" src="../static/dates-icon.svg">
-                <div class="value"><span class="in-date">24 мая 2020 г.</span> → <span
-                        class="out-date">2 июня 2020 г.</span></div>
-            </div>
-            <div class="line1"></div>
-            <div class="row">
-                <div class="col1">1 775,50₽ x 9 ночей</div>
-                <div class="col2">16 979,00 ₽</div>
-            </div>
-            <div class="row">
-                <div class="col1 green">15% скидка по промокоду</div>
-                <div class="col2">-2 979,00 ₽</div>
-            </div>
-            <div class="row">
-                <div class="col1">Доп. услуги (2)
-                    <div class="help-icon" data-tooltip=""></div>
-                </div>
-                <div class="col2">2 200,00 ₽</div>
-            </div>
-            <div class="line2"></div>
-            <div class="full-price-block">
-                <div class="col1">Итого (RUB)</div>
-                <div class="col2">16 200,00 ₽</div>
-            </div>
-        </div>
         <div class="rooms-list-block">
             <div class="room-info">
                 <div class="row">
+                    <div class="room-photos">
+                        <img src="static/room.photo.png">
+                        <img src="static/room.photo.png">
+                        <img src="static/room.photo.png">
+                        <img src="static/room.photo.png">
+                    </div>
+                    <div class="slick-counter">
+                        <span class="value">0/0</span>
+                    </div>
                     <div class="title">Семейный номер с видом на море</div>
-                    <img src="" class="peoples" alt="">
-                    <img src="../static/photo1.png" alt="" class="room-image">
+                    <div class="frame-154">
+                        <div class="frame-132">
+                            <div class="frame-127">
+                                <div class="man-icon"></div>
+                                <div class="man-icon"></div>
+                            </div>
+                        </div>
+                        <div class="frame-133">
+                            <div class="frame-127">
+                                <div class="man-icon"></div>
+                                <div class="man-icon"></div>
+                                <div class="plus-icon"></div>
+                                <div class="child-icon"></div>
+                                <div class="child-icon"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="title2">Выбранный тариф</div>
@@ -106,7 +95,7 @@
                 </div>
                 <div class="row flex alignLeft margin">
                     <img class="checkbox" alt="" src="../static/checkbox.svg">
-                    <div class="checkbox-text">Отправить копию подтверрждения этому гостю</div>
+                    <div class="checkbox-text">Отправить копию подтверждения этому гостю</div>
                 </div>
                 <div class="row">
                     <div class="input">
@@ -196,7 +185,7 @@
                     <textarea>Хочу бар...</textarea>
                 </div>
             </div>
-            <div class="row">
+            <div class="row subtext">
                 Стандартное время выезда - 12:00. Если вы хотите заехать в другое время, укажите его выше. Отель может
                 взимать плату за ранний заезд.
             </div>
@@ -244,6 +233,46 @@
             <div class="pay-item">
                 <img class="faded" src="../static/pay-maestro.svg" alt="">
                 <div class="blend"></div>
+            </div>
+        </div>
+        <div class="paragon-block fixed" data-offset="395">
+            <img src="../static/roll-btn.svg" class="mobile-version roll-btn" alt="">
+            <div class="rolling roll-up">
+                <div class="guests-count">
+                    <img class="icon" alt="" src="../static/guests-icon.svg">
+                    <div class="value"><span class="count">4</span> гостя</div>
+                </div>
+                <div class="rooms-days-count">
+                    <img class="icon" alt="" src="../static/room-days-icon.svg">
+                    <div class="value"><span class="rooms-count">2</span> номера на <span class="night-count">6</span>
+                        ночей
+                    </div>
+                </div>
+                <div class="dates-count">
+                    <img class="icon" alt="" src="../static/dates-icon.svg">
+                    <div class="value"><span class="in-date">24 мая 2020 г.</span> → <span
+                            class="out-date">2 июня 2020 г.</span></div>
+                </div>
+                <div class="line1"></div>
+                <div class="row">
+                    <div class="col1">1 775,50₽ x 9 ночей</div>
+                    <div class="col2">16 979,00 ₽</div>
+                </div>
+                <div class="row">
+                    <div class="col1 green">15% скидка по промокоду</div>
+                    <div class="col2">-2 979,00 ₽</div>
+                </div>
+                <div class="row">
+                    <div class="col1">Доп. услуги (2)
+                        <div class="help-icon" data-tooltip=""></div>
+                    </div>
+                    <div class="col2">2 200,00 ₽</div>
+                </div>
+                <div class="line2"></div>
+            </div>
+            <div class="full-price-block">
+                <div class="col1">Итого (RUB)</div>
+                <div class="col2">16 200,00 ₽</div>
             </div>
         </div>
     </div>

@@ -9,7 +9,7 @@ import 'slick-carousel/slick/fonts/slick.ttf';
 let loadNextPage = 'main-page';
 let hideSearchBox = false;
 let client_data = new Object({
-    promoCode:'',
+    promoCode: '',
     roomCount: 0,
     rooms: {
         'first_room': {
@@ -1004,6 +1004,7 @@ function showAvailableRooms() {
         _obj.find('.arrow-down').trigger('classChange');
         let available_rooms = $('body .available-rooms');
         if (available_rooms.length > 0) {
+
             available_rooms.animate({
                 opacity: 0
             }, animationDuration, function () {
@@ -1051,7 +1052,13 @@ function showAvailableRooms() {
                     arrows: false,
                     dots: false,
                     variableWidth: true,
-                    useTransform: false
+                    useTransform: false,
+                    responsive: [
+                        {
+                            breakpoint: 1199,
+                            settings: "unslick"
+                        }
+                    ]
                 });
             });
         } else {
@@ -1086,6 +1093,8 @@ function showAvailableRooms() {
                     all_slides = $(this).parents('.available-rooms-result').eq(0).find('.slick-slide').not('.slick-cloned').length
                 }
             });
+
+
             $('.content-page').append(_obj);
             $('.available-rooms').animate({
                 opacity: 1
@@ -1097,7 +1106,13 @@ function showAvailableRooms() {
                 arrows: false,
                 dots: false,
                 variableWidth: true,
-                useTransform: false
+                useTransform: false,
+                responsive: [
+                    {
+                        breakpoint: 1199,
+                        settings: 'unslick'
+                    }
+                ]
             });
         }
     }).fail(function (err) {
@@ -1145,6 +1160,7 @@ let cumulativeOffset = function (element) {
     };
 };
 $(document).ready(function () {
+    //hideSearchBox = true;
     //loadNextPage = 'services-block';
     //loadNextPage = 'pay-parameters';
     //loadNextPage = 'paying';
@@ -1156,7 +1172,80 @@ $(document).ready(function () {
             });
         });
     }
+    $('body').on('click','.pay-parameters .paragon-block .roll-btn',function(){
+        let _obj=$(this).parent().find('.rolling');
+        if(_obj.hasClass('roll-up')){
+            _obj.parent().animate({
+                bottom: -438
+            },500);
+            _obj.slideDown(500,function(){
+                $(this).removeClass('roll-up');
+                $(this).parent().find('.full-price-block').removeClass('price-white');
+            });
+        }else{
+            _obj.parent().animate({
+                bottom: -158
+            },500);
+            _obj
+            _obj.slideUp(500,function(){
+                $(this).addClass('roll-up');
+                $(this).parent().find('.full-price-block').addClass('price-white');
+            });
+        }
+
+    });
+    $('body').on('DOMSubtreeModified', '.content-page', function(){
+        if(window.innerWidth<1200) {
+            let _obj = $(this).parent().find('.rolling.roll-up');
+            if(_obj.length>0){
+                _obj.parent().find('.full-price-block').addClass('price-white');
+            }
+            $('.room-variants').slick({
+                infinite: false,
+                slidesToShow: 1.131,
+                swipeToSlide: true,
+                arrows: false,
+                dots: false,
+                variableWidth: true,
+                useTransform: false
+            });
+        }
+        $('.room-photos').slick({
+            infinite: true,
+            slidesToShow: 1,
+            swipeToSlide: true,
+            arrows: true,
+            dots: false,
+            variableWidth: false,
+            useTransform: false
+        });
+        let cur_slide = 1;
+        let all_slides = $('.room-photos').find('.slick-slide').not('.slick-cloned').length;
+        $('.room-photos').parent().find('.slick-counter > .value').html(cur_slide + '/' + all_slides);
+        $('.room-photos').find('.slick-prev,.slick-next').on('click', function () {
+            cur_slide = parseInt($(this).parents('.row').eq(0).find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
+            $(this).parents('.row').eq(0).find('.slick-counter > .value').html(cur_slide + '/' + all_slides);
+        });
+        $('.room-photos').find('.slick-track').attr_change({
+            callback: function () {
+                cur_slide = parseInt($(this).parents('.row').eq(0).find('.slick-slide.slick-current.slick-active').eq(0).attr('data-slick-index')) + 1;
+                $(this).parents('.row').eq(0).find('.slick-counter > .value').html(cur_slide + '/' + all_slides);
+            }
+        });
+    });
     let promoShowed = false;
+    $('body').on('click','.pay-parameters .mobile-version.back-btn',function(){
+        hideSearchBox = true;
+        loadNextPage = 'services-block';
+    });
+    $('body').on('click','.paying .mobile-version.back-btn',function(){
+        hideSearchBox = true;
+        loadNextPage = 'pay-parameters';
+    });
+    $('body').on('click','.pay-result-ok .mobile-version.back-btn',function(){
+        hideSearchBox = false;
+        loadNextPage = 'main-page';
+    });
     $('.have-promo').on('click', function (e) {
         let havePromo = $(this);
         if (!promoShowed) {
@@ -1165,7 +1254,7 @@ $(document).ready(function () {
                     promo1.on('click', '.accept-promo-btn', function (e) {
                         e.preventDefault();
                         e.stopPropagation();
-                        client_data.promoCode=promo1.find('.promo-value').val();
+                        client_data.promoCode = promo1.find('.promo-value').val();
                         $.get('templates/promo2.html', function (data) {
                                 let promo2 = $(data);
                                 promo2.find('.promo-value').html(client_data.promoCode);
@@ -1427,12 +1516,12 @@ $(document).ready(function () {
         hideSearchBox = true;
         loadNextPage = 'pay-parameters';
     });
-    $('body').on('click', '.back-box-services', function () {
+    $('body').on('click', '.back-box-services, .services-block .back-btn', function () {
         hideSearchBox = false;
         $('.content-page').html('');
         showAvailableRooms();
     });
-    $('body').on('click', '.next-box-services', function () {
+    $('body').on('click', '.next-box-services, .services-block .next-btn', function () {
         hideSearchBox = true;
         loadNextPage = 'pay-parameters';
     });
@@ -1525,24 +1614,26 @@ $(document).ready(function () {
         $('.left-replies-block-slider .person .room-type').html(active_vote.room);
     });
     $(window).on('scroll', function () {
-        let fixedObjects = $('.fixed');
-        fixedObjects.each(function () {
-            if (typeof $(this).attr('data-css-top') === typeof undefined) {
-                $(this).attr('data-css-top', $(this)[0].offsetTop);
-            }
-            if ($(this).attr('scrolling') !== 'true') {
-                if (parseInt($(this).attr('data-offset')) < $('html')[0].scrollTop) {
-                    let top = $('html')[0].scrollTop - $(this).offset().top + $(this)[0].offsetTop;
-                    $(this).css({
-                        top: top
-                    });
-                } else {
-                    $(this).css({
-                        top: $(this).attr('data-css-top')
-                    });
+        if(window.innerWidth>1199) {
+            let fixedObjects = $('.fixed');
+            fixedObjects.each(function () {
+                if (typeof $(this).attr('data-css-top') === typeof undefined) {
+                    $(this).attr('data-css-top', $(this)[0].offsetTop);
                 }
-            }
-        });
+                if ($(this).attr('scrolling') !== 'true') {
+                    if (parseInt($(this).attr('data-offset')) < $('html')[0].scrollTop) {
+                        let top = $('html')[0].scrollTop - $(this).offset().top + $(this)[0].offsetTop;
+                        $(this).css({
+                            top: top
+                        });
+                    } else {
+                        $(this).css({
+                            top: $(this).attr('data-css-top')
+                        });
+                    }
+                }
+            });
+        }
     });
     $('body').on('click', '.room-info-btn', function () {
         $('body').find('.popup-room-info').remove();
@@ -1576,6 +1667,20 @@ $(document).ready(function () {
         infinite: true,
         slidesToShow: 6,
         swipeToSlide: true,
+        variableWidth: true,
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: false,
+                    swipeToSlide: true,
+                    variableWidth: true
+                }
+            }
+        ]
     });
     $('html').on('click', function () {
         $(this).find('.droopdown-expanded').removeClass('show');
