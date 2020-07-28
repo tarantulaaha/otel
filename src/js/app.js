@@ -52,6 +52,9 @@ let client_data = new Object({
         }
         this.attachEventListeners = function () {
             thisObj.on('click', '.reserve-selection-popup', function (event) {
+                hideSearchBox = true;
+                loadNextPage = 'services-block';
+                $('body').scrollTop = 0;
                 event.stopPropagation();
                 event.preventDefault();
             });
@@ -97,6 +100,7 @@ let client_data = new Object({
         this.windowLoad = function () {
             $.get('templates/reserve-selection-popup.html', function (data) {
                     let reserveWindow = $(data);
+
                     thisObj.append(reserveWindow);
                 }
             ).fail(function (err) {
@@ -1336,6 +1340,7 @@ $('body').on('click','.reserve-room-window .have-promo .value',function(){
         }
     });
     let promoShowed = false;
+
     $('body').on('click', '.pay-parameters .mobile-version.back-btn', function () {
         hideSearchBox = true;
         loadNextPage = 'services-block';
