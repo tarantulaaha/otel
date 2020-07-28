@@ -555,16 +555,26 @@
         }
       }
       .paragon-block{
+        z-index: 100;
         color: rgba(47, 72, 106, 0.75);
-        position: absolute;
+        position: fixed;
         width: 328px;
         background: #FFFFFF;
         border: 1px solid #DCDFE2;
         box-sizing: border-box;
         font-weight: 500;
         font-size: 12px;
-        bottom: -158px;
+        bottom: 0;
+
+        .roll-block{
+          cursor:pointer;
+          position: relative;
+          display: block;
+          height: 24px;
+        }
         .rolling{
+          height: 270px;
+          max-height: 270px;
           display: block;
           &.roll-up{
             display:none;
@@ -576,7 +586,9 @@
           position: relative;
           width: 58px;
           height: 8px;
-          margin: 15px auto 0px;
+          margin: 0 auto;
+          padding-top: 9px;
+          padding-bottom: 9px;
         }
         .value{
           position:absolute;
@@ -807,6 +819,7 @@
         border-radius:8px;
         font-weight:500;
         font-size:12px;
+
         .value{
           position:absolute;
           height:18px;

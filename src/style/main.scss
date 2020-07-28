@@ -44,7 +44,9 @@ body{
   top: 0px;
   left: 0px;
 }
-
+.clear-href{
+  text-decoration: none;
+}
 @media screen and (max-width:1199px){
 .desktop-only{
   display: none;
@@ -1280,6 +1282,12 @@ body{
   }
 }
 @media screen and (min-width:1200px){
+  .pravoe-ukho{
+    position: relative;
+    height: 0px;
+    width: 0px;
+    margin:0 auto;
+  }
   body{
     --zoom:0.8;
     background:#FAFBFC;

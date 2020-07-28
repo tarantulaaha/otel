@@ -132,8 +132,6 @@
               align-self:flex-start;
               bottom:54.55%;
               color:#2F486A;
-              display:flex;
-              flex:none;
               font-size:14px;
               font-style:normal;
               font-weight:600;
@@ -144,6 +142,10 @@
               position:static;
               right:0;
               top:0;
+              .apartment-num-value{
+                display: inline-block;
+              }
+
             }
             .apartment-delete{
               align-items:center;
@@ -239,6 +241,7 @@
               line-height:20px;
               align-items:center;
               color:#2F486A;
+              box-shadow: unset;
               .age-value{
                 margin:8px 4px 8px 12px;
               }
@@ -384,8 +387,6 @@
               align-self:flex-start;
               bottom:54.55%;
               color:#2F486A;
-              display:flex;
-              flex:none;
               font-size:14px;
               font-style:normal;
               font-weight:600;
@@ -396,6 +397,9 @@
               position:static;
               right:0;
               top:0;
+              .apartment-num-value{
+                display: inline-block;
+              }
             }
             .apartment-delete{
               align-items:center;
@@ -491,6 +495,7 @@
               line-height:20px;
               align-items:center;
               color:#2F486A;
+              box-shadow: unset;
               .age-value{
                 margin:8px 4px 8px 12px;
               }
