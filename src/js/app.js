@@ -1758,6 +1758,23 @@ $('body').on('click','.reserve-room-window .have-promo .value',function(){
             });
         }
     });
+    $('body').on('click','.slick-slider img',function(){
+        let _obj = $('img.photo-view').attr('src',$(this).eq(0).attr('src'));
+        _obj.parent().css({
+            display:'block'
+        });
+        $('.hide-doc').css({
+            display:'block'
+        });
+    });
+    $('body').on('click','.image-wiev-block .close-btn',function(){
+        $(this).parent().css({
+            display:'none'
+        });
+        $('.hide-doc').css({
+            display:'none'
+        });
+    });
     $('body').on('click', '.room-info-btn', function () {
         $('.hide-doc').css({
             display: 'block',
