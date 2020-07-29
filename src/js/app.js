@@ -100,7 +100,6 @@ let client_data = new Object({
         this.windowLoad = function () {
             $.get('templates/reserve-selection-popup.html', function (data) {
                     let reserveWindow = $(data);
-
                     thisObj.append(reserveWindow);
                 }
             ).fail(function (err) {
@@ -145,7 +144,6 @@ let client_data = new Object({
                         currentObj.append(roomWindow);
                         currentObj.stopUpdate = false;
                         currentObj.refreshWindow();
-
                     }
                 ).fail(function (err) {
                     console.log(err);
@@ -176,20 +174,20 @@ let client_data = new Object({
                 }
             }
             loadNext(1);
-            if(client_data.promoCode!=='') {
+            if (client_data.promoCode !== '') {
                 currentObj.find('.have-promo .promo-entered').html(client_data.promoCode);
                 currentObj.find('.have-promo .promo-entered,.have-promo .promo-entered-title').css({
-                    display:'block'
+                    display: 'block'
                 });
                 currentObj.find('.have-promo .no-promo').css({
-                    display:'none'
+                    display: 'none'
                 });
-            }else{
+            } else {
                 currentObj.find('.have-promo .promo-entered,.have-promo .promo-entered-title').css({
-                    display:'none'
+                    display: 'none'
                 });
                 currentObj.find('.have-promo .no-promo').css({
-                    display:'block'
+                    display: 'block'
                 });
             }
             return this;
@@ -1193,12 +1191,12 @@ $(document).ready(function () {
     //loadNextPage = 'pay-parameters';
     //loadNextPage = 'paying';
     //loadNextPage = 'pay-result-ok';
-$('body').on('click','.reserve-room-window .have-promo .value',function(){
-    $('.search-form .have-promo .value').trigger('click');
-    $('html').animate({
-        scrollTop:$('.search-form').offset().top-300
-    },500);
-});
+    $('body').on('click', '.reserve-room-window .have-promo .value', function () {
+        $('.search-form .have-promo .value').trigger('click');
+        $('html').animate({
+            scrollTop: $('.search-form').offset().top - 300
+        }, 500);
+    });
     if (typeof $('body').css('zoom') === typeof undefined) {
         _zoom = new WebKitCSSMatrix($('body').css('-moz-transform')).a;
     } else {
@@ -1212,7 +1210,6 @@ $('body').on('click','.reserve-room-window .have-promo .value',function(){
     }
     let opening = false;
     let mousePosY = 0;
-
     $('body').on('touchstart', '.reserve-room-window', function (e) {
         opening = true;
         mousePosY = e.touches[0].screenY;
@@ -1225,11 +1222,9 @@ $('body').on('click','.reserve-room-window .have-promo .value',function(){
     $('body').on('touchstart', '.pay-parameters .paragon-block', function (e) {
         opening = true;
         mousePosY = e.touches[0].screenY;
-
     });
     $('body').on('touchend', '.pay-parameters .paragon-block', function (e) {
         opening = false;
-
     });
     $('body').on('touchmove', function (e) {
         let delta = mousePosY - e.touches[0].screenY;
@@ -1340,7 +1335,6 @@ $('body').on('click','.reserve-room-window .have-promo .value',function(){
         }
     });
     let promoShowed = false;
-
     $('body').on('click', '.pay-parameters .mobile-version.back-btn', function () {
         hideSearchBox = true;
         loadNextPage = 'services-block';
@@ -1365,14 +1359,14 @@ $('body').on('click','.reserve-room-window .have-promo .value',function(){
                         e.preventDefault();
                         e.stopPropagation();
                         client_data.promoCode = promo1.find('.promo-value').val();
-                        client_data.needRefresh=true;
+                        client_data.needRefresh = true;
                         $.get('templates/promo2.html', function (data) {
                                 let promo2 = $(data);
                                 promo2.find('.promo-value').html(client_data.promoCode);
                                 promo2.on('click', '.promo-cross', function (e) {
                                     $.get('templates/promo0.html', function (data) {
-                                        client_data.promoCode = '';
-                                        client_data.needRefresh=true;
+                                            client_data.promoCode = '';
+                                            client_data.needRefresh = true;
                                             let promo0 = $(data);
                                             promo2.on('click', '.promo-cross', function (e) {
                                             });
@@ -1758,21 +1752,63 @@ $('body').on('click','.reserve-room-window .have-promo .value',function(){
             });
         }
     });
-    $('body').on('click','.slick-slider img',function(){
-        let _obj = $('img.photo-view').attr('src',$(this).eq(0).attr('src'));
+    $('body').on('click', '.slick-slider img', function () {
+        let _caller = $(this);
+        let _slide = _caller.parents('.slick-slide').eq(0);
+        let _slider = $(this).parents('.slick-slider').eq(0);
+        let cur_slide = 0;
+        let all_slides = 0;
+        cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
+        all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
+        $('.image-counter-value').html(cur_slide + '/' + all_slides);
+        $('.prev-btn-block').on('click', function () {
+            if (_slide.prev().not('.slick-cloned').length > 0) {
+                $(this).parent().find('.photo-view').animate({
+                    opacity: 0
+                }, 100, function () {
+                    _slide = _slide.prev().not('.slick-cloned');
+                    let _prev = _slide.find('img').attr('src');
+                    $(this).parent().find('.photo-view').attr('src', _prev);
+                    cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
+                    all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
+                    $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
+                    $(this).parent().find('.photo-view').animate({
+                        opacity: 1
+                    }, 100);
+                });
+            }
+        });
+        $('.next-btn-block').on('click', function () {
+            if (_slide.next().not('.slick-cloned').length > 0) {
+                $(this).parent().find('.photo-view').animate({
+                    opacity: 0
+                }, 100, function () {
+                    _slide = _slide.next().not('.slick-cloned');
+                    let _next = _slide.find('img').attr('src');
+                    $(this).parent().find('.photo-view').attr('src', _next);
+                    cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
+                    all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
+                    $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
+                    $(this).parent().find('.photo-view').animate({
+                        opacity: 1
+                    }, 100);
+                });
+            }
+        });
+        let _obj = $('img.photo-view').attr('src', $(this).eq(0).attr('src'));
         _obj.parent().css({
-            display:'block'
+            display: 'block'
         });
         $('.hide-doc').css({
-            display:'block'
+            display: 'block'
         });
     });
-    $('body').on('click','.image-wiev-block .close-btn',function(){
+    $('body').on('click', '.image-wiev-block .close-btn', function () {
         $(this).parent().css({
-            display:'none'
+            display: 'none'
         });
         $('.hide-doc').css({
-            display:'none'
+            display: 'none'
         });
     });
     $('body').on('click', '.room-info-btn', function () {
