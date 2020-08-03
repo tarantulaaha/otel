@@ -1295,10 +1295,8 @@ body{
     .photo-view{
       display:block;
       position:relative;
-      height:728px;
-      width:1040px;
+      height:60%;
       top:21%;
-      bottom:79%;
       margin:0 auto;
     }
     .close-btn{
@@ -1321,7 +1319,7 @@ body{
       position:absolute;
       cursor:pointer;
       width:88px;
-      height:904px;
+      height:75%;
       left:0;
       top:13%;
       &:hover{
@@ -1345,7 +1343,7 @@ body{
       position:absolute;
       cursor:pointer;
       width:88px;
-      height:904px;
+      height:75%;
       right:0;
       top:13%;
       &:hover{

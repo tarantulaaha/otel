@@ -1546,6 +1546,9 @@
             left:640px;
             position:absolute;
             width:320px;
+            img{
+              border-radius:0 8px 0 0;
+            }
 
             .slick-prev{
               left:0;

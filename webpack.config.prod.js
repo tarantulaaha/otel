@@ -43,4 +43,5 @@ module.exports = merge(common, {
       canPrint: true,
     }),
   ],
+  devtool: '(none)',
 });

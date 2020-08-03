@@ -81,5 +81,5 @@ module.exports = {
 	stats: {
 		colors: true,
 	},
-	devtool: 'hidden-source-map',
+
 };
