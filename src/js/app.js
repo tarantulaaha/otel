@@ -1251,7 +1251,7 @@ $(document).ready(function () {
                         $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
                         $(this).parent().find('.photo-view').stop().animate({
                             opacity: 1
-                        }, 300);
+                        }, 1000);
                     });
                 }
             });
@@ -1268,7 +1268,7 @@ $(document).ready(function () {
                         $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
                         $(this).parent().find('.photo-view').stop().animate({
                             opacity: 1
-                        }, 300);
+                        }, 1000);
                     });
                 }
             });
