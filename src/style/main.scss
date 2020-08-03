@@ -1293,11 +1293,12 @@ body{
     left:0;
     z-index:100;
     .photo-view{
-      display:block;
-      position:relative;
-      height:80vh;
-      padding-top:21vh;
-      margin:0 auto;
+      display: block;
+      position: relative;
+      max-height: 80vh;
+      padding-top: 21vh;
+      margin: 0 auto;
+      max-width: 80vw;
     }
     .close-btn{
       cursor:pointer;
