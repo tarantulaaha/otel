@@ -1240,7 +1240,7 @@ $(document).ready(function () {
             $('.image-counter-value').html(cur_slide + '/' + all_slides);
             $('.prev-btn-block').on('click', function () {
                 if (_slide.prev().not('.slick-cloned').length > 0) {
-                    $(this).parent().find('.photo-view').animate({
+                    $(this).parent().find('.photo-view').stop().animate({
                         opacity: 0
                     }, 100, function () {
                         _slide = _slide.prev().not('.slick-cloned');
@@ -1257,7 +1257,7 @@ $(document).ready(function () {
             });
             $('.next-btn-block').on('click', function () {
                 if (_slide.next().not('.slick-cloned').length > 0) {
-                    $(this).parent().find('.photo-view').animate({
+                    $(this).parent().find('.photo-view').stop().animate({
                         opacity: 0
                     }, 100, function () {
                         _slide = _slide.next().not('.slick-cloned');
