@@ -56,6 +56,7 @@ import {client_data} from "./client-data";
             }
             if (client_data.selectedDate.out.selected) {
                 calendarObj.find('.day[data-date="' + client_data.selectedDate.out.timestamp + '"]').addClass('selected-second-date');
+
             } else {
                 calendarObj.find('.day.selected-second-date').removeClass('selected-second-date');
             }
@@ -74,6 +75,7 @@ import {client_data} from "./client-data";
                         $(this).addClass('selected-range');
                     }
                 });
+
             } else {
                 calendarObj.find('.day.selected-range').removeClass('selected-range');
             }
@@ -180,7 +182,7 @@ import {client_data} from "./client-data";
                             let day = (_date.getDate() < 10) ? '0' + _date.getDate() : _date.getDate();
                             let month = (_date.getMonth() < 10) ? '0' + (_date.getMonth() + 1) : (_date.getMonth() + 1);
                             let text_date = day + '.' + month + '.' + _date.getFullYear();
-                            $('.in-date-value').val(text_date);
+                            $('.in-date-value').val(text_date).html(text_date);
                             if (client_data.selectedDate.out.selected) {
                                 let start_selection = false;
                                 calendarObj.find('.day').each(function () {
@@ -211,7 +213,8 @@ import {client_data} from "./client-data";
                             let day = (_date.getDate() < 10) ? '0' + _date.getDate() : _date.getDate();
                             let month = (_date.getMonth() < 10) ? '0' + (_date.getMonth() + 1) : (_date.getMonth() + 1);
                             let text_date = day + '.' + month + '.' + _date.getFullYear();
-                            $('.out-date-value').val(text_date);
+                            $('.out-date-value').val(text_date).html(text_date);
+
                             let start_selection = false;
                             calendarObj.find('.day').each(function () {
                                 if ($(this).hasClass('selected-first-date')) {
@@ -226,6 +229,8 @@ import {client_data} from "./client-data";
                                     $(this).addClass('selected-range');
                                 }
                             });
+
+                            calendarObj.hideWindow();
                             return true;
                         } else {
                             console.log('err2');
