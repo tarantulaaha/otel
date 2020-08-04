@@ -1229,7 +1229,7 @@ $(document).ready(function () {
         }
     });
     $('body').on('click', '.slick-slider img', function () {
-        if (window.innerWidth > 1199) {
+
             let _caller = $(this);
             let _slide = _caller.parents('.slick-slide').eq(0);
             let _slider = $(this).parents('.slick-slider').eq(0);
@@ -1279,7 +1279,7 @@ $(document).ready(function () {
             $('.hide-doc').css({
                 display: 'block'
             });
-        }
+
     });
     $('body').on('click', '.image-wiev-block .close-btn', function () {
         $(this).parent().css({
