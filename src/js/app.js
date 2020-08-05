@@ -30,7 +30,9 @@ let _zoom = 0;
             thisObj.on('click', '.reserve-selection-popup', function (event) {
                 hideSearchBox = true;
                 Settings.loadNextPage = 'services-block';
-                $('body').scrollTop = 0;
+                $('html').css({
+                    scrollTop:0
+                });
                 event.stopPropagation();
                 event.preventDefault();
             });
@@ -838,12 +840,16 @@ $(document).ready(function () {
     $('body').on('click', '.paying .mobile-version.back-btn', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.pay-result-ok .mobile-version.back-btn', function () {
         hideSearchBox = false;
         Settings.loadNextPage = 'main-page';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('.have-promo').on('click', function (e) {
         let havePromo = $(this);
@@ -1039,17 +1045,23 @@ $(document).ready(function () {
     $('body').on('click', '.pay-result-ok .back-to-main-page', function () {
         hideSearchBox = false;
         Settings.loadNextPage = 'main-page';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.paying .pay-confirm', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-result-ok';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.services-block .button-subbmit', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.service-checkbox', function () {
         if (typeof $(this).attr('checked') === typeof undefined) {
@@ -1121,28 +1133,38 @@ $(document).ready(function () {
     $('body').on('click', '.pay-parameters .next-step-button', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'paying';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.back-paying', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.back-box-services, .services-block .back-btn', function () {
         hideSearchBox = false;
         $('.content-page').html('');
         showAvailableRooms();
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.next-box-services, .services-block .next-btn', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     $('body').on('click', '.back-box-pay-parameters', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'services-block';
-        $('body').scrollTop = 0;
+        $('html').css({
+                    scrollTop:0
+                });
     });
     let calendarWindow = $('.in-out').vcCalendar();
     $('body').on('click', '.select-tariff-group .btn-large', function () {
