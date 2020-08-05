@@ -834,7 +834,6 @@ $(document).ready(function () {
     $('body').on('click', '.pay-parameters .mobile-version.back-btn', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'services-block';
-        $('body').scrollTop = 0;
     });
     $('body').on('click', '.paying .mobile-version.back-btn', function () {
         hideSearchBox = true;
@@ -1110,8 +1109,8 @@ $(document).ready(function () {
             $('.content-page').html('');
             $.get('templates/' + Settings.loadNextPage + '.html', function (data) {
                 $('.content-page').append($(data));
-                $('body')[0].scrollTop = 0;
-                $('body').css({
+                $('html')[0].scrollTop = 0;
+                $('html').css({
                     scrollTop:0
                 });
             });
