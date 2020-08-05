@@ -519,6 +519,9 @@ function showAvailableRooms() {
         });
         _obj.find('.arrow-down').trigger('classChange');
         let available_rooms = $('body .available-rooms');
+        $('html').css({
+            scrollTop:0
+        });
         if (available_rooms.length > 0) {
             available_rooms.animate({
                 opacity: 0
@@ -556,6 +559,9 @@ function showAvailableRooms() {
                     }
                 });
                 $('.content-page').append(_obj);
+                $('html').css({
+                    scrollTop:0
+                });
                 $('.available-rooms').animate({
                     opacity: 1
                 }, Settings.animationDuration);
