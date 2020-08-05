@@ -1148,6 +1148,9 @@ $(document).ready(function () {
                     scrollTop: 0
                 });
                 $('.phone').mask('+0 (000) 000 00 00');
+                $('.credit-card-value').mask('0000 - 0000 - 0000 - 0000');
+                $('.credit-card-exp').mask('00 / 00');
+                $('.credit-card-cvc').mask('000');
                 $('.email').on('input',function(){
                     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -1473,6 +1476,7 @@ $(document).ready(function () {
     });
     $('html').on('click', function () {
         $('.input.active').removeClass('active');
+        $('.input-hor.active').removeClass('active');
         $(this).find('.droopdown-expanded').removeClass('show');
         $('.popup-select-guest').animate({
             opacity: 0,
