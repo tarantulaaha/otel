@@ -1110,9 +1110,13 @@ $(document).ready(function () {
             $('.content-page').html('');
             $.get('templates/' + Settings.loadNextPage + '.html', function (data) {
                 $('.content-page').append($(data));
+                $('body')[0].scrollTop = 0;
+                $('body').css({
+                    scrollTop:0
+                });
             });
             Settings.loadNextPage = '';
-            $('body')[0].scrollTop = 0;
+
         }
     }, 100);
     $('body').on('click', '.pay-parameters .next-step-button', function () {
