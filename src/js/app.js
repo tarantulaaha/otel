@@ -1,6 +1,7 @@
 import Settings from "./setting";
 require('typeface-inter');
 import $ from 'jquery';
+import 'jquery-mask-plugin';
 import 'slick-carousel';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -776,6 +777,7 @@ $(document).ready(function () {
             }
         }
     });
+
     $('body').on('click', '.pay-parameters .paragon-block .roll-block, .reserve-room-window .roll-block', function () {
         let _obj = $(this).parents('.paragon-block').eq(0).find('.rolling');
         if (_obj.hasClass('roll-up')) {
@@ -1145,10 +1147,30 @@ $(document).ready(function () {
                 $('html').css({
                     scrollTop: 0
                 });
+                $('.phone').mask('+0 (000) 000 00 00');
+                $('.email').on('input',function(){
+                    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+                    if (re.test(String($(this).val()).toLowerCase()))
+                    {
+                        $(this).parents('.input').eq(0).removeClass('error');
+                        $(this).parents('.input').eq(0).addClass('active');
+                    }else{
+                        $(this).parents('.input').eq(0).removeClass('active');
+                        $(this).parents('.input').eq(0).addClass('error');
+                        console.log('eerr');
+                    }
+
+                });
             });
             Settings.loadNextPage = '';
         }
     }, 100);
+    $('body').on('click','.input',function(e){
+        $('.input.active').removeClass('active');
+        $(this).addClass('active');
+        e.stopPropagation();
+    });
     $('body').on('click', '.pay-parameters .next-step-button', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'paying';
@@ -1441,6 +1463,7 @@ $(document).ready(function () {
         ]
     });
     $('html').on('click', function () {
+        $('.input.active').removeClass('active');
         $(this).find('.droopdown-expanded').removeClass('show');
         $('.popup-select-guest').animate({
             opacity: 0,

@@ -31,6 +31,24 @@ body{
   font-style:normal;
   font-weight:normal;
 }
+.input,.textarea{
+  &:hover{
+    border: 1px solid rgba(47, 72, 106, 0.5)!important;
+  }
+  &.active{
+    border: 1px solid #267FF9!important;
+    .caption{
+      color:#267FF9!important;
+    }
+  }
+  &.error{
+    border: 1px solid #E03535!important;
+    .caption{
+      color:#E03535!important;
+    }
+  }
+
+}
 @import "slick.path";
 @import "popup-select-guest";
 @import "available.rooms.none";
