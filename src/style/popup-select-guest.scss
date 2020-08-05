@@ -32,20 +32,26 @@
     position: absolute;
     width: 24px;
   }
-  .input-value {
-    align-items: center;
-    color: #2F486A;
+  .number-input{
+    width: 95px;
+    position: absolute;
+    height: 95%;
+    left: 0px;
+    top: 0px;
     display: flex;
+    justify-content: center;
+  }
+  .input-value, input[type=number] {
+    color: #2F486A;
     font-size: 14px;
     font-weight: 500;
-    height: 20px;
-    left: calc(50% - 62px / 2 - 3.5px);
+    height: 95%;
     line-height: 20px;
-    position: absolute;
+    position: relative;
     text-align: center;
-    top: 7px;
-    width: 62px;
+
     border: none;
+
   }
   .input-plus {
     @extend .clickable;

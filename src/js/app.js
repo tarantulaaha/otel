@@ -1112,6 +1112,7 @@ $(document).ready(function () {
                 $('.content-page').append($(data));
             });
             Settings.loadNextPage = '';
+            $('body')[0].scrollTop = 0;
         }
     }, 100);
     $('body').on('click', '.pay-parameters .next-step-button', function () {

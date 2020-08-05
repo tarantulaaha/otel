@@ -10,7 +10,12 @@
                 <div class="input-up-label1">
                     <span class="title">Взрослые 15+</span>
                     <div class="form">
-                        <input type="text" class="input-value adult" value="1"></input>
+                        <div class="number-input">
+                            <label>
+                                <input type="number" min="1" max="100" maxlength="3" class="input-value adult"
+                                       value="1"/>
+                            </label>
+                        </div>
                         <div class="input-minus"></div>
                         <div class="input-plus"></div>
                     </div>
@@ -18,7 +23,10 @@
                 <div class="input-up-label2">
                     <span class="title">Дети 3-14 лет</span>
                     <div class="form">
-                        <input type="text" class="input-value children" value="0"></input>
+                        <div class="number-input">
+                            <input type="number" min="0" max="100" maxlength="3" class="input-value children"
+                                   value="0"></input>
+                        </div>
                         <div class="input-minus"></div>
                         <div class="input-plus"></div>
                     </div>
