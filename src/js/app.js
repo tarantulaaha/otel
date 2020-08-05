@@ -8,10 +8,8 @@ import 'slick-carousel/slick/fonts/slick.woff';
 import 'slick-carousel/slick/fonts/slick.ttf';
 import {client_data} from './client-data.js'
 import './jquery-vcCalendar.js'
-
 let hideSearchBox = false;
 let _zoom = 0;
-
 (function ($) {
     $.fn.roomAppendingWindow = function () {
         let thisObj = this;
@@ -31,7 +29,7 @@ let _zoom = 0;
                 hideSearchBox = true;
                 Settings.loadNextPage = 'services-block';
                 $('html').css({
-                    scrollTop:0
+                    scrollTop: 0
                 });
                 event.stopPropagation();
                 event.preventDefault();
@@ -179,9 +177,7 @@ let _zoom = 0;
         return this;
     }
 })(jQuery);
-
 let selectGuestObj = null;
-
 (function ($) {
     function isDOMAttrModifiedSupported() {
         let p = document.createElement('p');
@@ -376,19 +372,19 @@ $.fn.inputPlusMinus = function () {
                     $(this).parents('.droopdown').eq(0).attr('data-value', $(this).attr('data-value'));
                     $(this).parents('.droopdown-expanded').removeClass('show');
                     child_age_row.find('.age-value').html($(this).attr('data-value'));
-                    if(parseInt($(this).attr('data-value'))>4){
+                    if (parseInt($(this).attr('data-value')) > 4) {
                         child_age_row.find('.age-3').css({
-                            display:'none'
+                            display: 'none'
                         });
                         child_age_row.find('.age-5').css({
-                            display:'block'
+                            display: 'block'
                         });
-                    }else if(parseInt($(this).attr('data-value'))<5){
+                    } else if (parseInt($(this).attr('data-value')) < 5) {
                         child_age_row.find('.age-3').css({
-                            display:'block'
+                            display: 'block'
                         });
                         child_age_row.find('.age-5').css({
-                            display:'none'
+                            display: 'none'
                         });
                     }
                 });
@@ -520,7 +516,7 @@ function showAvailableRooms() {
         _obj.find('.arrow-down').trigger('classChange');
         let available_rooms = $('body .available-rooms');
         $('html').css({
-            scrollTop:0
+            scrollTop: 0
         });
         if (available_rooms.length > 0) {
             available_rooms.animate({
@@ -560,11 +556,19 @@ function showAvailableRooms() {
                 });
                 $('.content-page').append(_obj);
                 $('html').css({
-                    scrollTop:0
+                    scrollTop: 0
                 });
                 $('.available-rooms').animate({
-                    opacity: 1
-                }, Settings.animationDuration);
+                        opacity: 1
+                    },
+                    {
+                        duration: Settings.animationDuration,
+                        complete: function () {
+                            $('html').animate({
+                                scrollTop: $('.available-rooms').offset().top
+                            }, 500);
+                        }
+                    });
                 $('.frame-155-overflow').slick({
                     infinite: true,
                     slidesToShow: 4,
@@ -615,11 +619,19 @@ function showAvailableRooms() {
             });
             $('.content-page').append(_obj);
             $('html').css({
-                scrollTop:0
+                scrollTop: 0
             });
             $('.available-rooms').animate({
-                opacity: 1
-            }, Settings.animationDuration);
+                    opacity: 1
+                },
+                {
+                    duration: Settings.animationDuration,
+                    complete: function () {
+                        $('html').animate({
+                            scrollTop: $('.available-rooms').offset().top
+                        }, 500);
+                    }
+                });
             $('.frame-155-overflow').slick({
                 infinite: true,
                 slidesToShow: 4,
@@ -704,7 +716,6 @@ $(document).ready(function () {
     } else {
         _zoom = parseInt($('body').css('zoom'));
     }
-
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
         $(window).on('scroll', function () {
             if (window.innerWidth > 1199) {
@@ -712,13 +723,13 @@ $(document).ready(function () {
         });
     }
     if (navigator.userAgent.toLowerCase().indexOf('safari') > -1) {
-        _zoom=_zoom+0.015;
+        _zoom = _zoom + 0.015;
     }
     console.log(_zoom);
     let opening = false;
     let mousePosY = 0;
     $('body').on('touchstart', '.reserve-room-window', function (e) {
-       // opening = true;
+        // opening = true;
         mousePosY = e.touches[0].screenY;
         console.log('touchstart');
     });
@@ -850,15 +861,15 @@ $(document).ready(function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.pay-result-ok .mobile-version.back-btn', function () {
         hideSearchBox = false;
         Settings.loadNextPage = 'main-page';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('.have-promo').on('click', function (e) {
         let havePromo = $(this);
@@ -1055,22 +1066,22 @@ $(document).ready(function () {
         hideSearchBox = false;
         Settings.loadNextPage = 'main-page';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.paying .pay-confirm', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-result-ok';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.services-block .button-subbmit', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.service-checkbox', function () {
         if (typeof $(this).attr('checked') === typeof undefined) {
@@ -1132,48 +1143,47 @@ $(document).ready(function () {
                 $('.content-page').append($(data));
                 $('html')[0].scrollTop = 0;
                 $('html').css({
-                    scrollTop:0
+                    scrollTop: 0
                 });
             });
             Settings.loadNextPage = '';
-
         }
     }, 100);
     $('body').on('click', '.pay-parameters .next-step-button', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'paying';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.back-paying', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.back-box-services, .services-block .back-btn', function () {
         hideSearchBox = false;
         $('.content-page').html('');
         showAvailableRooms();
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.next-box-services, .services-block .next-btn', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'pay-parameters';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     $('body').on('click', '.back-box-pay-parameters', function () {
         hideSearchBox = true;
         Settings.loadNextPage = 'services-block';
         $('html').css({
-                    scrollTop:0
-                });
+            scrollTop: 0
+        });
     });
     let calendarWindow = $('.in-out').vcCalendar();
     $('body').on('click', '.select-tariff-group .btn-large', function () {
@@ -1284,57 +1294,55 @@ $(document).ready(function () {
         }
     });
     $('body').on('click', '.slick-slider img', function () {
-
-            let _caller = $(this);
-            let _slide = _caller.parents('.slick-slide').eq(0);
-            let _slider = $(this).parents('.slick-slider').eq(0);
-            let cur_slide = 0;
-            let all_slides = 0;
-            cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
-            all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
-            $('.image-counter-value').html(cur_slide + '/' + all_slides);
-            $('.prev-btn-block').on('click', function () {
-                if (_slide.prev().not('.slick-cloned').length > 0) {
+        let _caller = $(this);
+        let _slide = _caller.parents('.slick-slide').eq(0);
+        let _slider = $(this).parents('.slick-slider').eq(0);
+        let cur_slide = 0;
+        let all_slides = 0;
+        cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
+        all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
+        $('.image-counter-value').html(cur_slide + '/' + all_slides);
+        $('.prev-btn-block').on('click', function () {
+            if (_slide.prev().not('.slick-cloned').length > 0) {
+                $(this).parent().find('.photo-view').stop().animate({
+                    opacity: 0
+                }, 100, function () {
+                    _slide = _slide.prev().not('.slick-cloned');
+                    let _prev = _slide.find('img').attr('data-big-img');
+                    $(this).parent().find('.photo-view').attr('src', _prev);
+                    cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
+                    all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
+                    $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
                     $(this).parent().find('.photo-view').stop().animate({
-                        opacity: 0
-                    }, 100, function () {
-                        _slide = _slide.prev().not('.slick-cloned');
-                        let _prev = _slide.find('img').attr('data-big-img');
-                        $(this).parent().find('.photo-view').attr('src', _prev);
-                        cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
-                        all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
-                        $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
-                        $(this).parent().find('.photo-view').stop().animate({
-                            opacity: 1
-                        }, 1000);
-                    });
-                }
-            });
-            $('.next-btn-block').on('click', function () {
-                if (_slide.next().not('.slick-cloned').length > 0) {
+                        opacity: 1
+                    }, 1000);
+                });
+            }
+        });
+        $('.next-btn-block').on('click', function () {
+            if (_slide.next().not('.slick-cloned').length > 0) {
+                $(this).parent().find('.photo-view').stop().animate({
+                    opacity: 0
+                }, 100, function () {
+                    _slide = _slide.next().not('.slick-cloned');
+                    let _next = _slide.find('img').attr('data-big-img');
+                    $(this).parent().find('.photo-view').attr('src', _next);
+                    cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
+                    all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
+                    $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
                     $(this).parent().find('.photo-view').stop().animate({
-                        opacity: 0
-                    }, 100, function () {
-                        _slide = _slide.next().not('.slick-cloned');
-                        let _next = _slide.find('img').attr('data-big-img');
-                        $(this).parent().find('.photo-view').attr('src', _next);
-                        cur_slide = parseInt(_slide.attr('data-slick-index')) + 1;
-                        all_slides = _slider.find('.slick-slide').not('.slick-cloned').length;
-                        $(this).parent().find('.images-counter > .image-counter-value').html(cur_slide + '/' + all_slides);
-                        $(this).parent().find('.photo-view').stop().animate({
-                            opacity: 1
-                        }, 1000);
-                    });
-                }
-            });
-            let _obj = $('img.photo-view').attr('src', $(this).eq(0).attr('data-big-img'));
-            _obj.parent().css({
-                display: 'block'
-            });
-            $('.hide-doc').css({
-                display: 'block'
-            });
-
+                        opacity: 1
+                    }, 1000);
+                });
+            }
+        });
+        let _obj = $('img.photo-view').attr('src', $(this).eq(0).attr('data-big-img'));
+        _obj.parent().css({
+            display: 'block'
+        });
+        $('.hide-doc').css({
+            display: 'block'
+        });
     });
     $('body').on('click', '.image-wiev-block .close-btn', function () {
         $(this).parent().css({
