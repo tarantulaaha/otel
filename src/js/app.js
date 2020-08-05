@@ -1153,9 +1153,13 @@ $(document).ready(function () {
 
                     if (re.test(String($(this).val()).toLowerCase()))
                     {
+                        $(this).parents('.paying-contacts-block').eq(0).removeClass('error');
+                        $(this).parents('.paying-contacts-block').eq(0).addClass('active');
                         $(this).parents('.input').eq(0).removeClass('error');
                         $(this).parents('.input').eq(0).addClass('active');
                     }else{
+                        $(this).parents('.paying-contacts-block').eq(0).addClass('error');
+                        $(this).parents('.paying-contacts-block').eq(0).removeClass('active');
                         $(this).parents('.input').eq(0).removeClass('active');
                         $(this).parents('.input').eq(0).addClass('error');
                         console.log('eerr');
@@ -1168,6 +1172,11 @@ $(document).ready(function () {
     }, 100);
     $('body').on('click','.input',function(e){
         $('.input.active').removeClass('active');
+        $(this).addClass('active');
+        e.stopPropagation();
+    });
+    $('body').on('click','.input-hor',function(e){
+        $('.input-hor.active').removeClass('active');
         $(this).addClass('active');
         e.stopPropagation();
     });

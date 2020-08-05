@@ -1,3 +1,37 @@
+.paying-contacts-block{
+  &:hover{
+    box-shadow: 0px 8px 12px rgba(47, 72, 106, 0.08), 0px 6px 12px rgba(47, 72, 106, 0.08), 0px 12px 32px rgba(47, 72, 106, 0.16)!important;
+  }
+  &.active{
+    box-shadow: 0px 2px 6px rgba(38, 127, 249, 0.02), 0px 6px 12px rgba(38, 127, 249, 0.12), 0px 12px 32px rgba(38, 127, 249, 0.12)!important;
+    .contact-email-caption{
+      color: #267FF9;
+    }
+  }
+  &.error{
+    box-shadow: 0px 2px 6px rgba(224, 53, 53, 0.02), 0px 6px 12px rgba(224, 53, 53, 0.12), 0px 12px 32px rgba(224, 53, 53, 0.12)!important;
+    .contact-email-caption{
+      color: #E03535;
+    }
+  }
+}
+.credit-card{
+  &:hover{
+    box-shadow: 0px 8px 12px rgba(47, 72, 106, 0.08), 0px 6px 12px rgba(47, 72, 106, 0.08), 0px 12px 32px rgba(47, 72, 106, 0.16)!important;
+  }
+  &.active{
+    box-shadow: 0px 2px 6px rgba(38, 127, 249, 0.02), 0px 6px 12px rgba(38, 127, 249, 0.12), 0px 12px 32px rgba(38, 127, 249, 0.12)!important;
+    .credit-card-title{
+      color: #267FF9;
+    }
+  }
+  &.error{
+    box-shadow: 0px 2px 6px rgba(224, 53, 53, 0.02), 0px 6px 12px rgba(224, 53, 53, 0.12), 0px 12px 32px rgba(224, 53, 53, 0.12)!important;
+    .credit-card-title{
+      color: #E03535;
+    }
+  }
+}
 @media only screen and (max-width:1199px){
   .paying{
     position:relative;
