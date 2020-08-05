@@ -608,6 +608,9 @@ function showAvailableRooms() {
                 }
             });
             $('.content-page').append(_obj);
+            $('html').css({
+                scrollTop:0
+            });
             $('.available-rooms').animate({
                 opacity: 1
             }, Settings.animationDuration);
