@@ -1149,7 +1149,15 @@ $(document).ready(function () {
                 });
                 $('.phone').mask('+0 (000) 000 00 00');
                 $('.credit-card-value').mask('0000 - 0000 - 0000 - 0000');
-                $('.credit-card-exp').mask('00 / 00');
+                $('.credit-card-exp').mask('F0 / 00',{
+
+                    translation: {
+                        'F': {
+                            pattern: /[01]/g, optional: false
+                        }
+
+                    }
+                });
                 $('.credit-card-cvc').mask('000');
                 $('.email').on('input',function(){
                     const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -1165,7 +1173,7 @@ $(document).ready(function () {
                         $(this).parents('.paying-contacts-block').eq(0).removeClass('active');
                         $(this).parents('.input').eq(0).removeClass('active');
                         $(this).parents('.input').eq(0).addClass('error');
-                        console.log('eerr');
+
                     }
 
                 });
