@@ -48,7 +48,7 @@
     height:38px;
     left:55px;
     position:absolute;
-    width:186px;
+    width:max-content;
     .name{
       align-items:center;
       color:#2F486A;
@@ -58,6 +58,7 @@
       height:18px;
       line-height:18px;
       position:absolute;
+      width:max-content;
 
     }
   }
@@ -911,7 +912,7 @@
           }
           .group-164{
             .room-type{
-              width:130px;
+              width:max-content;
             }
           }
         }
@@ -1146,7 +1147,7 @@
         }
         .group-164{
           .room-type{
-            width:130px;
+            width:max-content;
           }
         }
       }
