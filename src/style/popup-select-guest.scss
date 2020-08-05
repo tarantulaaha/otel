@@ -21,6 +21,7 @@
   position: relative;
   top: 7px;
   width: 101px;
+  overflow: hidden;
   .input-minus {
     @extend .clickable;
     background: url(../static/input-minus.svg) no-repeat center;

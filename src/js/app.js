@@ -715,7 +715,7 @@ $(document).ready(function () {
     if (typeof $('body').css('zoom') === typeof undefined) {
         _zoom = new WebKitCSSMatrix($('body').css('-moz-transform')).a;
     } else {
-        _zoom = parseInt($('body').css('zoom'));
+        _zoom = parseFloat($('body').css('zoom'));
     }
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
         $(window).on('scroll', function () {
@@ -726,7 +726,7 @@ $(document).ready(function () {
     if (navigator.userAgent.toLowerCase().indexOf('safari') > -1) {
         _zoom = _zoom + 0.015;
     }
-    console.log(_zoom);
+
     let opening = false;
     let mousePosY = 0;
     $('body').on('touchstart', '.reserve-room-window', function (e) {
@@ -1408,8 +1408,9 @@ $(document).ready(function () {
                     display: 'none'
                 });
             });
-            popup_room_info.css({});
+
             $('body').append(popup_room_info);
+
             popup_room_info.css({
                 top: $('html')[0].scrollTop / _zoom + window.outerHeight / 2 - ((popup_room_info[0].offsetHeight / 2) * _zoom),
                 left: ((window.innerWidth / 2) - (popup_room_info[0].offsetWidth / 2) * _zoom)
