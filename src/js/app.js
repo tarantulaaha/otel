@@ -719,10 +719,10 @@ $(document).ready(function () {
             scrollTop: $('.search-form').offset().top - 300
         }, 500);
     });
-    if (typeof $('body').css('zoom') === typeof undefined) {
-        _zoom = new WebKitCSSMatrix($('body').css('-moz-transform')).a;
+    if (typeof $('html').css('zoom') === typeof undefined) {
+        _zoom = new WebKitCSSMatrix($('html').css('-moz-transform')).a;
     } else {
-        _zoom = parseFloat($('body').css('zoom'));
+        _zoom = parseFloat($('html').css('zoom'));
     }
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
         $(window).on('scroll', function () {
@@ -731,7 +731,7 @@ $(document).ready(function () {
         });
     }
     if (navigator.userAgent.toLowerCase().indexOf('safari') > -1) {
-        _zoom = _zoom + 0.015;
+        //_zoom = _zoom + 0.015;
     }
 
     let opening = false;
@@ -1395,7 +1395,8 @@ $(document).ready(function () {
             display: 'block'
         });
         $('.hide-doc').css({
-            display: 'block'
+            display: 'block',
+            height:$('html')[0].offsetHeight
         });
     });
     $('body').on('click', '.image-wiev-block .close-btn', function () {
@@ -1409,9 +1410,9 @@ $(document).ready(function () {
     $('body').on('click', '.room-info-btn', function () {
         $('.hide-doc').css({
             display: 'block',
-            height: $('body')[0].offsetHeight
+            height:$('html')[0].offsetHeight
         });
-        $('body').find('.popup-room-info').remove();
+        $('body').find('.popup-room-info-block').remove();
         $.get('templates/popup-room-info.html', function (data) {
             let popup_room_info = $(data);
             popup_room_info.find('.close-btn').on('click', function () {
@@ -1422,10 +1423,8 @@ $(document).ready(function () {
             });
 
             $('body').append(popup_room_info);
-
             popup_room_info.css({
-                top: $('html')[0].scrollTop / _zoom + window.outerHeight / 2 - ((popup_room_info[0].offsetHeight / 2) * _zoom),
-                left: ((window.innerWidth / 2) - (popup_room_info[0].offsetWidth / 2) * _zoom)
+                top: document.documentElement.scrollTop*(2-_zoom)+(document.documentElement.clientHeight-popup_room_info[0].offsetHeight*_zoom)/2,
             });
             // if (window.innerWidth > 1199) {
             //     $('.popup-room-info').css({
@@ -1452,8 +1451,8 @@ $(document).ready(function () {
             });
             $('.hide-doc').css({
                 display: 'block',
-                height: $('body')[0].offsetHeight
-            });
+                height:$('html')[0].offsetHeight
+                  });
             $('.mobile-tooltip').css({
                 top: ($('html')[0].scrollTop / _zoom) + (window.outerHeight / 2) - ((_obj[0].offsetHeight / 2) * _zoom),
                 left: ((window.innerWidth / 2) - (_obj[0].offsetWidth / 2) * _zoom) - 5

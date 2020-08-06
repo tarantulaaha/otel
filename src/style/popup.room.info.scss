@@ -1,4 +1,11 @@
-
+.popup-room-info-block{
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10% 0;
+}
 @media only screen and (max-width:1199px){
   .popup-room-info{
     transform:translate3d(0px, 0px, 0px);
@@ -6,14 +13,13 @@
     -moz-backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
-    position:absolute;
+    position:relative;
     height:608px;
     width:328px ;
     margin:0 auto;
     z-index:100;
     overflow: auto;
-    top:38px;
-    left:29%;
+
     font-family:Inter;
     font-style:normal;
     color:rgba(47, 72, 106, 0.75);
@@ -130,13 +136,12 @@
     -moz-backface-visibility:hidden;
     -webkit-backface-visibility:hidden;
     backface-visibility:hidden;
-    position:absolute;
+    position:relative;
     width:960px;
     height: 832px;
     margin:0 auto;
     z-index:100;
-    top:38px;
-    left:29%;
+
     overflow: auto;
     background:#FFFFFF;
 
