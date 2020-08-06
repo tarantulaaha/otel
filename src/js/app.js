@@ -723,6 +723,7 @@ $(document).ready(function () {
         _zoom = new WebKitCSSMatrix($('html').css('-moz-transform')).a;
     } else {
         _zoom = parseFloat($('html').css('zoom'));
+        if(_zoom>1){_zoom=1;}
     }
     if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
         $(window).on('scroll', function () {
@@ -1423,8 +1424,9 @@ $(document).ready(function () {
             });
 
             $('body').append(popup_room_info);
+            alert(_zoom);
             popup_room_info.css({
-                top: document.documentElement.scrollTop*(2-_zoom)+(window.innerHeight-popup_room_info[0].offsetHeight*_zoom)/2,
+                top: document.documentElement.scrollTop*(2-_zoom)+((window.innerHeight-popup_room_info[0].offsetHeight*_zoom)/2),
             });
             // if (window.innerWidth > 1199) {
             //     $('.popup-room-info').css({

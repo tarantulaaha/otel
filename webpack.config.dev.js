@@ -10,7 +10,7 @@ module.exports = merge(common, {
     hot: true,
     open: true,
     port: process.env.PORT || 9001,
-    host: process.env.HOST || 'localhost',
+    host: process.env.HOST || '192.168.1.114',
   },
   module: {
     rules: [
