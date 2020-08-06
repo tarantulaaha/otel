@@ -1424,7 +1424,7 @@ $(document).ready(function () {
             });
 
             $('body').append(popup_room_info);
-            alert(_zoom);
+
             popup_room_info.css({
                 top: document.documentElement.scrollTop*(2-_zoom)+((window.innerHeight-popup_room_info[0].offsetHeight*_zoom)/2),
             });
