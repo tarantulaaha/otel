@@ -38,9 +38,12 @@ let _zoom = 0;
             thisObj.on('click', function (event) {
                 thisObj.removeWindow();
                 thisObj.refreshKeys();
+                /*
                 if (keys.length > 1) {
                     thisObj.windowLoad();
                 }
+
+                 */
                 event.stopPropagation();
                 event.preventDefault();
                 return false;
@@ -68,7 +71,8 @@ let _zoom = 0;
             thisObj.removeWindow();
             thisObj.refreshKeys();
             if (keys.length > 1) {
-                thisObj.windowLoad();
+                //thisObj.windowLoad();
+                Settings.loadNextPage = 'services-block';
             } else {
                 Settings.loadNextPage = 'services-block';
             }
@@ -305,6 +309,7 @@ function recountPeoples() {
     client_data.peoples.children = 0;
     $('.popup-select-guest .input-value.adult').each(function () {
         client_data.peoples.adult += parseInt($(this).val());
+        client_data.needRefresh = true;
     });
     $('.popup-select-guest .input-value.children').each(function () {
         client_data.peoples.children += parseInt($(this).val());
@@ -318,7 +323,9 @@ function recountPeoples() {
         });
         $(this).find('.child-age-row span.age-value').each(function (i) {
             client_data.rooms[room_id].children[i] = $(this).text();
+            client_data.needRefresh = true;
         });
+        client_data.needRefresh = true;
     });
     if ($('.popup-select-guest #apartment-blocks').hasScrollBar()) {
         $($('.popup-select-guest').find('.fade-top')[0]).css({
@@ -778,15 +785,15 @@ $(document).ready(function () {
         }
     });
 
-    $('body').on('click', '.pay-parameters .paragon-block .roll-block, .reserve-room-window .roll-block', function () {
-        let _obj = $(this).parents('.paragon-block').eq(0).find('.rolling');
+    $('body').on('click', '.pay-parameters .paragon-block, .reserve-room-window', function () {
+        let _obj = $(this).find('.rolling');
         if (_obj.hasClass('roll-up')) {
             _obj.parent().animate({
                 // bottom: -438
             }, 500);
             _obj.slideDown(500, function () {
                 _obj.removeClass('roll-up');
-                _obj.parents('.paragon-block').eq(0).find('.full-price-block').removeClass('price-white');
+                _obj.find('.full-price-block').removeClass('price-white');
             });
         } else {
             _obj.parent().animate({
@@ -794,7 +801,7 @@ $(document).ready(function () {
             }, 500);
             _obj.slideUp(500, function () {
                 _obj.addClass('roll-up');
-                $(this).parents('.paragon-block').find('.full-price-block').addClass('price-white');
+                $(this).find('.full-price-block').addClass('price-white');
             });
         }
         let _obj2 = $('.reserve-room-window').eq(0).find('.rolling');
@@ -1228,6 +1235,10 @@ $(document).ready(function () {
         });
     });
     let calendarWindow = $('.in-out').vcCalendar();
+    $('body').on('click','.button-buy',function(){
+        hideSearchBox = true;
+        Settings.loadNextPage = 'services-block';
+    });
     $('body').on('click', '.select-tariff-group .btn-large', function () {
         $(this).parent().roomAppendingWindow();
     });
@@ -1276,11 +1287,12 @@ $(document).ready(function () {
                 });
                 selectGuestObj.find('.button-2').on('click', function () {
                     recountPeoples();
-                    client_data.needRefresh = true;
+
                     selectGuestObj.css({
                         opacity: 0,
                         display: 'none'
                     });
+                    client_data.needRefresh = true;
                 });
                 $('div.guests').append(selectGuestObj);
                 selectGuestObj.css({
