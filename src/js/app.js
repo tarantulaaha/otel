@@ -1435,8 +1435,8 @@ $(document).ready(function () {
             // }
         });
     });
-    $('body').on('click', '.mobile-tooltip .close-btn', function () {
-        $('.mobile-tooltip').css({
+    $('body').on('click', '.mobile-tooltip-block .close-btn', function () {
+        $('.mobile-tooltip-block').css({
             display: 'none'
         });
         $('.hide-doc').css({
@@ -1446,18 +1446,18 @@ $(document).ready(function () {
     $('body').on('click', '[data-tooltip]', function () {
         if (window.innerWidth < 1200) {
             let value = $(this).attr('data-tooltip');
-            $('.mobile-tooltip .tooltip-value').html(value);
-            let _obj = $('.mobile-tooltip');
-            $('.mobile-tooltip').css({
+            $('.mobile-tooltip-block .tooltip-value').html(value);
+            let _obj = $('.mobile-tooltip-block');
+            $('.mobile-tooltip-block').css({
                 display: 'block'
             });
             $('.hide-doc').css({
                 display: 'block',
                 height:$('html')[0].offsetHeight
                   });
-            $('.mobile-tooltip').css({
+            $('.mobile-tooltip-block').css({
                 top: ($('html')[0].scrollTop / _zoom) + (window.outerHeight / 2) - ((_obj[0].offsetHeight / 2) * _zoom),
-                left: ((window.innerWidth / 2) - (_obj[0].offsetWidth / 2) * _zoom) - 5
+
             });
         }
     });

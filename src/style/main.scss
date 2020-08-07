@@ -85,6 +85,14 @@ body{
   text-decoration:none;
 }
 @media screen and (max-width:1199px){
+  .mobile-tooltip-block{
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10% 0;
+  }
   .desktop-only{
     display:none !important;
   }
@@ -193,8 +201,8 @@ body{
     }
   }
   .mobile-tooltip{
-    display:none;
-    position:absolute;
+    position:relative;
+    margin: 0 auto;
     width:300px;
     z-index:10;
     background:#FFFFFF;
@@ -1539,7 +1547,6 @@ body{
     margin:0 auto;
   }
   html{
-
     -moz-transform:scale(0.8);
     transform-origin:50% 0;
     zoom:80%;
