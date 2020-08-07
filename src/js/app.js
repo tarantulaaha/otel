@@ -1155,6 +1155,13 @@ $(document).ready(function () {
                 $('html').css({
                     scrollTop: 0
                 });
+                $('.input [required]').on('input',function(){
+                    if($(this).val()!==''){
+                        $(this).parents('.input').eq(0).removeClass('error');
+                    }else{
+                        $(this).parents('.input').eq(0).addClass('error');
+                    }
+                });
                 $('.phone').mask('+0 (000) 000 00 00');
                 $('.credit-card-value').mask('0000 - 0000 - 0000 - 0000');
                 $('.credit-card-exp').mask('F0 / 00',{
@@ -1199,12 +1206,30 @@ $(document).ready(function () {
         $(this).addClass('active');
         e.stopPropagation();
     });
+
     $('body').on('click', '.pay-parameters .next-step-button', function () {
-        hideSearchBox = true;
-        Settings.loadNextPage = 'paying';
-        $('html').css({
-            scrollTop: 0
+        let notAll=false;
+        $(this).parents('.pay-parameters').eq(0).find('[required]').each(function(){
+            let _eachObj=$(this);
+            if(_eachObj.val()===''){
+                notAll=true;
+                $(this).parent().addClass('error');
+            }
         });
+        if($(this).parents('.pay-parameters').eq(0).find('.error').length>0){
+            notAll=true;
+        }
+        if(!notAll) {
+            hideSearchBox = true;
+            Settings.loadNextPage = 'paying';
+            $('html').css({
+                scrollTop: 0
+            });
+        }else{
+            $('html').animate({
+                scrollTop:0
+            },1500);
+        }
     });
     $('body').on('click', '.back-paying', function () {
         hideSearchBox = true;
